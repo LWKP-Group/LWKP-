@@ -1,0 +1,684 @@
+/* ================= HAMBURGER ================= */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 10001;
+}
+
+.hamburger span {
+  width: 26px;
+  height: 2px;
+  background: #000;
+  transition: 0.3s;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* ================= OFFCANVAS ================= */
+.offcanvas-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 9998;
+}
+
+.offcanvas-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 320px;
+  height: 100vh;
+  background: #fff;
+  z-index: 9999;
+  padding: 20px 10px;
+  overflow-y: auto;
+  text-align: left;
+  z-index: 99999;
+}
+.offcanvas-menu img {
+  margin-bottom: 20px;
+}
+.offcanvas-list li {
+  list-style: none;
+  margin-bottom: 16px;
+}
+ul.offcanvas-list {
+  padding: 5px;
+  margin: 0;
+}
+button.accordion-trigger {
+  padding-left: 0;
+}
+/* ================= ACCORDION ================= */
+.accordion-trigger {
+  width: 100%;
+  background: none;
+  border: none;
+  text-align: left;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.arrow {
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid #000;
+  border-bottom: 2px solid #000;
+  transform: rotate(45deg);
+  transition: 0.3s;
+}
+
+.arrow.open {
+  transform: rotate(-135deg);
+}
+
+.accordion-content {
+  margin-top: 10px;
+  padding-left: 16px;
+}
+
+.accordion-content li {
+  margin-bottom: 10px;
+}
+
+/* ================= DIRECT LINKS ================= */
+.direct-link {
+  font-size: 18px;
+  text-decoration: none;
+  color: #000;
+}
+@media (max-width: 1025px) {
+  :root {
+    --h1: 52px;
+    --h2: 38px;
+    --h3: 26px;
+    --h4: 21px;
+    --h5: 17px;
+    --h6: 14px;
+
+    --text-xl: 16px;
+    --text-lg: 14px;
+    --text-md: 14px;
+    --text-sm: 14px;
+
+    --lh-heading: 1;
+    --lh-body: 1.4;
+  }
+  .desktop-only {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+  .grid-gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .mobile-logo img {
+    width: 35%;
+  }
+  .mobile-accordion .accordion-button,
+  .static-links a {
+    font-size: 18px;
+  }
+  .mobile-accordion li a {
+    font-size: 15px;
+  }
+  .offcanvas-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .copys {
+    text-align: center;
+  }
+  .mainbanner {
+    height: 50vh;
+  }
+  .sticky-header {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  section.row.mainbanner .col-sm-4,
+  section.row.mainbanner .col-sm-5,
+  section.row.mainbanner .col-sm-6 {
+    width: 70%;
+  }
+  .tab-span {
+    margin-right: 10px !important;
+  }
+  .mainbanner a img {
+    width: 50px;
+  }
+  .small,
+  small {
+    font-size: unset;
+  }
+  .container.philosophySection img,
+  .row.insight-post img {
+    height: 190px;
+  }
+  .portfolio-hero-wrapper {
+    width: 100%;
+    height: 50vh;
+    position: relative;
+  }
+  .container.insights-wrapper h3 {
+    margin-top: 0;
+    margin-bottom: 3%;
+  }
+  .container.copyright .col-sm-3 a {
+    margin: 0 5px;
+  }
+  .container.footer-wrapper .col-sm-4 {
+    width: 50%;
+  }
+  .container.footer-wrapper .col-sm-4.newsleter-box {
+    width: 100%;
+  }
+  .col-sm-4.logo-box {
+    align-items: flex-start;
+    display: flex;
+  }
+  .container.philosophy-archives .col-sm-4 {
+    width: 48%;
+  }
+  .philosophy-archives .gridbox a {
+    width: 55%;
+    padding: 10px 0;
+  }
+  .row.boxes-three .col-sm-4 {
+    width: 30%;
+    padding: 15px 10px;
+  }
+  .row.boxes-three {
+    padding: 0 10px;
+  }
+  section.container.project-philosophy .row {
+    justify-content: space-between;
+    padding: 0 0px;
+  }
+  section.container.project-philosophy img,
+  .gridbox .col-sm-4 img {
+    height: 200px;
+  }
+  .valuesSwiper {
+    height: 300px;
+    overflow: hidden;
+  }
+  .poeple-depart {
+    margin: 5px;
+  }
+  .department-locations ul li {
+    font-size: 16px;
+  }
+  .department-people h5 {
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  p.designation {
+    font-size: 10px;
+  }
+  div#rhythm img,
+  div#convergence img {
+    object-fit: cover;
+    height: 400px;
+  }
+  .col-sm-6.left-side {
+    padding-right: 35px;
+  }
+  .col-sm-6.right-side {
+    padding-left: 35px;
+  }
+  .three-boxes img {
+    object-fit: contain;
+    width: 25%;
+    height: 60px;
+  }
+  body .container {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .filters-projects button.button-css {
+    padding: 10px 0px;
+  }
+  button.ant-btn.css-var-root.ant-btn-default.ant-btn-color-default.ant-btn-variant-outlined.button-css,
+  button.ant-btn.css-var-root.ant-btn-primary.ant-btn-color-primary.ant-btn-variant-solid {
+    font-size: 14px;
+  }
+  .gridbox .col-sm-4 {
+    margin: 4px;
+  }
+  .ant-select-dropdown .ant-select-item-option {
+    font-size: 10px;
+  }
+  .col-sm-3.project-detail h5 {
+    font-weight: 600;
+  }
+  .project-map iframe {
+    height: 30vh;
+  }
+  .back-to-top {
+    left: 92%;
+  }
+  .col-sm-6.job-content {
+    margin: 6px;
+  }
+  .container.jobs-single {
+    padding-top: 18%;
+  }
+  .col-sm-4.mailbox img {
+    width: 40px;
+    height: 40px;
+  }
+  .sidebar {
+    background: #f6f6f6;
+    padding: 20px 10px;
+  }
+
+  .sidebar button.ant-btn.css-var-root.ant-btn-primary.ant-btn-color-primary.ant-btn-variant-solid {
+    font-size: 11px;
+    height: 35px;
+  }
+  .sidebar input {
+    padding-top: 0;
+    padding-bottom: 0;
+    height: 35px;
+  }
+  .insight-single-post .social-icons {
+    gap: 5px;
+  }
+  .sticky-header.fixed {
+    padding-bottom: 10px;
+  }
+  .timeline-marker {
+    left: 16.7%;
+  }
+  .year {
+    padding-right: 20px;
+  }
+  .change-image img {
+    height: 260px;
+  }
+  .whowe,
+  .journery {
+    padding-right: 30px;
+  }
+}
+
+@media (max-width: 576px) {
+  :root {
+    --h1: 36px;
+    --h2: 30px;
+    --h3: 28px;
+    --h4: 23px;
+    --h5: 16px;
+    --h6: 14px;
+
+    --text-xl: 14px;
+    --text-lg: 14px;
+    --text-md: 14px;
+    --text-sm: 14px;
+
+    --lh-heading: 1;
+    --lh-body: 1.4;
+  }
+  .grid-gallery {
+    grid-template-columns: 1fr;
+  }
+  .row.fixedheader .col-sm-6 {
+    width: 50%;
+  }
+  body .row.fixedheader {
+    align-items: center;
+    padding: 20px 0;
+  }
+  .row.fixedheader .col-sm-6 a img {
+    width: 90px;
+    height: auto;
+  }
+  .mainbanner {
+    padding-top: 50px;
+  }
+  .sticky-header .col-sm-9,
+  .sticky-header .col-sm-3 {
+    width: 50%;
+  }
+  .sticky-header.fixed {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .container.philosophySection img,
+  .row.insight-post img {
+    height: 100px;
+  }
+  .container.philosophySection .col-sm-4 {
+    width: 48%;
+  }
+  .container.purpose-section .col-sm-7 {
+    padding-left: 0;
+    padding-top: 3%;
+  }
+  .row.heads.mb-4,
+  .container.projects-heading-wrapper,
+  .projects-slider-wrapper {
+    padding-bottom: 30px;
+    margin-bottom: 0 !important;
+  }
+  .projects-slider-wrapper,
+  .stories-slider-wrapper {
+    max-width: 100%;
+    padding-right: 0;
+    padding: 10px !important;
+    margin-top: 0 !important;
+  }
+  .bottomCard {
+    margin-top: 0;
+  }
+  .container.recognition.purpose-section .col-sm-6.purpose-content {
+    padding-bottom: 3%;
+  }
+  .portfolio-bg .col-sm-6 {
+    padding-bottom: 20px;
+  }
+  .hBar {
+    width: 25px;
+  }
+  .hBarActive {
+    width: 35px;
+  }
+  .horizontalBars {
+    gap: 7px;
+  }
+  .heroArrowBtn {
+    width: 40px;
+    height: 40px;
+    border-radius: 23px;
+  }
+  .heroArrows {
+    bottom: 40px;
+    right: 20px;
+  }
+  .row.insight-post .col-sm-4 {
+    width: 50%;
+  }
+  .row.insight-post .col-sm-4 p {
+    font-size: 11px;
+  }
+  .row.insight-post .col-sm-4 h5 {
+    margin-bottom: 0;
+  }
+  .container.footer-wrapper .col-sm-4 {
+    width: 100%;
+    padding-top: 40px;
+  }
+  .iconbox {
+    padding-left: 0;
+  }
+  .iconbox a:last-child {
+    margin: 0;
+  }
+  .container.copyright {
+    border-top: 1px solid #989898;
+    margin-top: 8%;
+    padding-top: 5%;
+  }
+  .container.copyright p {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  .container.copyright .social-icons {
+    text-align: center;
+  }
+  .whowe,
+  .journery {
+    padding-right: 0;
+    padding-bottom: 15px;
+  }
+  .whoweare {
+    padding: 10% 0;
+  }
+  .container-fluid.values .slides {
+    padding: 0;
+  }
+  .button-css {
+    width: 100%;
+    text-align: center;
+  }
+  .studio {
+    padding-left: 0;
+  }
+  .poeple-depart {
+    width: 100%;
+    margin: 0 !important;
+  }
+  .department-locations ul {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding-bottom: 5px;
+  }
+
+  .department-locations ul li {
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .col-sm-6.department-people,
+  .col-sm-3.preview-image {
+    width: 50%;
+  }
+  span.plus {
+    font-size: 14px;
+    padding-right: 5px;
+  }
+  .department-people h5 {
+    font-size: 14px;
+  }
+  p.designation {
+    font-size: 10px;
+    padding-left: 15px;
+  }
+  .purpose-section {
+    padding: 11% 0;
+  }
+  .studio .col-sm-6.purpose-content {
+    padding-bottom: 20px;
+  }
+  .projects-slider-wrapper.dimensions .swiper {
+    padding-bottom: 18%;
+  }
+  .col-sm-6.left-side {
+    padding-right: 0;
+    padding-bottom: 19px;
+  }
+  div#rhythm img,
+  div#convergence img {
+    height: 300px;
+  }
+  .col-sm-6.right-side {
+    padding-left: 0;
+    padding-top: 20px;
+  }
+  .studion-inner img,
+  section.container.project-philosophy img,
+  .gridbox .col-sm-4 img {
+    height: 100px;
+  }
+  div#featured {
+    padding-top: 8%;
+  }
+  .philosophy-row:nth-child(odd) {
+    flex-direction: column-reverse;
+  }
+  .row.boxes-three .col-sm-4 {
+    width: 100%;
+    padding: 15px 10px;
+    margin-bottom: 13px;
+  }
+  .three-boxes .col-sm-4 {
+    background-color: #fbfbfb;
+    width: 100%;
+    padding: 20px;
+    margin-bottom: 15px;
+  }
+  .right-side-box {
+    padding: 4% 3%;
+  }
+  .insight-single-post {
+    padding-right: 0;
+  }
+  section.row.mainbanner p {
+    padding: 0 20px;
+  }
+  section.row.mainbanner .col-sm-4,
+  section.row.mainbanner .col-sm-5,
+  section.row.mainbanner .col-sm-6 {
+    width: 100%;
+  }
+  .filters-projects .col-sm-2 {
+    padding: 10px;
+    width: 50%;
+  }
+  .filters-projects .col-sm-2:last-child {
+    width: 100%;
+  }
+  .gridbox .col-sm-4 {
+    width: 48%;
+    margin: 3px;
+    padding: 10px;
+  }
+  .vision-right {
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 5%;
+  }
+  .row.top-pad.vision-project {
+    padding-bottom: 10px;
+  }
+  .row.top-pad.vision-project:nth-last-child(2) {
+    flex-direction: column-reverse !important;
+  }
+  .design-right {
+    padding-right: 0;
+    padding-top: 5%;
+  }
+  .row.top-pad.vision-project {
+    padding-bottom: 6%;
+    padding-top: 6%;
+  }
+  div#ranking .row,
+  div#partnership .row {
+    flex-direction: column-reverse;
+  }
+  .recognition .awards img {
+    width: 100%;
+    padding: 0;
+    padding-bottom: 20px;
+  }
+  .recognition .awards .row {
+    padding-bottom: 6%;
+  }
+  .filters-projects.with-awards .col-sm-2 {
+    padding: 10px;
+    width: 100%;
+    padding: 0;
+    padding-top: 12px;
+  }
+  .awards .gridbox .col-sm-4 img,
+  .rankings .gridbox .col-sm-4 img,
+  .partnership .gridbox .col-sm-4 img {
+    height: 75px;
+  }
+  .newsletter-box input {
+    margin-bottom: 15px;
+    padding: 20px 10px;
+  }
+  ul.nav.nav-tabs.insight-tabs {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    border: unset;
+    gap: 5px;
+    white-space: nowrap;
+  }
+  ul.nav.nav-tabs.insight-tabs > li {
+    flex-shrink: 0;
+  }
+  ul.nav.nav-tabs.insight-tabs::-webkit-scrollbar {
+    display: none;
+  }
+  ul.nav.nav-tabs.insight-tabs {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .col-sm-6.job-content {
+    width: 100%;
+  }
+  div#life-at-lwk img {
+    width: 100%;
+  }
+  .container.jobs-single {
+    padding-top: 30%;
+  }
+  .back-to-top {
+    left: 87%;
+  }
+  .col-sm-4.mailbox {
+    background: #f6f6f6;
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  h5.location-heading {
+    font-size: 22px;
+    text-decoration: underline;
+  }
+  .col-sm-3.preview-image div {
+    position: sticky;
+    top: 6%;
+  }
+  .container-fluid.awards .award-box .awards-image-box img {
+    height: 60px;
+  }
+  .year {
+    padding-right: 0px;
+  }
+  .timeline-row:before {
+    left: -2%;
+  }
+  span.timeline-marker {
+    left: -4.5%;
+    top: 65%;
+  }
+  .timeline-content {
+    background: #fbfbfb;
+    width: 95%;
+    margin-left: 5%;
+    padding: 25px;
+    position: relative;
+  }
+  .timeline-row {
+    padding: 15px 0;
+    position: relative;
+  }
+  p.designation {
+    text-align: start;
+    padding-right: 15%;
+  }
+}

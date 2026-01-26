@@ -1,0 +1,495 @@
+@media (max-width: 1680px) {
+  :root {
+    --h1: 76px;
+    --h2: 64px;
+    --h3: 50px;
+    --h4: 30px;
+    --h5: 24px;
+    --h6: 18px;
+
+    --text-xl: 23px;
+    --text-lg: 20px;
+    --text-md: 16px;
+    --text-sm: 19px;
+
+    --lh-heading: 1;
+    --lh-body: 1.4;
+  }
+
+  .mediabox img {
+    height: 450px;
+  }
+  .tabs-insight button.nav-link {
+    font-size: 18px;
+  }
+  .department-locations ul li {
+    font-size: 22px;
+  }
+  span.plus {
+    font-size: 24px;
+  }
+  .projects-slider-wrapper.dimensions div,
+  .projects-slider-wrapper.dimensions p {
+    color: #424242;
+  }
+
+  .philosophy-archives .gridbox a {
+    text-align: center;
+  }
+  .philosophy-archives .gridbox a .button-css {
+    padding: 10px 25px;
+  }
+
+  .gridbox .col-sm-4 {
+    margin: 8px;
+  }
+
+  .row.related-posts img {
+    object-fit: cover;
+    height: 130px;
+    padding: 20px;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+  }
+  .newsletter-box button {
+    padding: 0 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  .review-info-box {
+    padding: 50px 14px 10px 6px;
+  }
+
+  .mobile-offcanvas {
+    width: 520px !important;
+  }
+  .philosophy-archives .gridbox a {
+    width: 55%;
+  }
+
+  .container.jobs-single p {
+    margin-bottom: 35px;
+    font-weight: 400;
+  }
+  button.ant-btn.css-var-root.ant-btn-default.ant-btn-color-default.ant-btn-variant-outlined.button-css,
+  button.ant-btn.css-var-root.ant-btn-primary.ant-btn-color-primary.ant-btn-variant-solid {
+    font-size: 16px;
+  }
+  .mobile-accordion .accordion-button,
+  .static-links a {
+    font-size: 21px;
+  }
+  .mobile-accordion li a {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 1440px) {
+  :root {
+    --h1: 62px;
+    --h2: 48px;
+    --h3: 36px;
+    --h4: 24px;
+    --h5: 20px;
+    --h6: 17px;
+
+    --text-xl: 18px;
+    --text-lg: 17px;
+    --text-md: 15px;
+    --text-sm: 15px;
+
+    --lh-heading: 1;
+    --lh-body: 1.4;
+  }
+
+  .stories .right-side-box h3 {
+    font-weight: 500;
+  }
+
+  .container.philosophySection h3 {
+    margin: 0;
+  }
+
+  .mediabox img {
+    height: 400px;
+  }
+
+  .mainbanner a {
+    margin-top: 0;
+    padding: 0px 35px;
+  }
+  .container.philosophySection .row.g-4 {
+    gap: 10px;
+  }
+  .container.philosophySection h5 {
+    margin-bottom: 0;
+  }
+
+  .card-body {
+    padding: 5px;
+  }
+
+  .container.philosophySection img {
+    height: 350px;
+  }
+  .storyImg {
+    height: 300px;
+  }
+  .bottomCard {
+    margin-top: 60px;
+  }
+
+  .mainmenu-ul {
+    gap: 18px;
+  }
+  .container-fluid.values .slides h2 {
+    margin-bottom: 5px;
+  }
+
+  .studio .col-sm-6.purpose-content {
+    padding-left: 0;
+    padding-right: 5%;
+  }
+  .studio-page .swiper img {
+    height: 420px;
+  }
+  .studio-page .locations .swiper-slide.swiper-slide-active img {
+    height: 450px;
+  }
+  .dimensionslideBox h4 {
+    margin-bottom: 3px;
+  }
+  .projects-slider-wrapper.dimensions {
+    padding-bottom: 65px;
+  }
+  .quote-purpose {
+    padding: 4% 0;
+  }
+  .studion-inner img {
+    height: 350px;
+  }
+  .philosophy-archives .gridbox a {
+    width: 55%;
+  }
+
+  .container.story-boxes {
+    padding-bottom: 2%;
+  }
+
+  .row.related-posts h3 {
+    margin-top: 15px;
+    margin-bottom: 10px;
+  }
+  .row.related-posts img {
+    height: 110px;
+    padding: 0 0 5px;
+  }
+  .social-icons img {
+    width: 30px;
+  }
+  .social-icons a {
+    margin: 0 4px;
+  }
+  div#life-at-lwk img {
+    width: 90%;
+  }
+
+  .col-sm-8.right-box img {
+    width: 15px;
+    height: auto;
+  }
+
+  .container.jobs-single p {
+    margin-bottom: 35px;
+    font-weight: 400;
+  }
+  .mobile-offcanvas {
+    width: 450px !important;
+  }
+  .tabs-insight button.nav-link {
+    font-size: 16px;
+  }
+  .mobile-accordion .accordion-button,
+  .static-links a {
+    font-size: 26px;
+  }
+  .mobile-accordion li a {
+    font-size: 21px;
+  }
+  .department-locations ul li {
+    font-size: 14px;
+    padding: 2px 0;
+  }
+  .award-box .awards-image-box img {
+    height: 100px;
+  }
+  .timeline-marker {
+    left: 17.2%;
+  }
+}
+
+@media (max-width: 1366px) {
+  :root {
+    --h1: 54px;
+    --h2: 40px;
+    --h3: 27px;
+    --h4: 24px;
+    --h5: 19px;
+    --h6: 16px;
+
+    --text-xl: 16px;
+    --text-lg: 16px;
+    --text-md: 14px;
+    --text-sm: 14px;
+
+    --lh-heading: 1;
+    --lh-body: 1.4;
+  }
+
+  .projectSlideBox {
+    height: 260px;
+  }
+  .container.philosophySection img {
+    height: 300px;
+  }
+
+  .container.philosophySection .row.g-4 {
+    gap: 10px;
+    justify-content: space-between;
+  }
+  .row.insight-post img {
+    height: 300px;
+  }
+  .studio-page .swiper img {
+    height: 350px;
+  }
+  .studio-page .locations .swiper-slide.swiper-slide-active img {
+    height: 370px;
+  }
+
+  .studion-inner img {
+    height: 300px;
+  }
+  .row.top-pad.vision-project {
+    padding-bottom: 50px;
+  }
+  section.container.project-philosophy img {
+    height: 300px;
+  }
+  .change-image img {
+    object-fit: cover;
+    width: 100%;
+    height: 470px;
+  }
+  .gridbox .col-sm-4 img {
+    height: 300px;
+  }
+  .awards .gridbox .col-sm-4 img,
+  .rankings .gridbox .col-sm-4 img,
+  .partnership .gridbox .col-sm-4 img {
+    height: 200px;
+    object-fit: contain !important;
+    width: 100%;
+  }
+  .mediabox img {
+    height: 300px;
+  }
+  .row.related-posts img {
+    height: 80px;
+    padding: 0 0 5px;
+  }
+  .row.related-posts h4 {
+    margin-top: 15px;
+    margin-bottom: 13px;
+  }
+  .newsletter-box p {
+    margin-bottom: 4%;
+    font-weight: 400;
+  }
+  .mobile-accordion .accordion-button,
+  .static-links a {
+    font-size: 21px;
+  }
+  .mobile-accordion li a {
+    font-size: 18px;
+  }
+  .department-locations ul li {
+    font-size: 14px;
+    padding: 2px 0;
+  }
+  .ant-select-item.ant-select-item-option {
+    font-size: 11px;
+    padding: 5px;
+  }
+  .filters-projects .col-sm-6,
+  .filters-projects .col-sm-2 {
+    padding: 10px 4px;
+  }
+  .container-fluid.awards .award-box .awards-image-box img {
+    height: 100px;
+  }
+  .timeline-marker {
+    left: 17.2%;
+  }
+}
+
+@media (max-width: 1280px) {
+  :root {
+    --h1: 46px;
+    --h2: 36px;
+    --h3: 25px;
+    --h4: 20px;
+    --h5: 18px;
+    --h6: 16px;
+
+    --text-xl: 14px;
+    --text-lg: 14px;
+    --text-md: 14px;
+    --text-sm: 14px;
+
+    --lh-heading: 1;
+    --lh-body: 1.4;
+  }
+  .ant-select-item.ant-select-item-option {
+    font-size: 10px;
+    padding: 5px;
+  }
+  .filters-projects .col-sm-6,
+  .filters-projects .col-sm-2 {
+    padding: 10px 4px;
+  }
+  .department-locations ul li {
+    font-size: 14px;
+    padding: 2px 0;
+  }
+  .row.related-posts img {
+    height: 80px;
+  }
+  .slides-employe {
+    padding: 0px;
+  }
+  .review-image {
+    height: 145px;
+  }
+  .gridbox .col-sm-4 {
+    margin: 5px;
+  }
+
+  .projectSlideBox {
+    height: 240px;
+  }
+  .container.philosophySection img {
+    height: 280px;
+  }
+
+  .row.insight-post img {
+    height: 280px;
+  }
+  .studio-page .swiper img {
+    height: 320px;
+  }
+  .studio-page .locations .swiper-slide.swiper-slide-active img {
+    height: 340px;
+  }
+
+  .studion-inner img {
+    height: 280px;
+  }
+
+  section.container.project-philosophy img {
+    height: 280px;
+  }
+
+  .gridbox .col-sm-4 img {
+    height: 280px;
+  }
+
+  .awards .gridbox .col-sm-4 img,
+  .rankings .gridbox .col-sm-4 img,
+  .partnership .gridbox .col-sm-4 img {
+    height: 180px;
+  }
+
+  .mediabox img {
+    height: 280px;
+  }
+
+  .stories .right-side-box h3 {
+    font-weight: 500;
+  }
+  .mobile-accordion .accordion-button,
+  .static-links a {
+    font-size: 21px;
+  }
+  .mobile-accordion li a {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 1155px) {
+  :root {
+    --h1: 46px;
+    --h2: 38px;
+    --h3: 28px;
+    --h4: 20px;
+    --h5: 17px;
+    --h6: 16px;
+
+    --text-xl: 17px;
+    --text-lg: 15px;
+    --text-md: 14px;
+    --text-sm: 15px;
+
+    --lh-heading: 1;
+    --lh-body: 1.4;
+  }
+  .projectSlideBox {
+    height: 220px;
+  }
+  .container.philosophySection img {
+    height: 260px;
+  }
+
+  .row.insight-post img {
+    height: 260px;
+  }
+  .studio-page .swiper img {
+    height: 300px;
+  }
+  .studio-page .locations .swiper-slide.swiper-slide-active img {
+    height: 320px;
+  }
+
+  .studion-inner img {
+    height: 260px;
+  }
+  .stories .right-side-box h3 {
+    font-weight: 500;
+  }
+  section.container.project-philosophy img {
+    height: 260px;
+  }
+
+  .gridbox .col-sm-4 img {
+    height: 260px;
+  }
+
+  .awards .gridbox .col-sm-4 img,
+  .rankings .gridbox .col-sm-4 img,
+  .partnership .gridbox .col-sm-4 img {
+    height: 160px;
+  }
+
+  .mediabox img {
+    height: 260px;
+  }
+  .mobile-accordion .accordion-button,
+  .static-links a {
+    font-size: 21px;
+  }
+  .mobile-accordion li a {
+    font-size: 18px;
+  }
+}
