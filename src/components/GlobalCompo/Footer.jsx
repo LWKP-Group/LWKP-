@@ -35,7 +35,9 @@ export default function Footer() {
                 <Link href="mailto:marketing@lwkp.com">
                   <Image src={Envelop} alt="Envelop" />
                   <div className="iconbox-text">
-                    <p>Marketing & Media Enquiries</p>
+                    <p>
+                      Marketing <span class="symbol-font">&</span> Media Enquiries
+                    </p>
                     <span>
                       marketing<span className="symbol-font">@</span>lwkp.com
                     </span>

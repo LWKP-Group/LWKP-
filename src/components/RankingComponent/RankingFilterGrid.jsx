@@ -1,94 +1,88 @@
 "use client";
 
 import { useEffect, useState, useMemo } from "react";
-import Image from "next/image";
-import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
-import { Modal } from "antd";
-import "antd/dist/reset.css";
-import SmallLOGO from "@/assets/smalllogo.png";
-import GlobalLoader from "@/components/GlobalCompo/GlobalLoader";
 import {
+  fetchRankingYears,
   fetchrankingPosts,
   selectrankingPosts,
-  selectrankingLoading,
   selectrankingTotal,
+  selectrankingLoading,
 } from "@/store/slices/rankingSlice";
 
+import { motion } from "framer-motion";
+import { rowAnim, cardAnim } from "@/lib/animation";
+import GlobalLoader from "@/components/GlobalCompo/GlobalLoader";
 import RankingFilters from "./RankingFilters";
 import ArchivePagination from "@/components/ReuseableComponent/Pagination";
-import { rowAnim, cardAnim } from "@/lib/animation";
+import Image from "next/image";
+import SmallLOGO from "@/assets/smalllogo.png";
+import { Modal } from "antd";
 
 export default function RankingFilterGrid() {
   const dispatch = useDispatch();
-
   const ranking = useSelector(selectrankingPosts);
   const total = useSelector(selectrankingTotal);
   const loading = useSelector(selectrankingLoading);
 
   const [page, setPage] = useState(1);
-  const [keyword, setKeyword] = useState("");
-  const [year, setYear] = useState("");
+  const [filters, setFilters] = useState({ keyword: "", year: "" });
 
-  // Modal State
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeRank, setActiveRank] = useState(null);
 
   const pageSize = 12;
 
   useEffect(() => {
-    dispatch(fetchrankingPosts({ page, keyword }));
-  }, [dispatch, page, keyword]);
+    dispatch(fetchRankingYears());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(fetchrankingPosts({ page, ...filters }));
+  }, [dispatch, page, filters]);
+
+  const sortedRanking = useMemo(() => {
+    return [...ranking].sort((a, b) => {
+      const aDate = new Date(a?.date_gmt || a?.date || a?.modified_gmt);
+      const bDate = new Date(b?.date_gmt || b?.date || b?.modified_gmt);
+      return bDate - aDate;
+    });
+  }, [ranking]);
+
+  console.log(sortedRanking);
 
   const handleFilter = ({ keyword, year }) => {
     setPage(1);
-    setKeyword(keyword || "");
-    setYear(year || "");
+    setFilters({ keyword, year });
   };
 
-  const filteredranking = useMemo(() => {
-    if (!year) return ranking || [];
-    return (ranking || []).filter((a) => {
-      const dateStr = a?.acf?.ranking_date || "";
-      return dateStr.endsWith(year);
-    });
-  }, [ranking, year]);
-
-  // Modal Handlers
-  const openModal = (item) => {
-    setActiveRank(item);
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setActiveRank(null);
-  };
+  const openModal = (item) => setActiveRank(item) || setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false) || setActiveRank(null);
 
   return (
     <>
       <motion.div className="container py-5 gridbox" variants={rowAnim} initial="hidden" whileInView="show">
-        <RankingFilters ranking={ranking || []} onFilter={handleFilter} />
+        <RankingFilters onFilter={handleFilter} />
 
         {loading && (
-          <div className="container text-center py-5">
+          <div className="text-center py-5">
             <GlobalLoader />
           </div>
         )}
 
-        {!loading && filteredranking.length === 0 && (
+        {!loading && sortedRanking.length === 0 && (
           <div className="text-center py-5">
             <h4>No ranking found</h4>
           </div>
         )}
 
-        {!loading && filteredranking.length > 0 && (
+        {!loading && sortedRanking.length > 0 && (
           <div className="row">
-            {filteredranking.map((item, index) => {
-              const title = item?.title?.rendered || "Ranking";
+            {sortedRanking.map((item, index) => {
+              const title = item?.title?.rendered;
               const img = item?.featured_image;
               const dateStr = item?.acf?.ranking_date || "";
-              const yearText = dateStr;
+              const yearText = dateStr.split(" ").pop();
 
               return (
                 <motion.div
@@ -102,33 +96,14 @@ export default function RankingFilterGrid() {
                 >
                   <div className="awards-image-box">
                     {img ? (
-                      <Image
-                        src={img}
-                        width={600}
-                        height={400}
-                        className="img-fluid"
-                        alt={title}
-                        loading="lazy"
-                        sizes="(max-width: 768px) 100vw, 600px"
-                        unoptimized
-                      />
+                      <Image src={img} width={600} height={400} alt={title} unoptimized />
                     ) : (
-                      <Image
-                        src={SmallLOGO}
-                        className="non-photo"
-                        width={600}
-                        height={400}
-                        alt={title}
-                        loading="lazy"
-                        sizes="(max-width: 768px) 100vw, 600px"
-                      />
+                      <Image src={SmallLOGO} width={100} height={100} alt="No Image" />
                     )}
                   </div>
 
                   <h5 dangerouslySetInnerHTML={{ __html: title }} />
                   {yearText && <h6>{yearText}</h6>}
-
-                  {/* 🔹 Learn More opens modal */}
                   <a onClick={() => openModal(item)} style={{ cursor: "pointer" }}>
                     View More →
                   </a>
@@ -151,17 +126,11 @@ export default function RankingFilterGrid() {
         )}
       </motion.div>
 
-      {/* 🔹 Modal */}
       <Modal open={isModalOpen} onCancel={closeModal} footer={null} centered width={800}>
         {activeRank && (
           <>
             <h3 dangerouslySetInnerHTML={{ __html: activeRank?.title?.rendered }} />
-            <div
-              className="ranking-modal-content"
-              dangerouslySetInnerHTML={{
-                __html: activeRank?.content?.rendered || "",
-              }}
-            />
+            <div dangerouslySetInnerHTML={{ __html: activeRank?.content?.rendered || "" }} />
           </>
         )}
       </Modal>

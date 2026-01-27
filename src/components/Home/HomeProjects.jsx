@@ -1,8 +1,9 @@
 "use client";
 
-import { Fragment, useEffect } from "react";
+import { Fragment, useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProjectTypes, selectProjectTypes, selectProjectTypesLoading } from "@/store/slices/projectTypeSlice";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import { motion } from "framer-motion";
@@ -22,6 +23,33 @@ export default function ProjectTypeSlider() {
     dispatch(fetchProjectTypes());
   }, [dispatch]);
 
+  // ✅ FIXED ORDER (normalized)
+  const ORDER = [
+    "urban planning & masterplanning",
+    "architecture",
+    "landscape & public realm",
+    "interiors",
+    "cross-disciplinary approach",
+  ];
+
+  // ✅ NORMALIZE helper
+  const normalize = (str = "") => str.toLowerCase().replace(/&amp;/g, "&").replace(/\s+/g, " ").trim();
+
+  // ✅ SORTED TYPES
+  const sortedTypes = useMemo(() => {
+    if (!Array.isArray(types)) return [];
+
+    return [...types].sort((a, b) => {
+      const aName = normalize(a?.name);
+      const bName = normalize(b?.name);
+
+      const ai = ORDER.indexOf(aName);
+      const bi = ORDER.indexOf(bName);
+
+      return (ai === -1 ? 999 : ai) - (bi === -1 ? 999 : bi);
+    });
+  }, [types]);
+
   if (loading || !types) {
     return (
       <div className="container text-center py-5">
@@ -30,7 +58,7 @@ export default function ProjectTypeSlider() {
     );
   }
 
-  if (!types.length) {
+  if (!sortedTypes.length) {
     return <div className="container text-center py-5">Content not available.</div>;
   }
 
@@ -48,7 +76,6 @@ export default function ProjectTypeSlider() {
             <div className="col-sm-12">
               <p className="sub-heading">Studio</p>
             </div>
-
             <div className="col-sm-12">
               <h3>Crafted Dimensions</h3>
             </div>
@@ -61,22 +88,16 @@ export default function ProjectTypeSlider() {
             spaceBetween={30}
             loop={true}
             pagination={{ clickable: true }}
-            navigation={true}
+            navigation
             className="projectsSwiper"
             breakpoints={{
-              0: {
-                slidesPerView: 1,
-              },
-              768: {
-                slidesPerView: 2.5,
-              },
-              1200: {
-                slidesPerView: 3.2,
-              },
+              0: { slidesPerView: 1 },
+              768: { slidesPerView: 2.5 },
+              1200: { slidesPerView: 3.2 },
             }}
           >
-            {types.map((type, index) => (
-              <SwiperSlide key={index}>
+            {sortedTypes.map((type) => (
+              <SwiperSlide key={type.id}>
                 <motion.div whileHover={{ scale: 1.0 }} transition={{ duration: 0.3 }} className="projectSlideBox">
                   {type?.acf?.project_type_texanomy_image ? (
                     <img
@@ -88,7 +109,9 @@ export default function ProjectTypeSlider() {
                   ) : (
                     <div className="slideImg">Image not available</div>
                   )}
+
                   <div className="slideOverlay"></div>
+
                   <div className="slideContent">
                     <Link href={`/projects/type/${type?.slug}`}>
                       <h5
@@ -96,7 +119,6 @@ export default function ProjectTypeSlider() {
                           __html: type?.name || "Project Type",
                         }}
                       />
-
                       <p>{type?.description || "—"}</p>
                     </Link>
                   </div>

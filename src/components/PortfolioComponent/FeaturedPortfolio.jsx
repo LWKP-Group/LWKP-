@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import GlobalLoader from "@/components/GlobalCompo/GlobalLoader";
+
 import {
   fetchProjectsPaginated,
   selectProjectsPaginatedPosts,
@@ -19,37 +20,17 @@ import { rowAnim } from "@/lib/animation";
 export default function FeaturedPortfolio() {
   const dispatch = useDispatch();
 
-  const projects = useSelector(selectProjectsPaginatedPosts);
+  const rawProjects = useSelector(selectProjectsPaginatedPosts);
   const loading = useSelector(selectProjectsPaginatedLoading);
   const total = useSelector(selectProjectsPaginatedTotal);
+
+  const projects = Array.isArray(rawProjects) ? rawProjects : [];
 
   const [page, setPage] = useState(1);
 
   useEffect(() => {
     dispatch(fetchProjectsPaginated({ page }));
   }, [dispatch, page]);
-
-  if (loading && (!projects || projects.length === 0)) {
-    return (
-      <div className="container text-center py-5">
-        <GlobalLoader />
-      </div>
-    );
-  }
-
-  if (!projects || projects.length === 0) {
-    return <div className="container text-center py-5">No Projects Found</div>;
-  }
-
-  const featuredProjects = projects.filter((project) => {
-    const categories = project?.project_category || project?.taxonomies?.project_category || [];
-
-    return categories.some((cat) => cat?.slug === "featured" || cat?.name?.toLowerCase() === "featured");
-  });
-
-  if (featuredProjects.length === 0) {
-    return <div className="container text-center py-5">No Featured Projects</div>;
-  }
 
   return (
     <motion.section
@@ -66,28 +47,42 @@ export default function FeaturedPortfolio() {
         </div>
       </div>
 
-      <div className="row">
-        {featuredProjects.map((project) => {
-          const title = project?.title?.rendered || project?.title || "";
-          const slug = project?.slug;
-          const location = project?.project_loaction?.[0]?.name || project?.acf?.project_location || "";
+      {/* ✅ SIMPLE LOADER (WORKS ON PAGINATION) */}
+      {loading && (
+        <div className="text-center py-5">
+          <GlobalLoader />
+        </div>
+      )}
 
-          const image = project?.featured_image || project?._embedded?.["wp:featuredmedia"]?.[0]?.source_url;
+      {/* ❌ GRID HIDE WHILE LOADING */}
+      {!loading && projects.length === 0 && <div className="text-center py-5">No Featured Projects</div>}
 
-          return (
-            <motion.div whileHover={{ scale: 0.95 }} key={project.id} className="col-sm-6 mb-4">
-              {image && <Image src={image} alt={title} width={600} height={400} className="img-fluid" loading="lazy" />}
+      {!loading && (
+        <div className="row">
+          {projects.map((project) => {
+            const title = project?.title?.rendered || "";
+            const slug = project?.slug || "";
+            const location = project?.project_loaction?.[0]?.name || project?.acf?.project_location || "";
 
-              <h5 dangerouslySetInnerHTML={{ __html: title }} />
-              {location && <h6>{location}</h6>}
+            const image = project?._embedded?.["wp:featuredmedia"]?.[0]?.source_url;
 
-              <Link href={`/projects/${slug}`}>View Project →</Link>
-            </motion.div>
-          );
-        })}
-      </div>
+            return (
+              <motion.div key={project.id} whileHover={{ scale: 0.98 }} className="col-sm-6 mb-4">
+                {image && (
+                  <Image src={image} alt={title} width={600} height={400} className="img-fluid" loading="lazy" />
+                )}
 
-      {total > 12 && <ArchivePagination current={page} pageSize={12} total={total} onChange={(p) => setPage(p)} />}
+                <h5 dangerouslySetInnerHTML={{ __html: title }} />
+                {location && <h6>{location}</h6>}
+
+                <Link href={`/projects/${slug}`}>View Project →</Link>
+              </motion.div>
+            );
+          })}
+        </div>
+      )}
+
+      {total > 6 && <ArchivePagination current={page} pageSize={6} total={total} onChange={(p) => setPage(p)} />}
     </motion.section>
   );
 }

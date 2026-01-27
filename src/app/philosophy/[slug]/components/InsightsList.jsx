@@ -34,7 +34,7 @@ export default function InsightsList({ insights }) {
             const formattedDate = post?.date ? dayjs(post.date).format("DD MMMM YYYY") : "Date not available";
 
             return (
-              <motion.div className="col-sm-4 mb-4" key={post.id || post.slug || index}>
+              <motion.div className="col-sm-4 mb-4" key={post.id || post.slug || index} whileHover={{ scale: 0.95 }}>
                 {post?.featured_image ? (
                   <Image
                     src={post.featured_image}

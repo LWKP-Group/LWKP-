@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment, useEffect } from "react";
+import { Fragment, useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchstudiolocationPosts,
@@ -9,7 +9,7 @@ import {
 } from "@/store/slices/studioSlice";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import { Navigation, Pagination } from "swiper/modules";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
@@ -17,7 +17,6 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import GlobalLoader from "@/components/GlobalCompo/GlobalLoader";
-
 import { rowAnim } from "@/lib/animation";
 
 export default function Homestudiolocation() {
@@ -29,6 +28,36 @@ export default function Homestudiolocation() {
     dispatch(fetchstudiolocationPosts());
   }, [dispatch]);
 
+  // ✅ FIXED ORDER
+  const ORDER = [
+    "Hong Kong",
+    "Shenzhen",
+    "Guangzhou",
+    "Shanghai",
+    "Chongqing",
+    "Beijing",
+    "Shenyang",
+    "Macau",
+    "Manila",
+    "Dubai",
+    "Riyadh",
+  ];
+
+  // ✅ SORTED POSTS (others go last)
+  const sortedPosts = useMemo(() => {
+    if (!Array.isArray(posts)) return [];
+
+    return [...posts].sort((a, b) => {
+      const aTitle = a?.title?.rendered || "";
+      const bTitle = b?.title?.rendered || "";
+
+      const ai = ORDER.indexOf(aTitle);
+      const bi = ORDER.indexOf(bTitle);
+
+      return (ai === -1 ? 999 : ai) - (bi === -1 ? 999 : bi);
+    });
+  }, [posts]);
+
   if (loading) {
     return (
       <div className="container text-center py-5">
@@ -37,7 +66,7 @@ export default function Homestudiolocation() {
     );
   }
 
-  if (!posts || posts.length === 0) return null;
+  if (!sortedPosts.length) return null;
 
   return (
     <Fragment>
@@ -46,7 +75,6 @@ export default function Homestudiolocation() {
         variants={rowAnim}
         initial="hidden"
         whileInView="show"
-        exit="exit"
         viewport={{ once: false, amount: 0.3 }}
       >
         <div className="container projects-heading-wrapper">
@@ -65,29 +93,18 @@ export default function Homestudiolocation() {
             modules={[Navigation, Pagination]}
             spaceBetween={30}
             loop={true}
-            // autoplay={{
-            //   delay: 3000, // 3 seconds per slide
-            //   disableOnInteraction: false,
-            //   pauseOnMouseEnter: true,
-            // }}
             breakpoints={{
-              0: {
-                slidesPerView: 1,
-              },
-              768: {
-                slidesPerView: 2.5,
-              },
-              1200: {
-                slidesPerView: 4.2,
-              },
+              0: { slidesPerView: 1 },
+              768: { slidesPerView: 2.5 },
+              1200: { slidesPerView: 4.2 },
             }}
             pagination={{ clickable: true }}
-            navigation={{ clickable: true }}
+            navigation
             className="projectsSwiper"
           >
-            {posts.map((post) => (
+            {sortedPosts.map((post) => (
               <SwiperSlide key={post.id}>
-                <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }} className="projectslideBox">
+                <motion.div whileHover={{ scale: 0.95 }} transition={{ duration: 0.3 }} className="projectslideBox">
                   <img src={post?.featured_image} alt={post?.title?.rendered} className="slideImg" />
                   <div className="carft-content">
                     <h4>{post?.title?.rendered}</h4>

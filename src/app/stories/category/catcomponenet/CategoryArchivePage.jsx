@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 export default function CategoryArchivePage({ posts = [] }) {
   if (!posts.length) {
@@ -10,7 +11,7 @@ export default function CategoryArchivePage({ posts = [] }) {
 
   return (
     <div className="container py-5">
-      <div className="row">
+      <div className="row carArc">
         {posts.map((post) => {
           const title = post?.title?.rendered || "Untitled";
           const slug = post?.slug;
@@ -18,7 +19,7 @@ export default function CategoryArchivePage({ posts = [] }) {
           const thumb = post?._embedded?.["wp:featuredmedia"]?.[0]?.source_url || null;
 
           return (
-            <div key={post.id} className="col-sm-4 mb-4">
+            <motion.div key={post.id} className="col-sm-6 mb-4" whileHover={{ scale: 0.95 }}>
               <div className="card h-100 shadow-sm border-0">
                 {/* Thumbnail */}
                 {thumb ? (
@@ -52,7 +53,7 @@ export default function CategoryArchivePage({ posts = [] }) {
                   </Link>
                 </div>
               </div>
-            </div>
+            </motion.div>
           );
         })}
       </div>

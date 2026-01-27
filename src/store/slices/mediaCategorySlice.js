@@ -13,28 +13,28 @@ const mediaCategorySlice = createSlice({
   initialState: {
     categories: [],
     loading: false,
-    error: null
+    error: null,
   },
 
   reducers: {},
 
-  extraReducers: builder => {
+  extraReducers: (builder) => {
     builder
-      .addCase(fetchMediaCategories.pending, state => {
+      .addCase(fetchMediaCategories.pending, (state) => {
         state.loading = true;
       })
       .addCase(fetchMediaCategories.fulfilled, (state, action) => {
         state.loading = false;
         state.categories = action.payload || [];
       })
-      .addCase(fetchMediaCategories.rejected, state => {
+      .addCase(fetchMediaCategories.rejected, (state) => {
         state.loading = false;
         state.error = "Failed to load media categories";
       });
-  }
+  },
 });
 
-export const selectMediaCategories = s => s.mediaCategories.categories;
-export const selectMediaCategoriesLoading = s => s.mediaCategories.loading;
+export const selectMediaCategories = (s) => s.mediaCategories.categories;
+export const selectMediaCategoriesLoading = (s) => s.mediaCategories.loading;
 
 export default mediaCategorySlice.reducer;
