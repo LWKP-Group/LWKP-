@@ -227,6 +227,8 @@ body .container {
   width: 95%;
   max-width: 90%;
   position: relative;
+  padding-left: 0;
+  padding-right: 0;
 }
 body .row {
   --bs-gutter-x: 0;
@@ -296,13 +298,22 @@ button {
 /* ANIMATIONS KEYFRAMES */
 @keyframes glowPulse {
   0% {
-    text-shadow: 0 0 8px #00eaff, 0 0 20px #00eaff, 0 0 40px #00eaff;
+    text-shadow:
+      0 0 8px #00eaff,
+      0 0 20px #00eaff,
+      0 0 40px #00eaff;
   }
   50% {
-    text-shadow: 0 0 16px #00eaff, 0 0 40px #00eaff, 0 0 80px #00eaff;
+    text-shadow:
+      0 0 16px #00eaff,
+      0 0 40px #00eaff,
+      0 0 80px #00eaff;
   }
   100% {
-    text-shadow: 0 0 8px #00eaff, 0 0 20px #00eaff, 0 0 40px #00eaff;
+    text-shadow:
+      0 0 8px #00eaff,
+      0 0 20px #00eaff,
+      0 0 40px #00eaff;
   }
 }
 
@@ -411,7 +422,9 @@ body .row.fixedheader {
   position: relative;
   width: 100%;
   z-index: 10;
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
 }
 
 .default-header.hide-header {
@@ -442,7 +455,7 @@ body .row.fixedheader {
   border-bottom: 1px solid #ccc;
   position: sticky;
   top: 0;
-  padding: 10px;
+  padding: 10px 0px;
   padding-bottom: 0;
 }
 
@@ -763,9 +776,9 @@ footer h5 {
   font-weight: 500;
   text-transform: uppercase;
 }
+
 .container.philosophySection .row.g-4 {
-  gap: 48px;
-  justify-content: center;
+  justify-content: space-between;
 }
 .container.philosophySection .col-sm-6 {
   width: 48%;
@@ -829,8 +842,9 @@ footer h5 {
 }
 
 /* RIGHT CONTENT AREA */
-.purpose-content {
-  padding-left: 20px;
+
+div#studio .purpose-content {
+  padding-right: 20px;
 }
 
 .purpose-content h3 {
@@ -869,14 +883,14 @@ footer h5 {
 
 /* Wrapper gives left gap like your reference */
 .projects-slider-wrapper {
-  max-width: 94%;
+  max-width: 95%;
   margin: auto;
   margin-right: 0;
   padding-right: 0;
   margin-top: 20px;
 }
 .stories-slider-wrapper {
-  max-width: 94%;
+  max-width: 95%;
   margin: auto;
   margin-right: 0;
   padding-right: 0;
@@ -1190,7 +1204,7 @@ p.sub-heading {
   margin-bottom: 20px;
 }
 .row.insight-post .col-sm-4 {
-  padding: 10px;
+  padding-right: 10px;
 }
 .row.insight-post .col-sm-4:hover img,
 .row.insight-post .col-sm-4:hover p,
@@ -1553,7 +1567,7 @@ html.lenis body {
   letter-spacing: -1px;
 }
 .studio-page .swiper-wrapper {
-  padding-left: 10px;
+  padding-left: 0px;
 }
 .studio-page .locations .swiper a {
   opacity: 0;
@@ -1734,8 +1748,13 @@ div#story-heading {
   width: 32%;
   margin: 10px;
 }
+li.ant-pagination-item.ant-pagination-item-2.ant-pagination-item-active a {
+  color: #fff;
+  opacity: 1;
+}
 .gridbox .col-sm-4 img {
   height: 400px;
+  width: 100%;
   object-fit: cover;
   object-position: center;
   margin-bottom: 10px;
@@ -1974,11 +1993,14 @@ div.lwk-section hr {
 .col-sm-12.peopleimage {
   padding-bottom: 5%;
 }
+.boxes {
+  justify-content: space-between;
+}
 .poeple-depart {
   background-color: #fbfbfb;
-  width: 48%;
+  width: 49%;
   padding: 15px;
-  margin: 10px;
+  margin: 0px;
 }
 .poeple-depart img {
   width: 100%;
@@ -2012,6 +2034,8 @@ div.lwk-section hr {
   list-style: none;
   padding: 0;
   margin: 0;
+  position: sticky;
+  top: 5%;
 }
 .department-locations ul li {
   padding: 5px 0;
@@ -2094,7 +2118,7 @@ p.designation {
 .award-box .awards-image-box img {
   width: 100%;
   height: 130px;
-  object-fit: contain;
+  object-fit: scale-down;
   filter: grayscale(1);
   transition: all 300ms ease-in-out;
 }
@@ -2529,7 +2553,9 @@ form.ant-form.ant-form-vertical.css-var-root.ant-form-css-var.contact-form {
 }
 
 .map-pin circle {
-  transition: transform 0.25s ease, fill 0.25s ease;
+  transition:
+    transform 0.25s ease,
+    fill 0.25s ease;
 }
 
 .map-pin:hover circle {
@@ -2703,7 +2729,25 @@ h6.review-designation {
 .home .mainbanner:before {
   content: unset;
 }
-
+.carArc {
+  justify-content: space-between;
+}
+.carArc .col-sm-6 {
+  width: 49%;
+}
+.carArc .col-sm-6 img {
+  height: 300px !important;
+}
+.carArc .col-sm-6 h5.card-title {
+  padding: 20px 10px;
+}
+.col-sm-3.preview-image div {
+  position: sticky;
+  top: 5%;
+}
+.row.related-posts .col-sm-8 {
+  padding: 10px;
+}
 /* =========== GLOBAL NEXT IMAGE FIX =========== */
 img {
   width: auto;

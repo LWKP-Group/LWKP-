@@ -12,7 +12,7 @@ export const fetchMediaPosts = createAsyncThunk("media/fetchPosts", async ({ pag
 
   return {
     posts: data,
-    total: Number(res.headers.get("X-WP-Total")) || 0
+    total: Number(res.headers.get("X-WP-Total")) || 0,
   };
 });
 
@@ -23,14 +23,14 @@ const mediaSlice = createSlice({
     posts: [],
     total: 0,
     loading: false,
-    error: null
+    error: null,
   },
 
   reducers: {},
 
-  extraReducers: builder => {
+  extraReducers: (builder) => {
     builder
-      .addCase(fetchMediaPosts.pending, state => {
+      .addCase(fetchMediaPosts.pending, (state) => {
         state.loading = true;
       })
       .addCase(fetchMediaPosts.fulfilled, (state, action) => {
@@ -38,15 +38,15 @@ const mediaSlice = createSlice({
         state.posts = action.payload.posts;
         state.total = action.payload.total;
       })
-      .addCase(fetchMediaPosts.rejected, state => {
+      .addCase(fetchMediaPosts.rejected, (state) => {
         state.loading = false;
         state.error = "Failed to load media posts";
       });
-  }
+  },
 });
 
-export const selectMediaPosts = s => s.media.posts;
-export const selectMediaTotal = s => s.media.total;
-export const selectMediaLoading = s => s.media.loading;
+export const selectMediaPosts = (s) => s.media.posts;
+export const selectMediaTotal = (s) => s.media.total;
+export const selectMediaLoading = (s) => s.media.loading;
 
 export default mediaSlice.reducer;

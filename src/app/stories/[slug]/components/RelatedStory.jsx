@@ -25,7 +25,7 @@ export default function RelatedStory() {
   useEffect(() => {
     if (posts && posts.length > 0) {
       const shuffled = shuffleArray(posts);
-      setRandomPosts(shuffled.slice(0, 4));
+      setRandomPosts(shuffled.slice(0, 2));
     }
   }, [posts]);
 
@@ -50,11 +50,19 @@ export default function RelatedStory() {
           const slug = post?.slug;
 
           return (
-            <div className="col-sm-6 mb-4" key={post.id}>
-              {image && <Image src={image} alt={title} width={400} height={300} className="img-fluid" loading="lazy" />}
-
-              <h6 dangerouslySetInnerHTML={{ __html: title }} />
-              <Link href={`/stories/${slug}`}>READ MORE →</Link>
+            <div className="col-sm-12 mb-4 storyy" key={post.id}>
+              <div className="row ">
+                <div className="col-sm-4">
+                  {image && (
+                    <Image src={image} alt={title} width={400} height={300} className="img-fluid" loading="lazy" />
+                  )}
+                </div>
+                <div className="col-sm-8">
+                  {" "}
+                  <h6 dangerouslySetInnerHTML={{ __html: title }} />
+                  <Link href={`/stories/${slug}`}>READ MORE →</Link>
+                </div>
+              </div>
             </div>
           );
         })}

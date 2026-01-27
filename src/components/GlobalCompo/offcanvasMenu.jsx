@@ -67,19 +67,13 @@ export default function OffcanvasMenu() {
                           >
                             <motion.li variants={submenuItem}>
                               <Link href="/about" onClick={(e) => navigateWithDelay(e, "/about")}>
-                                About LWKP
+                                About LWK
                               </Link>
                             </motion.li>
 
                             <motion.li variants={submenuItem}>
                               <Link href="/people" onClick={(e) => navigateWithDelay(e, "/people")}>
                                 Our People
-                              </Link>
-                            </motion.li>
-
-                            <motion.li variants={submenuItem}>
-                              <Link href="/studio" onClick={(e) => navigateWithDelay(e, "/studio")}>
-                                Studio at a glance
                               </Link>
                             </motion.li>
 
@@ -122,6 +116,11 @@ export default function OffcanvasMenu() {
                             exit="hidden"
                             className="submenu"
                           >
+                            <motion.li variants={submenuItem}>
+                              <Link href="/studio" onClick={(e) => navigateWithDelay(e, "/studio")}>
+                                Studio at a glance
+                              </Link>
+                            </motion.li>
                             <motion.li variants={submenuItem}>
                               <Link href="/stories" onClick={(e) => navigateWithDelay(e, "/stories")}>
                                 Stories

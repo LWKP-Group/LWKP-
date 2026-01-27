@@ -71,7 +71,7 @@ export default function PeopleDeparts() {
         </div>
       </div>
 
-      <div className="row">
+      <div className="row boxes">
         {sortedDepartments.map((dept) => {
           const title = dept?.name || "";
           const desc = dept?.description || "";

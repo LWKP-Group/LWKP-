@@ -319,6 +319,17 @@ button.accordion-trigger {
   .journery {
     padding-right: 30px;
   }
+  .row.related-posts .col-sm-12.storyy {
+    width: 100%;
+  }
+  .row.related-posts .col-sm-12.storyy .col-sm-4,
+  .row.related-posts .col-sm-12.storyy .col-sm-8 {
+    width: 100%;
+  }
+  .row.related-posts .col-sm-12.storyy .col-sm-4 img {
+    width: 100%;
+    margin: 0;
+  }
 }
 
 @media (max-width: 576px) {
@@ -680,5 +691,12 @@ button.accordion-trigger {
   p.designation {
     text-align: start;
     padding-right: 15%;
+  }
+  .row.related-posts .col-sm-12.storyy {
+    width: 49%;
+    padding: 10px;
+  }
+  .row.related-posts .col-sm-8 {
+    padding: 5px 0;
   }
 }

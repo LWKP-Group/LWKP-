@@ -31,7 +31,11 @@ export default function Projects({ projects }) {
         <div className="row">
           {sortedProjects.map((project, index) => {
             return (
-              <motion.div className="col-sm-6 mb-4" key={project.id || project.slug || index}>
+              <motion.div
+                className="col-sm-6 mb-4"
+                key={project.id || project.slug || index}
+                whileHover={{ scale: 0.98 }}
+              >
                 {project?.featured_image ? (
                   <Image
                     src={project.featured_image}

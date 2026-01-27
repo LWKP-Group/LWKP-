@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment } from "react";
+import { Fragment, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const listAnim = {
@@ -13,9 +13,49 @@ export default function DepartmentPeople({ people, selectedLocation, selectedPer
     return <div className="col-sm-6 department-people text-center py-4">Loading people…</div>;
   }
 
-  const filtered = selectedLocation ? people.filter((p) => p.locations?.includes(selectedLocation)) : people;
+  // ✅ DESIGNATION ORDER (normalized)
+  const DESIGNATION_ORDER = [
+    "managing director",
+    "founder",
+    "group chief financial officer",
+    "managing director - location",
+    "managing director - studio",
+    "global design principal",
+    "studio director",
+    "director of operations - studio",
+    "director of operations - location",
+    "director",
+    "design director",
+    "project director",
+    "director of business development",
+    "head of digital design",
+    "associate director",
+    "assistant general manager",
+    "senior associate",
+    "chief architect",
+    "senior project coordinator",
+    "liason & facility manager",
+  ];
 
-  if (!filtered || filtered.length === 0) {
+  // ✅ NORMALIZE helper
+  const normalize = (str = "") => str.toLowerCase().replace(/&amp;/g, "&").replace(/\s+/g, " ").trim();
+
+  // ✅ FILTER + SORT PEOPLE
+  const filteredAndSorted = useMemo(() => {
+    const filtered = selectedLocation ? people.filter((p) => p.locations?.includes(selectedLocation)) : people;
+
+    return [...filtered].sort((a, b) => {
+      const aDes = normalize(a?.designation);
+      const bDes = normalize(b?.designation);
+
+      const ai = DESIGNATION_ORDER.findIndex((d) => aDes.startsWith(d));
+      const bi = DESIGNATION_ORDER.findIndex((d) => bDes.startsWith(d));
+
+      return (ai === -1 ? 999 : ai) - (bi === -1 ? 999 : bi);
+    });
+  }, [people, selectedLocation]);
+
+  if (!filteredAndSorted.length) {
     return <div className="col-sm-6 department-people text-center py-4">No people found.</div>;
   }
 
@@ -34,7 +74,7 @@ export default function DepartmentPeople({ people, selectedLocation, selectedPer
 
         <AnimatePresence mode="wait">
           <motion.div key={selectedLocation} variants={listAnim} initial="hidden" animate="show" exit="hidden">
-            {filtered.map((person) => (
+            {filteredAndSorted.map((person) => (
               <motion.div
                 key={person.id}
                 className={`row person-row ${selectedPersonId === person.id ? "active" : ""}`}
