@@ -4,15 +4,15 @@ import { Fragment, useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchawardsPosts, selectawardsPosts, selectawardsLoading } from "@/store/slices/awardsSlice";
+import { fetchawardsPosts, selectAwardsPosts, selectAwardsLoading } from "@/store/slices/awardsSlice";
 import { shuffleArray } from "@/lib/shuffleArray";
 import { limitWords } from "@/lib/shuffleArray";
 
 export default function RelatedAwardposts() {
   const dispatch = useDispatch();
 
-  const posts = useSelector(selectawardsPosts);
-  const loading = useSelector(selectawardsLoading);
+  const posts = useSelector(selectAwardsPosts);
+  const loading = useSelector(selectAwardsLoading);
   const [randomPosts, setRandomPosts] = useState([]);
 
   useEffect(() => {
