@@ -2,6 +2,7 @@
 
 import { Fragment } from "react";
 import RelatedStory from "./RelatedStory";
+import StoryContentDiv from "./StoryContentDiv";
 import SocialIcons from "@/components/GlobalCompo/SocialIcons";
 import HeroVideoBanner from "./HeroVideoBanner";
 
@@ -17,6 +18,7 @@ export default function MainStoryContent({ post }) {
           <div className="col-sm-9 insight-single-post">
             {/* <StoryContentDiv post={post} /> */}
             <HeroVideoBanner post={post} />
+            <StoryContentDiv post={post} />
           </div>
 
           <div className="col-sm-3 related">

@@ -12,7 +12,7 @@ export const fetchInsightPosts = createAsyncThunk("insight/fetchPosts", async ({
 
   return {
     posts: data,
-    total: Number(res.headers.get("X-WP-Total")) || 0
+    total: Number(res.headers.get("X-WP-Total")) || 0,
   };
 });
 
@@ -23,14 +23,14 @@ const insightSlice = createSlice({
     posts: [],
     total: 0,
     loading: false,
-    error: null
+    error: null,
   },
 
   reducers: {},
 
-  extraReducers: builder => {
+  extraReducers: (builder) => {
     builder
-      .addCase(fetchInsightPosts.pending, state => {
+      .addCase(fetchInsightPosts.pending, (state) => {
         state.loading = true;
       })
       .addCase(fetchInsightPosts.fulfilled, (state, action) => {
@@ -38,15 +38,15 @@ const insightSlice = createSlice({
         state.posts = action.payload.posts;
         state.total = action.payload.total;
       })
-      .addCase(fetchInsightPosts.rejected, state => {
+      .addCase(fetchInsightPosts.rejected, (state) => {
         state.loading = false;
         state.error = "Failed to load insights";
       });
-  }
+  },
 });
 
-export const selectInsightPosts = state => state.insight.posts;
-export const selectInsightTotal = state => state.insight.total;
-export const selectInsightLoading = state => state.insight.loading;
+export const selectInsightPosts = (state) => state.insight.posts;
+export const selectInsightTotal = (state) => state.insight.total;
+export const selectInsightLoading = (state) => state.insight.loading;
 
 export default insightSlice.reducer;
