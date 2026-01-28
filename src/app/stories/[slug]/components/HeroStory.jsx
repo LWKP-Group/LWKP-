@@ -29,8 +29,8 @@ export default function HeroStory({ post }) {
 
   const bgImage = post?.featured_image || "";
   const title = limitWords(decodeHTML(post?.title?.rendered || ""), 6);
-  const subheading = post?.acf?.sub_heading || "About Us";
-  const description = post?.acf?.tagline || "About Us";
+  const subheading = post?.acf?.sub_heading || "";
+  const description = post?.acf?.tagline || "";
 
   return (
     <motion.section
