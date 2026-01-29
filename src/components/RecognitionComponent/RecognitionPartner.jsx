@@ -74,7 +74,6 @@ export default function RecognitionPartner() {
                 height={600}
                 className="img-fluid"
                 loading="lazy"
-                unoptimized
               />
             )}
           </div>

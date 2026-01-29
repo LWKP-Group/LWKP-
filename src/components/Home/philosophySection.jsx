@@ -2,7 +2,11 @@
 
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAllPhilosophyPosts, selectAllPhilosophyPosts, selectAllPhilosophyLoading } from "@/store/slices/philosophyAllSlice";
+import {
+  fetchAllPhilosophyPosts,
+  selectAllPhilosophyPosts,
+  selectAllPhilosophyLoading,
+} from "@/store/slices/philosophyAllSlice";
 import GlobalLoader from "@/components/GlobalCompo/GlobalLoader";
 import { motion } from "framer-motion";
 import { rowAnim } from "@/lib/animation";
@@ -31,7 +35,14 @@ export default function PhilosophySection() {
   }
 
   return (
-    <motion.div className="container philosophySection" variants={rowAnim} initial="hidden" whileInView="show" exit="exit" viewport={{ once: false, amount: 0.3 }}>
+    <motion.div
+      className="container philosophySection"
+      variants={rowAnim}
+      initial="hidden"
+      whileInView="show"
+      exit="exit"
+      viewport={{ once: false, amount: 0.3 }}
+    >
       <div className="row heads mb-4">
         <p className="sub-heading">Philosophy</p>
         <h3>Legacy of Tomorrow</h3>
@@ -46,7 +57,11 @@ export default function PhilosophySection() {
           return (
             <div key={post.id} className={colClass}>
               <div className="card h-100">
-                {img ? <img src={img} className="card-img-top" alt={title} loading="lazy" /> : <div className="card-img-top">Image not available</div>}
+                {img ? (
+                  <img src={img} className="card-img-top" alt={title} loading="lazy" />
+                ) : (
+                  <div className="card-img-top">Image not available</div>
+                )}
 
                 <div className="card-body">
                   <Link href={`/philosophy/${post.slug}`}>

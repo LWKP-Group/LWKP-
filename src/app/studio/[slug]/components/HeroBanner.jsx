@@ -39,22 +39,29 @@ export default function HeroBanner({ post }) {
         backgroundImage: bgImage ? `url(${bgImage})` : "none",
         backgroundSize: "cover",
         backgroundPosition: "center",
-        backgroundRepeat: "no-repeat"
-      }}>
+        backgroundRepeat: "no-repeat",
+      }}
+    >
       <div className="col-sm-6">
         <AnimatedText text={title} className="hero-title" />
         <AnimatedParagraph text={para} className="hero-para" />
 
-        <motion.div className="mt-4" initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3, duration: 0.6 }}>
+        <motion.div
+          className="mt-4"
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3, duration: 0.6 }}
+        >
           <Link
             href="#"
-            onClick={e => {
+            onClick={(e) => {
               e.preventDefault();
               window.scrollBy({
                 top: window.innerHeight * 0.5,
-                behavior: "smooth"
+                behavior: "smooth",
               });
-            }}>
+            }}
+          >
             <Image src={arrow} alt="arrow" loading="lazy" />
           </Link>
         </motion.div>

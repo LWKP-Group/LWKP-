@@ -59,7 +59,8 @@ export default function MainBanner() {
                 behavior: "smooth"
               });
             }}>
-            <Image src={arrow} alt="arrow" loading="lazy" />
+            <Image src={arrow} alt="arrow"  
+  loading="lazy" />
           </Link>
         </motion.div> */}
       </div>

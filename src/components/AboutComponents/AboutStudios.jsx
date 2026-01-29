@@ -50,7 +50,6 @@ export default function AboutStudios() {
                 className="img-fluid journey-img"
                 loading="lazy"
                 sizes="(max-width: 768px) 100vw, 700px"
-                unoptimized
               />
             ) : (
               <div>Image not available.</div>

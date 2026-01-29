@@ -53,7 +53,6 @@ export default function RecognitionAward() {
                 alt={awardHeading || "Award Image"}
                 width={800}
                 height={600}
-                unoptimized
                 className="img-fluid"
               />
             )}

@@ -16,8 +16,8 @@ export default function ProjectGallery({ post }) {
   const [open, setOpen] = useState(false);
   const [startIndex, setStartIndex] = useState(0);
 
-  const images = gallery.map(item => ({
-    src: item.id
+  const images = gallery.map((item) => ({
+    src: item.id,
   }));
 
   if (!gallery.length) {

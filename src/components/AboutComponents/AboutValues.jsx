@@ -86,7 +86,6 @@ export default function AboutValues() {
                     height={500}
                     className="img-fluid"
                     loading="lazy"
-                    unoptimized
                   />
                 </motion.div>
               ) : (

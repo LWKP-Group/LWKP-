@@ -77,7 +77,6 @@ export default function EmployeSlider() {
                             className="review-image"
                             loading="lazy"
                             sizes="(max-width: 768px) 100vw, 400px"
-                            unoptimized
                           />
                         ) : (
                           <div>Image not available.</div>
@@ -92,9 +91,9 @@ export default function EmployeSlider() {
 
                     <div className="col-sm-8 right-box">
                       <p>
-                        <Image src={quoteone} alt="quotes" width={100} height={100} loading="lazy" unoptimized />
+                        <Image src={quoteone} alt="quotes" width={100} height={100} loading="lazy" />
                         {detail}
-                        <Image src={quotetwo} alt="quotes" width={100} height={100} loading="lazy" unoptimized />
+                        <Image src={quotetwo} alt="quotes" width={100} height={100} loading="lazy" />
                       </p>
                     </div>
                   </div>

@@ -28,7 +28,8 @@ export default function Rhythm({ post }) {
           initial="hidden"
           whileInView="show"
           exit="exit"
-          viewport={{ once: false, amount: 0.3 }}>
+          viewport={{ once: false, amount: 0.3 }}
+        >
           <div className="col-sm-6 left-side">
             <p className="sub-heading">{subHeading}</p>
             <h2>{title}</h2>
@@ -43,7 +44,14 @@ export default function Rhythm({ post }) {
           <div className="col-sm-6">
             {safeImage ? (
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.7 }}>
-                <Image src={safeImage} alt={title} width={700} height={500} className="img-fluid philosophy-img" loading="lazy" />
+                <Image
+                  src={safeImage}
+                  alt={title}
+                  width={700}
+                  height={500}
+                  className="img-fluid philosophy-img"
+                  loading="lazy"
+                />
               </motion.div>
             ) : (
               <p>Image not available.</p>
