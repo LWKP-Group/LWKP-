@@ -56,7 +56,6 @@ export default function FormAndMap() {
                 className="img-fluid philosophy-img"
                 loading="lazy"
                 sizes="(max-width: 768px) 100vw, 700px"
-                unoptimized
               />
             ) : (
               <div>Map image not available.</div>

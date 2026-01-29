@@ -54,7 +54,6 @@ export default function CarrerLWK() {
                 className="img-fluid"
                 loading="lazy"
                 sizes="(max-width: 768px) 100vw, 800px"
-                unoptimized
               />
             ) : (
               <div>Image not available.</div>

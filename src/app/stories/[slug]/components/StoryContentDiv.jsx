@@ -16,7 +16,9 @@ export default function StoryContentDiv({ post }) {
 
   return (
     <Fragment>
-      {image && <Image src={image} alt={title} width={400} height={300} className="img-fluid story-featured" loading="lazy" />}
+      {image && (
+        <Image src={image} alt={title} width={400} height={300} className="img-fluid story-featured" loading="lazy" />
+      )}
 
       <h2 dangerouslySetInnerHTML={{ __html: title }} />
 

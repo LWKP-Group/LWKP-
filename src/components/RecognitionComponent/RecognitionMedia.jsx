@@ -61,7 +61,6 @@ export default function RecognitionMedia() {
                 height={600}
                 className="img-fluid"
                 loading="lazy"
-                unoptimized
               />
             )}
           </div>

@@ -58,7 +58,6 @@ function WhoWeAre() {
                 className="img-fluid who-img"
                 loading="lazy"
                 sizes="(max-width: 768px) 100vw, 600px"
-                unoptimized
               />
             ) : (
               <div>Image not available.</div>

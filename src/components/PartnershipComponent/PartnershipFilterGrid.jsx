@@ -102,7 +102,7 @@ export default function PartnershipFilterGrid() {
                 >
                   <div className="awards-image-box">
                     {img ? (
-                      <Image src={img} width={600} height={400} alt={title} unoptimized />
+                      <Image src={img} width={600} height={400} alt={title} />
                     ) : (
                       <Image src={SmallLOGO} width={600} height={400} alt="No Image" />
                     )}

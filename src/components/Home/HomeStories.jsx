@@ -81,7 +81,6 @@ export default function HomeStories() {
                           width={800}
                           height={600}
                           loading="lazy"
-                          unoptimized
                         />
                       ) : (
                         <div className="storyImg">Image not available</div>

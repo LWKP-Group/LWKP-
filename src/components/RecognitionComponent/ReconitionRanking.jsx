@@ -71,7 +71,6 @@ export default function ReconitionRanking() {
                 height={600}
                 className="img-fluid"
                 loading="lazy"
-                unoptimized
               />
             )}
           </div>

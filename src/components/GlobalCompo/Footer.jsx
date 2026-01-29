@@ -36,7 +36,7 @@ export default function Footer() {
                   <Image src={Envelop} alt="Envelop" />
                   <div className="iconbox-text">
                     <p>
-                      Marketing <span class="symbol-font">&</span> Media Enquiries
+                      Marketing <span className="symbol-font">&</span> Media Enquiries
                     </p>
                     <span>
                       marketing<span className="symbol-font">@</span>lwkp.com

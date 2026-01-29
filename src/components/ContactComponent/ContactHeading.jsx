@@ -57,7 +57,7 @@ export default function ContactHeading() {
           <div className="col-sm-4 mailbox">
             {Businessemail ? (
               <Link href={`mailto:${Businessemail}`}>
-                <Image src={Envelop} alt="Envelop" loading="lazy" unoptimized />
+                <Image src={Envelop} alt="Envelop" loading="lazy" />
                 <div className="iconbox-text">
                   <p>Business Enquiries</p>
                   <span>{Businessemail}</span>
@@ -71,7 +71,7 @@ export default function ContactHeading() {
           <div className="col-sm-4 mailbox">
             {marketingemail ? (
               <Link href={`mailto:${marketingemail}`}>
-                <Image src={Envelop} alt="Envelop" loading="lazy" unoptimized />
+                <Image src={Envelop} alt="Envelop" loading="lazy" />
                 <div className="iconbox-text">
                   <p>Marketing & Media Enquiries</p>
                   <span>{marketingemail}</span>
@@ -85,7 +85,7 @@ export default function ContactHeading() {
           <div className="col-sm-4 mailbox" id="contact-form">
             {hremail ? (
               <Link href={`mailto:${hremail}`}>
-                <Image src={Envelop} alt="Envelop" loading="lazy" unoptimized />
+                <Image src={Envelop} alt="Envelop" loading="lazy" />
                 <div className="iconbox-text">
                   <p>Human Resources</p>
                   <span>{hremail}</span>

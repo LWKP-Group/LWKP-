@@ -66,7 +66,6 @@ function HomeInsights() {
                       className="img-fluid"
                       loading="lazy"
                       sizes="(max-width: 768px) 100vw, 400px"
-                      unoptimized
                     />
                   ) : (
                     <div>Image not available.</div>

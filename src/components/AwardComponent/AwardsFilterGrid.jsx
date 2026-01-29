@@ -93,15 +93,7 @@ export default function AwardsFilterGrid() {
               >
                 <div className="awards-image-box">
                   {img ? (
-                    <Image
-                      src={img}
-                      width={600}
-                      height={400}
-                      className="img-fluid"
-                      alt={title}
-                      loading="lazy"
-                      unoptimized
-                    />
+                    <Image src={img} width={600} height={400} className="img-fluid" alt={title} loading="lazy" />
                   ) : (
                     <Image src={SmallLOGO} width={600} height={400} alt={title} loading="lazy" />
                   )}

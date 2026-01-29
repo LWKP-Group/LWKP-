@@ -65,7 +65,6 @@ export default function StoryArchives() {
                     height={450}
                     className="img-fluid story-img"
                     loading="lazy"
-                    unoptimized
                   />
                 )}
               </div>

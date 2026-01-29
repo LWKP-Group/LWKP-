@@ -60,7 +60,6 @@ export default function AboutPeople() {
                 className="img-fluid people-img"
                 loading="lazy"
                 sizes="(max-width: 768px) 100vw, 1400px"
-                unoptimized
               />
             ) : (
               <div>Image not available.</div>

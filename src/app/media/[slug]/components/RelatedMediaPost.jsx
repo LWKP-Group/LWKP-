@@ -43,14 +43,18 @@ export default function RelatedMediaPost() {
           <h4>You may also like</h4>
         </div>
 
-        {randomPosts.map(post => {
+        {randomPosts.map((post) => {
           const image = post?.featured_image;
           const title = limitWords(post?.title?.rendered || "Title not available");
           const slug = post?.slug;
 
           return (
             <div className="col-sm-6 mb-4" key={post.id}>
-              {image ? <Image src={image} alt={title} width={400} height={300} className="img-fluid" loading="lazy" /> : <p>Image not available</p>}
+              {image ? (
+                <Image src={image} alt={title} width={400} height={300} className="img-fluid" loading="lazy" />
+              ) : (
+                <p>Image not available</p>
+              )}
 
               <h6 dangerouslySetInnerHTML={{ __html: title }} />
               <Link href={`/Media/${slug}`}>READ MORE →</Link>
