@@ -36,17 +36,24 @@ export default function JobTabs() {
   }, [dispatch, page, activeTab, categories]);
 
   return (
-    <motion.div className="container top-bottom-pad tabs-insight" variants={rowAnim} initial="hidden" whileInView="show" viewport={{ once: false }}>
+    <motion.div
+      className="container top-bottom-pad tabs-insight"
+      variants={rowAnim}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: false }}
+    >
       <ul className="nav nav-tabs insight-tabs">
         <li className="nav-item">
-          <button
+          {/* <button
             className={`nav-link ${activeTab === 0 ? "active" : ""}`}
             onClick={() => {
               setActiveTab(0);
               setPage(1);
-            }}>
+            }}
+          >
             All Jobs
-          </button>
+          </button> */}
         </li>
 
         {(categories || []).map((cat, index) => (
@@ -56,7 +63,8 @@ export default function JobTabs() {
               onClick={() => {
                 setActiveTab(index + 1);
                 setPage(1);
-              }}>
+              }}
+            >
               <span dangerouslySetInnerHTML={{ __html: cat.name }} />
             </button>
           </li>
@@ -65,7 +73,13 @@ export default function JobTabs() {
 
       <div className="tab-content mt-4">
         <AnimatePresence mode="wait">
-          <motion.div key={`jobs-${activeTab}-${page}`} initial={{ opacity: 0, y: 25 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 25 }} transition={{ duration: 0.4 }}>
+          <motion.div
+            key={`jobs-${activeTab}-${page}`}
+            initial={{ opacity: 0, y: 25 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 25 }}
+            transition={{ duration: 0.4 }}
+          >
             {loading ? (
               <div className="container text-center py-5">
                 <GlobalLoader />
@@ -75,11 +89,19 @@ export default function JobTabs() {
                 <div className="row">
                   {Array.isArray(jobs) && jobs.length > 0 ? (
                     jobs.map((job, i) => (
-                      <motion.div key={job.id} className="col-sm-6 job-content" whileHover={{ scale: 1.02 }} custom={i} variants={cardAnim} initial="hidden" animate="show">
+                      <motion.div
+                        key={job.id}
+                        className="col-sm-6 job-content"
+                        whileHover={{ scale: 1.02 }}
+                        custom={i}
+                        variants={cardAnim}
+                        initial="hidden"
+                        animate="show"
+                      >
                         <div className="job-card">
                           <h4
                             dangerouslySetInnerHTML={{
-                              __html: job?.title?.rendered || "Job Title"
+                              __html: job?.title?.rendered || "Job Title",
                             }}
                           />
                           {job?.acf?.location && <p className="job-location">{job.acf.location}</p>}
@@ -101,7 +123,7 @@ export default function JobTabs() {
                     current={page}
                     pageSize={perPage}
                     total={total}
-                    onChange={p => {
+                    onChange={(p) => {
                       setPage(p);
                       window.scrollTo({ top: 50, behavior: "smooth" });
                     }}

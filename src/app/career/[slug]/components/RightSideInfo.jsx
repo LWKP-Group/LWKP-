@@ -7,19 +7,19 @@ export default function RightSideInfo({ job }) {
 
   return (
     <div className="job-info">
-      <p className="job-description">{job?.acf?.description || "Description not available."}</p>
+      <p className="job-description">{job?.acf?.description || " "}</p>
 
       <div
         className="wysiwyg-text"
         dangerouslySetInnerHTML={{
-          __html: job?.acf?.responisiblities_ || "<p>Responsibilities not available.</p>",
+          __html: job?.acf?.responisiblities_ || "<p> </p>",
         }}
       />
 
       <div
         className="wysiwyg-text job-note"
         dangerouslySetInnerHTML={{
-          __html: job?.acf?.note ? formatText(job?.acf?.note) : "<p>Note not available.</p>",
+          __html: job?.acf?.note ? formatText(job?.acf?.note) : "<p> </p>",
         }}
       />
     </div>

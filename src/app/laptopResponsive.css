@@ -333,6 +333,11 @@
   .timeline-marker {
     left: 17.2%;
   }
+  .row.top-pad.vision-project.last img,
+  .careers img {
+    height: 450px;
+    object-fit: cover;
+  }
 }
 
 @media (max-width: 1280px) {

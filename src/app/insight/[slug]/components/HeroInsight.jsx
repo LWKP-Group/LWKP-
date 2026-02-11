@@ -41,8 +41,7 @@ export default function HeroInsight({ post }) {
       }}
     >
       <div className="col-sm-8">
-        <AnimatedText text={title} className="hero-title" />
-
+        {/* <AnimatedText text={title} className="hero-title" />
         <motion.div
           className="mt-4"
           initial={{ opacity: 0, y: 15 }}
@@ -61,7 +60,7 @@ export default function HeroInsight({ post }) {
           >
             <Image src={arrow} alt="arrow" loading="lazy" />
           </Link>
-        </motion.div>
+        </motion.div> */}
       </div>
     </motion.section>
   );

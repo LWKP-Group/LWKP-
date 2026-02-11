@@ -2380,8 +2380,9 @@ form.ant-form.ant-form-vertical.css-var-root.ant-form-css-var.contact-form {
 }
 .row.related-posts img {
   object-fit: cover;
-  height: 90px;
+  height: 100px;
   margin-bottom: 10px;
+  width: 100%;
 }
 .row.related-posts h5 {
   font-weight: 400;
@@ -2752,4 +2753,36 @@ h6.review-designation {
 img {
   width: auto;
   height: auto;
+}
+.portfolio-left a {
+  color: #fff;
+}
+.col-sm-6.mb-5.poeple-depart img {
+  height: 450px;
+  object-fit: cover;
+}
+.contnt-insight iframe {
+  width: 100%;
+}
+.row.top-pad.vision-project.last {
+  padding-bottom: 5%;
+}
+.row.top-pad.vision-project.last p {
+  margin-left: 0 !important;
+}
+
+.row.top-pad.vision-project.last img {
+  height: 550px;
+  object-fit: cover;
+}
+.careers img {
+  width: 90%;
+  height: 550px;
+  object-fit: cover;
+}
+.stoycontent {
+  padding-top: 4%;
+}
+.career-single .default-header img {
+  filter: invert(6) brightness(10.5);
 }

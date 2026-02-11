@@ -11,7 +11,7 @@ import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
 function Header() {
-  const loading = useSelector(state => state.loader.loading);
+  const loading = useSelector((state) => state.loader.loading);
   const [isSticky, setSticky] = useState(false);
 
   useEffect(() => {
@@ -29,16 +29,25 @@ function Header() {
       <div className={`default-header ${isSticky ? "hide-header" : ""}`}>
         <div className="container">
           <div className="row fixedheader">
-            <motion.div initial={{ opacity: 0, x: -200 }} animate={!loading ? { opacity: 1, x: 0 } : {}} transition={{ duration: 0.6 }} className="col-sm-6">
+            <motion.div
+              initial={{ opacity: 0, x: -200 }}
+              animate={!loading ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.6 }}
+              className="col-sm-6"
+            >
               <Link href="/">
                 <Image src={LOGO} alt="logo" />
               </Link>
             </motion.div>
 
-            <motion.div initial={{ opacity: 0, x: 200 }} animate={!loading ? { opacity: 1, x: 0 } : {}} transition={{ duration: 0.6 }} className="col-sm-6 mainmenu">
-              <GoogleTranslator />
-
-              <LanguageToggle />
+            <motion.div
+              initial={{ opacity: 0, x: 200 }}
+              animate={!loading ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.6 }}
+              className="col-sm-6 mainmenu"
+            >
+              {/* <GoogleTranslator />
+              <LanguageToggle /> */}
 
               <OffcanvasMenu />
             </motion.div>

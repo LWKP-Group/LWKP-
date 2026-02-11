@@ -15,7 +15,7 @@ export default function ProjectData({ post }) {
 
   return (
     <Fragment>
-      <div className="row top-pad vision-project">
+      <div className="row top-pad vision-project last">
         <div className="col-sm-6">
           {projectImage ? (
             <Image
@@ -33,7 +33,11 @@ export default function ProjectData({ post }) {
 
         <div className="col-sm-6 vision-right">
           <p className="sub-heading">Project Data</p>
-          <h2>{title}</h2>
+          <h2
+            dangerouslySetInnerHTML={{
+              __html: formatText(title),
+            }}
+          />
           <div
             dangerouslySetInnerHTML={{
               __html: formatText(description),

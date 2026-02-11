@@ -43,7 +43,7 @@ export default function CarrerLWK() {
         whileInView="show"
         viewport={{ once: false, amount: 0.2 }}
       >
-        <div className="row align-items-center">
+        <div className="row align-items-center careers">
           <div className="col-sm-7">
             {mediaImage ? (
               <Image

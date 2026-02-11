@@ -52,7 +52,7 @@ export default function Convergence({ post }) {
 
             <div className="wysiwyg-text" dangerouslySetInnerHTML={{ __html: description }} />
 
-            <Link href="#" className="button-css mt-3">
+            <Link href="/contact" className="button-css mt-3">
               Contact Us →
             </Link>
           </div>

@@ -105,7 +105,7 @@ export default function Homestudiolocation() {
             {sortedPosts.map((post) => (
               <SwiperSlide key={post.id}>
                 <motion.div whileHover={{ scale: 0.95 }} transition={{ duration: 0.3 }} className="projectslideBox">
-                  <img src={post?.featured_image} alt={post?.title?.rendered} className="slideImg" />
+                  <img src={post?.acf?.thumbnail_image} alt={post?.title?.rendered} className="slideImg" />
                   <div className="carft-content">
                     <h4>{post?.title?.rendered}</h4>
                     <Link href={`/studio/${post?.slug}`} className="storyLink">

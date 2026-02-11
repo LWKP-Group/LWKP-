@@ -14,6 +14,7 @@ import {
 } from "@/store/slices/mediaCategorySlice";
 
 import { fetchMediaPosts, selectMediaPosts, selectMediaTotal, selectMediaLoading } from "@/store/slices/mediaSlice";
+
 import GlobalLoader from "@/components/GlobalCompo/GlobalLoader";
 import ArchivePagination from "@/components/ReuseableComponent/Pagination";
 import { rowAnim, cardAnim } from "@/lib/animation";
@@ -28,22 +29,33 @@ export default function MediaTabs() {
   const total = useSelector(selectMediaTotal);
   const loading = useSelector(selectMediaLoading);
 
-  const [activeTab, setActiveTab] = useState("all");
+  const [activeTab, setActiveTab] = useState(null);
   const [page, setPage] = useState(1);
 
   const perPage = 12;
 
+  // Fetch categories
   useEffect(() => {
     dispatch(fetchMediaCategories());
   }, [dispatch]);
 
+  // Set first category as default active
   useEffect(() => {
-    dispatch(
-      fetchMediaPosts({
-        page,
-        category: activeTab,
-      }),
-    );
+    if (categories?.length && !activeTab) {
+      setActiveTab(categories[0].id);
+    }
+  }, [categories, activeTab]);
+
+  // Fetch posts when category or page changes
+  useEffect(() => {
+    if (activeTab) {
+      dispatch(
+        fetchMediaPosts({
+          page,
+          category: activeTab,
+        }),
+      );
+    }
   }, [dispatch, page, activeTab]);
 
   if (catLoading || !categories) {
@@ -63,20 +75,8 @@ export default function MediaTabs() {
       whileInView="show"
       viewport={{ once: false }}
     >
+      {/* CATEGORY TABS ONLY */}
       <ul className="nav nav-tabs insight-tabs">
-        {/* ALL TAB */}
-        <li className="nav-item">
-          <button
-            className={`nav-link ${activeTab === "all" ? "active" : ""}`}
-            onClick={() => {
-              setActiveTab("all");
-              setPage(1);
-            }}
-          >
-            All Media
-          </button>
-        </li>
-
         {categories.map((cat) => (
           <li className="nav-item" key={cat.id}>
             <button
