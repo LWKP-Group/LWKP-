@@ -21,7 +21,7 @@ export default function ProjectGallery({ post }) {
   }));
 
   if (!gallery.length) {
-    return <div className="container text-center py-5">No gallery images available.</div>;
+    return <div className="container text-center py-5"> </div>;
   }
 
   return (

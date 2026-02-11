@@ -66,7 +66,7 @@ export default function ClientWrapper({ children }) {
   }, [loading, pathname]);
 
   return (
-    <>
+    <div className={`${pageClass}`}>
       <AnimatePresence>{loading && <Loader />}</AnimatePresence>
 
       {!loading && (
@@ -90,6 +90,6 @@ export default function ClientWrapper({ children }) {
           <Footer />
         </>
       )}
-    </>
+    </div>
   );
 }

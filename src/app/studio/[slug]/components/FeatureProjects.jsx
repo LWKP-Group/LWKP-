@@ -11,7 +11,7 @@ export default function FeatureProjects({ projects }) {
   }
 
   if (!projects.length) {
-    return <div className="container text-center py-5">No featured projects found.</div>;
+    return <div className="container text-center py-5"> </div>;
   }
 
   const sortedProjects = projects.slice().sort((a, b) => new Date(b.date) - new Date(a.date));

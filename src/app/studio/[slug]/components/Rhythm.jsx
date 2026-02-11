@@ -36,9 +36,9 @@ export default function Rhythm({ post }) {
 
             <div className="wysiwyg-text" dangerouslySetInnerHTML={{ __html: description }} />
 
-            <Link href="#" className="button-css mt-3">
+            {/* <Link href="#" className="button-css mt-3">
               Contact Us →
-            </Link>
+            </Link> */}
           </div>
 
           <div className="col-sm-6">

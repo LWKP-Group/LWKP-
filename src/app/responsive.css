@@ -330,6 +330,18 @@ button.accordion-trigger {
     width: 100%;
     margin: 0;
   }
+  .col-sm-6.mb-5.poeple-depart img {
+    height: 250px;
+    object-fit: cover;
+  }
+  .poeple-depart {
+    width: 48%;
+  }
+  .row.top-pad.vision-project.last img,
+  .careers img {
+    height: 350px;
+    object-fit: cover;
+  }
 }
 
 @media (max-width: 576px) {
@@ -698,5 +710,17 @@ button.accordion-trigger {
   }
   .row.related-posts .col-sm-8 {
     padding: 5px 0;
+  }
+  .col-sm-6.mb-5.poeple-depart img {
+    height: 450px;
+    object-fit: cover;
+  }
+  .col-sm-6.mb-5.poeple-depart img {
+    height: 250px;
+  }
+  .row.top-pad.vision-project.last img,
+  .careers img {
+    height: 250px;
+    object-fit: cover;
   }
 }
