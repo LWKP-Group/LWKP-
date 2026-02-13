@@ -2,24 +2,25 @@ export function initAutoSymbolFont() {
   if (typeof window === "undefined") return;
 
   const TARGET_CHARS = new Set(["&", "@"]);
+  let isRunning = false;
 
-  // --- IMPORTANT: Decode HTML Entities First ---
-  function decode(text) {
-    const textarea = document.createElement("textarea");
-    textarea.innerHTML = text;
-    return textarea.value;
+  // Prevent double wrapping
+  function alreadyWrapped(node) {
+    return node.parentElement?.closest(".symbol-font");
   }
 
   function wrapTextNode(node) {
-    const original = node.nodeValue;
-    const decoded = decode(original);
+    if (!node || alreadyWrapped(node)) return;
 
-    // Agar decoded mein koi symbol hi nahi hai → skip
-    if (![...decoded].some((ch) => TARGET_CHARS.has(ch))) return;
+    const text = node.nodeValue;
+    if (!text) return;
+
+    // Fast skip
+    if (![...text].some((ch) => TARGET_CHARS.has(ch))) return;
 
     const frag = document.createDocumentFragment();
 
-    for (const ch of decoded) {
+    for (const ch of text) {
       if (TARGET_CHARS.has(ch)) {
         const span = document.createElement("span");
         span.className = "symbol-font";
@@ -33,20 +34,17 @@ export function initAutoSymbolFont() {
     node.replaceWith(frag);
   }
 
-  function scan(node) {
-    const walker = document.createTreeWalker(node, NodeFilter.SHOW_TEXT, {
+  function scan(root) {
+    if (!root) return;
+
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
       acceptNode: (textNode) => {
         const val = textNode.nodeValue;
-        if (!val.trim()) return NodeFilter.FILTER_REJECT;
 
-        // Skip already inside symbol-font
-        if (textNode.parentNode.closest(".symbol-font")) {
-          return NodeFilter.FILTER_REJECT;
-        }
+        if (!val || !val.trim()) return NodeFilter.FILTER_REJECT;
+        if (alreadyWrapped(textNode)) return NodeFilter.FILTER_REJECT;
 
-        // Check if decoded contains symbols
-        const decoded = decode(val);
-        if (![...decoded].some((ch) => TARGET_CHARS.has(ch))) {
+        if (![...val].some((ch) => TARGET_CHARS.has(ch))) {
           return NodeFilter.FILTER_REJECT;
         }
 
@@ -54,27 +52,43 @@ export function initAutoSymbolFont() {
       },
     });
 
-    let nodeItem;
-    while ((nodeItem = walker.nextNode())) {
-      wrapTextNode(nodeItem);
+    let current;
+    while ((current = walker.nextNode())) {
+      wrapTextNode(current);
     }
   }
 
-  // Initial scan
-  scan(document.body);
+  // 🔥 Run scan safely (React hydration friendly)
+  function run() {
+    if (isRunning) return;
+    isRunning = true;
 
-  // Observe for dynamic content
-  const observer = new MutationObserver((mutations) => {
-    for (const m of mutations) {
-      for (const added of m.addedNodes) {
-        if (added.nodeType === Node.TEXT_NODE) {
-          wrapTextNode(added);
-        } else if (added.nodeType === Node.ELEMENT_NODE) {
-          scan(added);
-        }
-      }
-    }
+    requestAnimationFrame(() => {
+      scan(document.body);
+      isRunning = false;
+    });
+  }
+
+  // ✅ Initial scan after hydration
+  setTimeout(run, 500);
+
+  // ✅ Observe changes
+  const observer = new MutationObserver(() => {
+    run();
   });
 
-  observer.observe(document.body, { childList: true, subtree: true });
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true,
+    characterData: true,
+  });
+
+  // ✅ Also rerun when route changes (Next.js)
+  window.addEventListener("popstate", () => {
+    setTimeout(run, 300);
+  });
+
+  window.addEventListener("pushState", () => {
+    setTimeout(run, 300);
+  });
 }

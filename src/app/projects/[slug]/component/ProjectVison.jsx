@@ -33,7 +33,11 @@ export default function ProjectVison({ post }) {
 
         <div className="col-sm-6 vision-right">
           <p className="sub-heading">Vision & Context</p>
-          <h2>{title}</h2>
+          <h2
+            dangerouslySetInnerHTML={{
+              __html: formatText(title),
+            }}
+          />
           <div
             dangerouslySetInnerHTML={{
               __html: formatText(description),

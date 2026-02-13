@@ -2786,3 +2786,7 @@ img {
 .career-single .default-header img {
   filter: invert(6) brightness(10.5);
 }
+.row.overview-image img {
+  height: 800px;
+  object-fit: cover;
+}
