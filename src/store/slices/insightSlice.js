@@ -1,17 +1,23 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-export const fetchInsightPosts = createAsyncThunk("insight/fetchPosts", async ({ page = 1, category = "all" }) => {
+export const fetchInsightPosts = createAsyncThunk("insight/fetchPosts", async ({ page = 1, categoryId = null }) => {
   let url = `${process.env.NEXT_PUBLIC_WP_API}/insight?page=${page}&per_page=9`;
 
-  if (category !== "all") {
-    url += `&insight_category=${category}`;
+  // 🔥 Send numeric ID to WordPress
+  if (categoryId) {
+    url += `&insight_category=${categoryId}`;
   }
 
   const res = await fetch(url);
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch insights");
+  }
+
   const data = await res.json();
 
   return {
-    posts: data,
+    posts: Array.isArray(data) ? data : [],
     total: Number(res.headers.get("X-WP-Total")) || 0,
   };
 });
@@ -32,15 +38,17 @@ const insightSlice = createSlice({
     builder
       .addCase(fetchInsightPosts.pending, (state) => {
         state.loading = true;
+        state.error = null;
       })
       .addCase(fetchInsightPosts.fulfilled, (state, action) => {
         state.loading = false;
         state.posts = action.payload.posts;
         state.total = action.payload.total;
       })
-      .addCase(fetchInsightPosts.rejected, (state) => {
+      .addCase(fetchInsightPosts.rejected, (state, action) => {
         state.loading = false;
-        state.error = "Failed to load insights";
+        state.error = action.error.message;
+        state.posts = [];
       });
   },
 });

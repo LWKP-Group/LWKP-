@@ -209,8 +209,8 @@ export default function OffcanvasMenu() {
                           >
                             <motion.li variants={submenuItem}>
                               <Link
-                                href="/insight#thought_leadership"
-                                onClick={(e) => navigateWithDelay(e, "/insight#thought_leadership")}
+                                href="/insight#thought-leadership"
+                                onClick={(e) => navigateWithDelay(e, "/insight#thought-leadership")}
                               >
                                 Thought Leadership
                               </Link>
