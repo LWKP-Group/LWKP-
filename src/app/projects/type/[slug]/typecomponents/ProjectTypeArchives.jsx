@@ -15,7 +15,7 @@ export default function ProjectTypeArchives({ projects }) {
   const perPage = 10;
 
   if (!projects || projects.length === 0) {
-    return <div className="container text-center py-5">Loading projects…</div>;
+    return <div className="container text-center py-5"> </div>;
   }
 
   const start = (currentPage - 1) * perPage;
