@@ -342,6 +342,10 @@ button.accordion-trigger {
     height: 350px;
     object-fit: cover;
   }
+  .row.overview-image img {
+    height: 500px;
+    object-fit: cover;
+  }
 }
 
 @media (max-width: 576px) {
@@ -721,6 +725,10 @@ button.accordion-trigger {
   .row.top-pad.vision-project.last img,
   .careers img {
     height: 250px;
+    object-fit: cover;
+  }
+  .row.overview-image img {
+    height: 400px;
     object-fit: cover;
   }
 }

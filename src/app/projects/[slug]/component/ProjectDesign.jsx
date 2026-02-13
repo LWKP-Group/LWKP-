@@ -13,14 +13,18 @@ export default function ProjectDesign({ post }) {
   const description = post?.acf?.design_description || "<p>Content not available.</p>";
   const designImage = post?.acf?.design_image || "";
   const qoutetext = post?.acf?.design_qoute || "";
-  const quotation = "https://hostedsitedemo.com/lwkp/wp-content/uploads/2025/12/Frame-2147227200.png";
+  const quotation = "https://staging.lwkp.com/wp-content/uploads/2025/12/Frame-2147227200.png";
 
   return (
     <Fragment>
       <div className="row top-pad vision-project">
         <div className="col-sm-6 design-right">
           <p className="sub-heading">Design Approach</p>
-          <h2>{title}</h2>
+          <h2
+            dangerouslySetInnerHTML={{
+              __html: formatText(title),
+            }}
+          />
 
           <div
             dangerouslySetInnerHTML={{

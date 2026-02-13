@@ -33,8 +33,8 @@ export default function EmployeSlider() {
     return <div className="container text-center py-5">Content not available.</div>;
   }
 
-  const quoteone = "https://hostedsitedemo.com/lwkp/wp-content/uploads/2025/12/unnamed-file.png";
-  const quotetwo = "https://hostedsitedemo.com/lwkp/wp-content/uploads/2025/12/1.png";
+  const quoteone = "https://staging.lwkp.com/wp-content/uploads/2025/12/unnamed-file.png";
+  const quotetwo = "https://staging.lwkp.com/wp-content/uploads/2025/12/1.png";
 
   return (
     <Fragment>
