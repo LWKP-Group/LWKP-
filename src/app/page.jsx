@@ -34,7 +34,7 @@ export default function Home() {
           <Purpose />
         </Suspense>
 
-        <Suspense fallback={<div className="text-center py-5">Loading projects…</div>}>
+        <Suspense fallback={<div className="text-center py-5"> </div>}>
           <HomeProjects />
         </Suspense>
 

@@ -7,7 +7,7 @@ import { container } from "@/lib/animation";
 
 export default function Projects({ projects }) {
   if (!projects || projects.length === 0) {
-    return <section className="container project-philosophy text-center py-5">Loading projects…</section>;
+    return <section className="container project-philosophy text-center py-5"> </section>;
   }
 
   const sortedProjects = projects.slice().sort((a, b) => new Date(b.date) - new Date(a.date));
