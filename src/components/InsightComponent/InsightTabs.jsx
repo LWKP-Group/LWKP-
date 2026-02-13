@@ -19,6 +19,7 @@ import {
   selectInsightTotal,
   selectInsightLoading,
 } from "@/store/slices/insightSlice";
+
 import GlobalLoader from "@/components/GlobalCompo/GlobalLoader";
 import ArchivePagination from "@/components/ReuseableComponent/Pagination";
 import { rowAnim, cardAnim } from "@/lib/animation";
@@ -29,29 +30,71 @@ export default function InsightTabs() {
   const categories = useSelector(selectInsightCategories);
   const catLoading = useSelector(selectInsightCategoriesLoading);
 
-  const posts = useSelector(selectInsightPosts);
+  const posts = useSelector(selectInsightPosts) || [];
   const total = useSelector(selectInsightTotal);
   const loading = useSelector(selectInsightLoading);
 
-  const [activeTab, setActiveTab] = useState("all");
+  const [activeTab, setActiveTab] = useState("all"); // slug
   const [page, setPage] = useState(1);
 
   const perPage = 9;
 
+  // Load categories
   useEffect(() => {
     dispatch(fetchInsightCategories());
   }, [dispatch]);
 
+  // 🔥 Handle URL Hash (Slug Based)
   useEffect(() => {
+    if (!categories || categories.length === 0) return;
+
+    const applyHash = () => {
+      const hash = window.location.hash.replace("#", "");
+
+      if (!hash) {
+        setActiveTab("all");
+        return;
+      }
+
+      const matched = categories.find((cat) => cat.slug === hash);
+
+      if (matched) {
+        setActiveTab(matched.slug);
+        setPage(1);
+      } else {
+        setActiveTab("all");
+      }
+    };
+
+    applyHash();
+
+    window.addEventListener("hashchange", applyHash);
+
+    return () => {
+      window.removeEventListener("hashchange", applyHash);
+    };
+  }, [categories]);
+
+  // 🔥 Fetch Posts (Convert slug → ID)
+  useEffect(() => {
+    if (!categories) return;
+
+    let categoryId = null;
+
+    if (activeTab !== "all") {
+      const matched = categories.find((cat) => cat.slug === activeTab);
+      categoryId = matched ? matched.id : null;
+    }
+
     dispatch(
       fetchInsightPosts({
         page,
-        category: activeTab,
+        categoryId,
       }),
     );
-  }, [dispatch, page, activeTab]);
+  }, [dispatch, page, activeTab, categories]);
 
-  if (catLoading || !categories) {
+  if (catLoading) {
     return (
       <div className="container text-center py-5">
         <GlobalLoader />
@@ -68,6 +111,7 @@ export default function InsightTabs() {
       whileInView="show"
       viewport={{ once: false }}
     >
+      {/* Tabs */}
       <ul className="nav nav-tabs insight-tabs">
         <li className="nav-item">
           <button
@@ -75,6 +119,7 @@ export default function InsightTabs() {
             onClick={() => {
               setActiveTab("all");
               setPage(1);
+              window.location.hash = "";
             }}
           >
             All Insights
@@ -84,10 +129,11 @@ export default function InsightTabs() {
         {categories.map((cat) => (
           <li className="nav-item" key={cat.id}>
             <button
-              className={`nav-link ${activeTab === cat.id ? "active" : ""}`}
+              className={`nav-link ${activeTab === cat.slug ? "active" : ""}`}
               onClick={() => {
-                setActiveTab(cat.id);
+                setActiveTab(cat.slug);
                 setPage(1);
+                window.location.hash = cat.slug;
               }}
             >
               <span dangerouslySetInnerHTML={{ __html: cat.name }} />
@@ -96,8 +142,9 @@ export default function InsightTabs() {
         ))}
       </ul>
 
+      {/* Content */}
       <div className="tab-content mt-4">
-        {loading || !posts ? (
+        {loading ? (
           <div className="container text-center py-5">
             <GlobalLoader />
           </div>
@@ -128,15 +175,7 @@ export default function InsightTabs() {
                       animate="show"
                     >
                       {image ? (
-                        <Image
-                          src={image}
-                          alt={title}
-                          width={400}
-                          height={300}
-                          className="img-fluid"
-                          loading="lazy"
-                          sizes="(max-width: 768px) 100vw, 400px"
-                        />
+                        <Image src={image} alt={title} width={400} height={300} className="img-fluid" loading="lazy" />
                       ) : (
                         <div>Image not available</div>
                       )}

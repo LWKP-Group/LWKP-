@@ -2793,3 +2793,6 @@ img {
 .col-sm-3.project-detail {
   padding: 0 5px;
 }
+.single.studio {
+  padding: 0 !important;
+}

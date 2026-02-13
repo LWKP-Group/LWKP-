@@ -66,7 +66,7 @@ export default function ClientWrapper({ children }) {
   }, [loading, pathname]);
 
   return (
-    <div className={`${pageClass}`}>
+    <div className={`single ${pageClass}`}>
       <AnimatePresence>{loading && <Loader />}</AnimatePresence>
 
       {!loading && (
