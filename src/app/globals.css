@@ -2790,3 +2790,6 @@ img {
   height: 800px;
   object-fit: cover;
 }
+.col-sm-3.project-detail {
+  padding: 0 5px;
+}
