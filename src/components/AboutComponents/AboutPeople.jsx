@@ -19,7 +19,7 @@ export default function AboutPeople() {
         <GlobalLoader />
       </div>
     );
-  if (!about) return <div className="container">Content not available.</div>;
+  if (!about) return <div className="container"> </div>;
 
   const heading = about?.acf?.people_heading || "Meet the Team";
   const description = about?.acf?.people_description || "<p>Team information coming soon.</p>";

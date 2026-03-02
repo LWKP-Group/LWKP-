@@ -10,7 +10,7 @@ export default function ProjectVison({ post }) {
   }
 
   const title = post?.acf?.vision_heading || "Vision & Context";
-  const description = post?.acf?.vision_description || "<p>Content not available.</p>";
+  const description = post?.acf?.vision_description || "<p> </p>";
   const visionImage = post?.acf?.vision_image || "";
 
   return (

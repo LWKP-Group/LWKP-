@@ -30,7 +30,7 @@ export default function Purpose() {
   }
 
   if (!post.length) {
-    return <div className="container text-center py-5">Content not available.</div>;
+    return <div className="container text-center py-5"> </div>;
   }
 
   const heading = post[0]?.acf?.purpose_heading || "Our Purpose";

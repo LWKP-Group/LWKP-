@@ -54,7 +54,7 @@ export default function PeopleDeparts() {
 
   return (
     <motion.div
-      className="container bottom-pad"
+      className="container bottom-pads"
       id="departments"
       variants={rowAnim}
       initial="hidden"

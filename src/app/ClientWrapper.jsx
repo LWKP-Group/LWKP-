@@ -9,6 +9,7 @@ import { useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import Lenis from "@studio-freight/lenis";
 import { initAutoSymbolFont } from "@/lib/autoSymbolFont";
+import BackToTop from "@/components/GlobalCompo/BackToTop";
 
 export default function ClientWrapper({ children }) {
   const pathname = usePathname();
@@ -88,6 +89,7 @@ export default function ClientWrapper({ children }) {
           </main>
 
           <Footer />
+          <BackToTop />
         </>
       )}
     </div>

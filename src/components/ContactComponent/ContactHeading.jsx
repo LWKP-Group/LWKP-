@@ -29,7 +29,7 @@ export default function ContactHeading() {
   }
 
   if (!pageData.length) {
-    return <div className="container text-center py-5">Content not available.</div>;
+    return <div className="container text-center py-5"> </div>;
   }
 
   const secondHeading = pageData[0]?.acf?.contact_heading || "Get in Touch";

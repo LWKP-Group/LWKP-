@@ -17,6 +17,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import Link from "next/link";
 import { rowAnim } from "@/lib/animation";
+import { decodeHTML } from "@/lib/formatText";
 import GlobalLoader from "@/components/GlobalCompo/GlobalLoader";
 
 export default function HomeStories() {
@@ -39,7 +40,7 @@ export default function HomeStories() {
   }
 
   if (!categories || categories.length === 0) {
-    return <div className="container text-center py-5">Content not available.</div>;
+    return <div className="container text-center py-5"> </div>;
   }
 
   return (
@@ -88,7 +89,7 @@ export default function HomeStories() {
                     </motion.div>
 
                     <div className="storyContent">
-                      <h4>{cat.name}</h4>
+                      <h4>{decodeHTML(cat.name)}</h4>
 
                       <Link href={`/stories?category=${cat.slug}`} className="storyLink">
                         <b>VIEW STORY →</b>

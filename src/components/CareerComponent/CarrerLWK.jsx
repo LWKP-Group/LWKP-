@@ -26,7 +26,7 @@ export default function CarrerLWK() {
   }
 
   if (!pageData.length) {
-    return <div className="container text-center py-5">Content not available.</div>;
+    return <div className="container text-center py-5"> </div>;
   }
 
   const mediaHeading = pageData[0]?.acf?.lwk_heading || "Life at LWK";

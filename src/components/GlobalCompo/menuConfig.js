@@ -8,33 +8,33 @@ export const menuConfig = {
         { title: "Purpose", href: "/purpose" },
       ],
     },
-    {
-      title: "Studio",
-      children: [
-        { title: "Studio at a Glance", href: "/studio" },
-        { title: "Stories ", href: "/stories" },
-        { title: "Portfolio ", href: "/projects" },
-      ],
-    },
-    {
-      title: "Legacy",
-      href: "/recognition",
-    },
+    // {
+    //   title: "Studio",
+    //   children: [
+    //     { title: "Studio at a Glance", href: "/studio" },
+    //     { title: "Stories ", href: "/stories" },
+    //     { title: "Portfolio ", href: "/projects" },
+    //   ],
+    // },
+    // {
+    //   title: "Legacy",
+    //   href: "/recognition",
+    // },
 
-    {
-      title: "Insight",
-      href: "/insight",
-    },
+    // {
+    //   title: "Insight",
+    //   href: "/insight",
+    // },
 
-    {
-      title: "Careers",
-      href: "/career",
-    },
+    // {
+    //   title: "Careers",
+    //   href: "/career",
+    // },
 
-    {
-      title: "Contact",
-      href: "/contact",
-    },
+    // {
+    //   title: "Contact",
+    //   href: "/contact",
+    // },
   ],
 
   "/about": [

@@ -19,7 +19,7 @@ export default function AboutJourney() {
         <GlobalLoader />
       </div>
     );
-  if (!about) return <div className="container">Content not available.</div>;
+  if (!about) return <div className="container"> </div>;
 
   const heading = about?.acf?.journey_heading || "Our Journey";
   const description = about?.acf?.journey_description || "<p>Journey details coming soon.</p>";

@@ -11,7 +11,7 @@ import { rowAnim } from "@/lib/animation";
 import { motion } from "framer-motion";
 import GlobalLoader from "@/components/GlobalCompo/GlobalLoader";
 import Link from "next/link";
-
+import {decodeHTML } from "@/lib/formatText"
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -108,7 +108,7 @@ export default function StudioDimensions() {
                     />
                   )}
 
-                  <h4>{type?.name}</h4>
+                  <h4>{decodeHTML(type?.name)}</h4>
 
                   <p>
                     {type?.description

@@ -31,7 +31,7 @@ export default function PhilosophySection() {
   }
 
   if (!posts || posts.length === 0) {
-    return <div className="container text-center py-5">Content not available.</div>;
+    return <div className="container text-center py-5"> </div>;
   }
 
   return (

@@ -10,7 +10,7 @@ export default function ProjectDesign({ post }) {
   }
 
   const title = post?.acf?.design_heading || "Design Approach";
-  const description = post?.acf?.design_description || "<p>Content not available.</p>";
+  const description = post?.acf?.design_description || "<p> </p>";
   const designImage = post?.acf?.design_image || "";
   const qoutetext = post?.acf?.design_qoute || "";
   const quotation = "https://staging.lwkp.com/wp-content/uploads/2025/12/Frame-2147227200.png";

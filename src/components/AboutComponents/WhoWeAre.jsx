@@ -22,7 +22,7 @@ function WhoWeAre() {
 
   const about = posts?.[0];
   if (!about) {
-    return <div className="container text-center py-5">Content not available.</div>;
+    return <div className="container text-center py-5"> </div>;
   }
 
   const heading = about?.acf?.who_we_are_heading || "Who We Are";

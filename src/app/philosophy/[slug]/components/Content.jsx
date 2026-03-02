@@ -30,7 +30,7 @@ export default function Content({ post }) {
             <div
               className="wysiwyg-text mt-3"
               dangerouslySetInnerHTML={{
-                __html: post?.acf?.description ? formatText(post?.acf?.description) : "<p>Content not available.</p>",
+                __html: post?.acf?.description ? formatText(post?.acf?.description) : "<p> </p>",
               }}
             />
 
@@ -62,7 +62,7 @@ export default function Content({ post }) {
               <div
                 className="wysiwyg-text mt-3"
                 dangerouslySetInnerHTML={{
-                  __html: post?.acf?.box_one ? formatText(post.acf.box_one) : "<p>Content not available.</p>",
+                  __html: post?.acf?.box_one ? formatText(post.acf.box_one) : "<p> </p>",
                 }}
               />
             </motion.div>
@@ -71,7 +71,7 @@ export default function Content({ post }) {
               <div
                 className="wysiwyg-text mt-3"
                 dangerouslySetInnerHTML={{
-                  __html: post?.acf?.box_two ? formatText(post.acf.box_two) : "<p>Content not available.</p>",
+                  __html: post?.acf?.box_two ? formatText(post.acf.box_two) : "<p> </p>",
                 }}
               />
             </motion.div>
@@ -80,7 +80,7 @@ export default function Content({ post }) {
               <div
                 className="wysiwyg-text mt-3"
                 dangerouslySetInnerHTML={{
-                  __html: post?.acf?.box_three ? formatText(post.acf.box_three) : "<p>Content not available.</p>",
+                  __html: post?.acf?.box_three ? formatText(post.acf.box_three) : "<p> </p>",
                 }}
               />
             </motion.div>

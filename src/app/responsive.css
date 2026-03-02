@@ -462,8 +462,9 @@ button.accordion-trigger {
   }
   .container.copyright {
     border-top: 1px solid #989898;
-    margin-top: 8%;
+    margin-top: 6%;
     padding-top: 5%;
+    padding-bottom: 3%;
   }
   .container.copyright p {
     text-align: center;
@@ -730,5 +731,11 @@ button.accordion-trigger {
   .row.overview-image img {
     height: 400px;
     object-fit: cover;
+  }
+  .mainbanner h1 span{
+    margin-right:8px !important;
+  }
+  p.hero-text span{
+    margin-right: 3px !important;
   }
 }

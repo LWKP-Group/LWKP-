@@ -600,6 +600,7 @@ footer {
   margin: 0;
   font-weight: 500;
   line-height: 13px;
+  text-transform: capitalize !important;
 }
 .iconbox a span {
   font-weight: 400;
@@ -2518,9 +2519,9 @@ form.ant-form.ant-form-vertical.css-var-root.ant-form-css-var.contact-form {
 }
 /*  */
 .back-to-top {
-  position: sticky;
-  bottom: 28px;
-  left: 96%;
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
   width: 44px;
   height: 44px;
   border-radius: 50%;
@@ -2532,14 +2533,17 @@ form.ant-form.ant-form-vertical.css-var-root.ant-form-css-var.contact-form {
   align-items: center;
   justify-content: center;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
-  z-index: 999;
-  transition: transform 0.25s ease;
+  z-index: 9999;
 }
 
 .back-to-top:hover {
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  transition: transform 0.2s ease;
 }
-
+.iconbox-text b{
+  color: #2C2B2B;
+  font-weight: 500;
+}
 @media (max-width: 768px) {
   .back-to-top {
     right: 16px;
@@ -2795,4 +2799,11 @@ img {
 }
 .single.studio {
   padding: 0 !important;
+}
+.container.copyright a {
+  font-size: var(--text-sm);
+}
+button.ant-btn.css-var-root.ant-btn-primary.ant-btn-color-primary.ant-btn-variant-solid.newsletter-btn{
+    font-family: var(--font-primary);
+  font-size: var(--text-lg);
 }

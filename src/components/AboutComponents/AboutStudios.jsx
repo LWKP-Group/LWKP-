@@ -21,7 +21,7 @@ export default function AboutStudios() {
     );
   }
   if (!about) {
-    return <div className="container text-center py-5">Content not available.</div>;
+    return <div className="container text-center py-5"> </div>;
   }
 
   const heading = about?.acf?.studios_heading || "Global Studios";

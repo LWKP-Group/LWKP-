@@ -8,10 +8,7 @@ export default function BackToTop() {
 
   useEffect(() => {
     const toggleVisibility = () => {
-      const scrollTop = window.scrollY;
-      const pageHeight = document.documentElement.scrollHeight - window.innerHeight;
-
-      setVisible(scrollTop > pageHeight * 0.25);
+      setVisible(window.scrollY > 300);
     };
 
     window.addEventListener("scroll", toggleVisibility);
@@ -31,11 +28,11 @@ export default function BackToTop() {
         <motion.button
           className="back-to-top"
           onClick={scrollToTop}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 20 }}
-          transition={{ duration: 0.4, ease: "easeOut" }}
-          aria-label="Back to top">
+          initial={{ opacity: 0, y: 50 }}     // start slightly below
+          animate={{ opacity: 1, y: 0 }}      // slide up into position
+          exit={{ opacity: 0, y: 50 }}        // slide down on exit
+          transition={{ duration: 0.3, ease: "easeOut" }}
+        >
           ↑
         </motion.button>
       )}

@@ -16,7 +16,7 @@ export default function ContentAwardDiv({ post }) {
 
   const title = post?.title?.rendered || "Title not available";
   const date = post?.date ? dayjs(post.date).format("DD MMMM YYYY") : "Date not available";
-  const description = post?.content?.rendered || "<p>Content not available.</p>";
+  const description = post?.content?.rendered || "<p> </p>";
   const tags = post?.acf?.myname || "";
   const postUrl = post?.link || "";
 

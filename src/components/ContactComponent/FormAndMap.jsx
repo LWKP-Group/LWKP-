@@ -27,7 +27,7 @@ export default function FormAndMap() {
   }
 
   if (!pageData.length) {
-    return <div className="container text-center py-5">Content not available.</div>;
+    return <div className="container text-center py-5"> </div>;
   }
 
   const mapImage = pageData[0]?.acf?.map_image;

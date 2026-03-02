@@ -8,7 +8,7 @@ export default function OverviewHeading({ post }) {
   }
 
   const title = post?.acf?.overview_heading || "Overview";
-  const description = post?.acf?.overview_description || "<p>Content not available.</p>";
+  const description = post?.acf?.overview_description || "<p> </p>";
 
   return (
     <Fragment>

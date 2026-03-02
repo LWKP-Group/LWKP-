@@ -10,7 +10,7 @@ export default function ProjectData({ post }) {
   }
 
   const title = post?.acf?.project_data_heading || "Project Data";
-  const description = post?.acf?.project_data_description || "<p>Content not available.</p>";
+  const description = post?.acf?.project_data_description || "<p> </p>";
   const projectImage = post?.acf?.project_data_image || "";
 
   return (

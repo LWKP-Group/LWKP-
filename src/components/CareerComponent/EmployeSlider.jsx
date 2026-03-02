@@ -30,7 +30,7 @@ export default function EmployeSlider() {
   }
 
   if (!reviews.length) {
-    return <div className="container text-center py-5">Content not available.</div>;
+    return <div className="container text-center py-5"> </div>;
   }
 
   const quoteone = "https://staging.lwkp.com/wp-content/uploads/2025/12/unnamed-file.png";

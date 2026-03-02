@@ -72,7 +72,7 @@ export default function ProjectTypeArchives({ projects }) {
                 <div
                   className="wysiwyg-text mt-3"
                   dangerouslySetInnerHTML={{
-                    __html: description ? formatText(description) : "<p>Content not available.</p>",
+                    __html: description ? formatText(description) : "<p> </p>",
                   }}
                 />
 

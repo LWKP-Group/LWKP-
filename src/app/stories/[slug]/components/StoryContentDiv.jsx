@@ -12,7 +12,7 @@ export default function StoryContentDiv({ post }) {
   const title = post?.title?.rendered || "Title not available";
   const image = post?.featured_image || "";
   const date = post?.date ? dayjs(post.date).format("DD MMMM YYYY") : "";
-  const description = post?.content?.rendered || "Content not available.";
+  const description = post?.content?.rendered || " ";
 
   return (
     <Fragment>

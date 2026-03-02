@@ -31,7 +31,7 @@ function HomeInsights() {
   }
 
   if (!posts.length) {
-    return <div className="container text-center py-5">Content not available.</div>;
+    return <div className="container text-center py-5"> </div>;
   }
 
   return (
