@@ -60,7 +60,7 @@ export default function RelatedStory() {
                 <div className="col-sm-8">
                   {" "}
                   <h6 dangerouslySetInnerHTML={{ __html: title }} />
-                  <Link href={`/stories/${slug}`}>READ MORE →</Link>
+                  <Link href={`/stories/${slug}`}> Read More →</Link>
                 </div>
               </div>
             </div>

@@ -6,6 +6,8 @@ import "@/app/responsive.css";
 import ClientWrapper from "./ClientWrapper";
 import ReduxProvider from "@/store/ReduxProvider";
 import NextTopLoader from "nextjs-toploader";
+import ScrollToTop from "@/lib/ScrollToTop";
+
 
 export const metadata = {
   title: "Home — LWK Agency | Creative Digital Solutions",
@@ -16,6 +18,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
+        <ScrollToTop />
         <NextTopLoader color="#929292" height={6} showSpinner={false} speed={200} />
         <ReduxProvider>
           <ClientWrapper>{children}</ClientWrapper>

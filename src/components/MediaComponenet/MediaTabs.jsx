@@ -131,7 +131,7 @@ export default function MediaTabs() {
                               __html: title,
                             }}
                           />
-                          <Link href={`/media/${post.slug}`}>READ MORE →</Link>
+                          <Link href={`/media/${post.slug}`}> Read More →</Link>
                         </div>
 
                         <div className="col-sm-6">

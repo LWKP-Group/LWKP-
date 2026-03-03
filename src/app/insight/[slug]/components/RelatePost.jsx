@@ -57,7 +57,7 @@ export default function RelatedPost() {
               )}
 
               <h6 dangerouslySetInnerHTML={{ __html: title }} />
-              <Link href={`/insight/${slug}`}>READ MORE →</Link>
+              <Link href={`/insight/${slug}`}> Read More →</Link>
             </div>
           );
         })}

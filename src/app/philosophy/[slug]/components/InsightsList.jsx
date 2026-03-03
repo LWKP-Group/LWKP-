@@ -54,7 +54,7 @@ export default function InsightsList({ insights }) {
 
                 <h5>{post?.title || "Title not available"}</h5>
 
-                <Link href={`/insight/${post.slug}`}>Read More →</Link>
+                <Link href={`/insight/${post.slug}`}> Read More →</Link>
               </motion.div>
             );
           })}

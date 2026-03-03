@@ -57,7 +57,7 @@ export const menuConfig = {
     { title: "Values", href: "#values" },
   ],
   "/studio": [
-    { title: "STUDIO", href: "#studio" },
+    { title: "Studio", href: "#studio" },
     { title: "Locations", href: "#loactions" },
     { title: "Practice", href: "#practice" },
   ],
@@ -81,7 +81,7 @@ export const menuConfig = {
   ],
   "/insight": [{ title: "insight", href: "#insight" }],
   "/career": [
-    { title: "CAREER", href: "#career" },
+    { title: "Career", href: "#career" },
     { title: "Life at LWK ", href: "#life-at-lwk" },
     { title: "Employee voices", href: "#employee-voices" },
   ],

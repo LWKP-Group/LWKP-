@@ -2294,7 +2294,7 @@ form.ant-form.ant-form-vertical.css-var-root.ant-form-css-var.contact-form {
   content: "";
   position: absolute;
   left: -22px;
-  top: 30px;
+  top: 5px;
   width: 0;
   height: 0;
   border-top: 20px solid transparent;
@@ -2541,8 +2541,11 @@ form.ant-form.ant-form-vertical.css-var-root.ant-form-css-var.contact-form {
   transition: transform 0.2s ease;
 }
 .iconbox-text b{
-  color: #2C2B2B;
+  color: #161616;
   font-weight: 500;
+}
+.col-sm-3.project-detail p{
+  text-transform: capitalize;
 }
 @media (max-width: 768px) {
   .back-to-top {
@@ -2806,4 +2809,7 @@ img {
 button.ant-btn.css-var-root.ant-btn-primary.ant-btn-color-primary.ant-btn-variant-solid.newsletter-btn{
     font-family: var(--font-primary);
   font-size: var(--text-lg);
+}
+ul.offcanvas-list a{
+  text-transform: capitalize;
 }

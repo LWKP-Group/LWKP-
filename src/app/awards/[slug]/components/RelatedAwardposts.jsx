@@ -56,7 +56,7 @@ export default function RelatedAwardposts() {
               )}
 
               <h6 dangerouslySetInnerHTML={{ __html: title }} />
-              <Link href={`/awards/${slug}`}>READ MORE →</Link>
+              <Link href={`/awards/${slug}`}> Read More →</Link>
             </div>
           );
         })}

@@ -49,7 +49,7 @@ export default function Projects({ projects }) {
                   <p>Image not available</p>
                 )}
                 <h5>{project?.title || "Title not available"}</h5>
-                <h6>{project?.taxonomies?.project_loaction?.[0]?.name || "Location not available"}</h6>
+                <h6>{project?.taxonomies?.project_loaction?.[0]?.name || " "}</h6>
                 <Link href={`/projects/${project.slug}`}>View Project →</Link>
               </motion.div>
             );

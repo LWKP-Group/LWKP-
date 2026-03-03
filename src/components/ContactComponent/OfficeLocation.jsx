@@ -51,7 +51,7 @@ export default function OfficeLocation() {
         variants={rowAnim}
         initial="hidden"
         whileInView="show"
-        viewport={{ once: false, amount: 0.2 }}
+        viewport={{ once: true, amount: 0.2 }}
       >
         <div className="row">
           <div className="col-sm-12 location-heading">
