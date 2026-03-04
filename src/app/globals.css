@@ -2820,3 +2820,6 @@ div#departments .col-sm-9 {
 .row.person-row {
   align-items: center;
 }
+p {
+  word-break: break-word;
+}
