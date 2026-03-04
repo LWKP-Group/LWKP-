@@ -64,10 +64,7 @@ export default function PeopleDeparts() {
       <div className="row">
         <div className="col-sm-9">
           <p className="sub-heading">Our teams</p>
-          <h2>
-            Where Collaboration
-            <br /> Becomes Creation
-          </h2>
+          <h2>Where Collaboration Becomes Creation</h2>
         </div>
       </div>
 

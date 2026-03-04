@@ -41,7 +41,7 @@ export default function PeopleHeading() {
         viewport={{ once: false, amount: 0.2 }}
       >
         <div className="row">
-          <div className="col-sm-9">
+          <div className="col-sm-12">
             <p className="sub-heading">our people</p>
 
             <h2

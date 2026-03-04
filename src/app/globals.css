@@ -1,5 +1,6 @@
 /* font faces */
 /* ===== TestMetric Font Family Setup ===== */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
 @font-face {
   font-family: "TestMetric";
@@ -2026,7 +2027,7 @@ div.lwk-section hr {
   display: block;
   margin-bottom: 20px;
   font-weight: 600;
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 .people-single-page .teamimage {
   display: none;
@@ -2540,11 +2541,11 @@ form.ant-form.ant-form-vertical.css-var-root.ant-form-css-var.contact-form {
   transform: translateY(-3px);
   transition: transform 0.2s ease;
 }
-.iconbox-text b{
+.iconbox-text b {
   color: #161616;
-  font-weight: 500;
+  font-weight: 600;
 }
-.col-sm-3.project-detail p{
+.col-sm-3.project-detail p {
   text-transform: capitalize;
 }
 @media (max-width: 768px) {
@@ -2643,7 +2644,7 @@ h6.review-designation {
 }
 
 .symbol-font {
-  font-family: "Poppins", sans-serif;
+  font-family: "Montserrat", sans-serif;
   display: inline-flex !important;
 }
 .ant-modal .ant-modal-container h3 {
@@ -2806,10 +2807,16 @@ img {
 .container.copyright a {
   font-size: var(--text-sm);
 }
-button.ant-btn.css-var-root.ant-btn-primary.ant-btn-color-primary.ant-btn-variant-solid.newsletter-btn{
-    font-family: var(--font-primary);
+button.ant-btn.css-var-root.ant-btn-primary.ant-btn-color-primary.ant-btn-variant-solid.newsletter-btn {
+  font-family: var(--font-primary);
   font-size: var(--text-lg);
 }
-ul.offcanvas-list a{
+ul.offcanvas-list a {
   text-transform: capitalize;
+}
+div#departments .col-sm-9 {
+  width: 50%;
+}
+.row.person-row {
+  align-items: center;
 }

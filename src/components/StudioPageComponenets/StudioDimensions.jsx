@@ -11,7 +11,7 @@ import { rowAnim } from "@/lib/animation";
 import { motion } from "framer-motion";
 import GlobalLoader from "@/components/GlobalCompo/GlobalLoader";
 import Link from "next/link";
-import {decodeHTML } from "@/lib/formatText"
+import { decodeHTML } from "@/lib/formatText";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -119,7 +119,7 @@ export default function StudioDimensions() {
                   </p>
 
                   <Link href={`/projects/type/${type?.slug}`} className="storyLink">
-                    <b>EXPLORE →</b>
+                    <b>Explore →</b>
                   </Link>
                 </motion.div>
               </SwiperSlide>
