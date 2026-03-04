@@ -84,7 +84,7 @@ function HomeInsights() {
                     />
                   </Link>
 
-                  {/* <Link href={`/insight/${post.slug}`}>Read More →</Link> */}
+                  {/* <Link href={`/insight/${post.slug}`}> Read More →</Link> */}
                 </motion.div>
               );
             })}

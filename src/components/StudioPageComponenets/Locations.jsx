@@ -109,7 +109,7 @@ export default function Homestudiolocation() {
                   <div className="carft-content">
                     <h4>{post?.title?.rendered}</h4>
                     <Link href={`/studio/${post?.slug}`} className="storyLink">
-                      <b>VIEW STUDIO →</b>
+                      <b>View Studio →</b>
                     </Link>
                   </div>
                 </motion.div>

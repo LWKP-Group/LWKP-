@@ -57,7 +57,7 @@ export default function RelatedMediaPost() {
               )}
 
               <h6 dangerouslySetInnerHTML={{ __html: title }} />
-              <Link href={`/Media/${slug}`}>READ MORE →</Link>
+              <Link href={`/Media/${slug}`}> Read More →</Link>
             </div>
           );
         })}
