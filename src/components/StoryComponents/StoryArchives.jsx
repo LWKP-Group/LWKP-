@@ -15,6 +15,7 @@ import {
 import ArchivePagination from "@/components/ReuseableComponent/Pagination";
 import { motion } from "framer-motion";
 import { rowAnim } from "@/lib/animation";
+import {decodeHTML} from "@/lib/formatText"
 
 export default function StoryArchives() {
   const dispatch = useDispatch();
@@ -69,7 +70,7 @@ export default function StoryArchives() {
                 )}
               </div>
               <div className="col-sm-6 right-side-box">
-                {name && <h4>{name}</h4>}
+                {name && <h4>{decodeHTML(name)}</h4>}
 
                 {description && (
                   <div
@@ -81,7 +82,7 @@ export default function StoryArchives() {
                 )}
 
                 <Link href={link} className="story-link">
-                  VIEW STORIES →
+                  View Stories →
                 </Link>
               </div>
             </motion.div>

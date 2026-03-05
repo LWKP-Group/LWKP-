@@ -77,7 +77,7 @@ export default function FilterGrid() {
     <Fragment>
       <div className="container" id="recent-projects">
         <p className="sub-heading">Portfolio</p>
-        <h2>Our Recent Project</h2>
+        <h2>Our Recent Projects</h2>
       </div>
 
       <div className="container py-5 gridbox" ref={gridRef}>

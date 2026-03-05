@@ -66,7 +66,7 @@ export default function Footer() {
           <div className="row">
             <div className="col-sm-9">
               <p>
-                © 2025 LWK & Partners (HK) Limited. All rights reserved. | 
+                <b>©</b> 2025 LWK & Partners (HK) Limited. All Rights Reserved. | 
                 <Link href="https://www.cchengholdings.com/en/home.aspx">
                   Member of C Cheng Holdings Limited (HKEX stock code: 1486.HK)
                 </Link>
