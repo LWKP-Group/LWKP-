@@ -30,13 +30,13 @@ export default function HeroMedia({ post }) {
 
   return (
     <motion.section
-      className="row mainbanner"
+      className="row mainbanner singleinsights"
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.9, ease: "easeOut" }}
       style={{
         backgroundImage: bgImage ? `url(${bgImage})` : "none",
-        backgroundSize: "cover",
+        backgroundSize: "100% 100%",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
       }}

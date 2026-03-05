@@ -43,7 +43,7 @@ export default function FeaturedPortfolio() {
       <div className="row mb-4" id="featured">
         <div className="col-sm-12">
           <p className="sub-heading">featured</p>
-          <h3>Featured Project</h3>
+          <h3>Featured Projects</h3>
         </div>
       </div>
 

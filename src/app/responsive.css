@@ -380,12 +380,18 @@ button.accordion-trigger {
     margin-right: 5px;
   }
   .review-image {
-    height: 200px;
+    height: 100%;
   }
   .col-sm-8.right-box p {
     font-style: italic;
     font-size: 21px;
   }
+  .container.copyright p b {
+    font-size: 18px;
+    display: inline-block;
+    position: relative;
+    bottom: -1px;
+}
 }
 
 @media (max-width: 576px) {
@@ -791,7 +797,7 @@ button.accordion-trigger {
     width: 70px;
   }
   .review-image {
-    height: 310px;
+    height: 350px;
   }
   .review-info-box {
     padding: 120px 21px 20px 30px;
@@ -823,4 +829,16 @@ button.accordion-trigger {
   .flip-card {
     margin: 0;
   }
+  section.row.mainbanner.singleinsights{
+    height: 45vh;
+  }
+  .row.insight-post .col-sm-4{
+    margin-bottom: 30px;
+  }
+  .container.copyright p b {
+    font-size: 18px;
+    display: inline-block;
+    position: relative;
+    bottom: -1px;
+}
 }

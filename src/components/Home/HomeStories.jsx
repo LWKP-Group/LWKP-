@@ -92,7 +92,7 @@ export default function HomeStories() {
                       <h4>{decodeHTML(cat.name)}</h4>
 
                       <Link href={`/stories?category=${cat.slug}`} className="storyLink">
-                        <b>VIEW STORY →</b>
+                        <b>View Story →</b>
                       </Link>
                     </div>
                   </div>

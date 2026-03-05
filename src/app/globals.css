@@ -1866,15 +1866,11 @@ div.lwk-section hr {
 .review-info-box {
   clip-path: polygon(0% -10%, 0% 0, 100% 100%, 0 100%);
   background: #fff;
-  width: 90%;
-  padding: 30px 14px;
+  width: 100%;
   position: absolute;
   bottom: -1px;
   left: -1px;
-  padding-top: 50px;
-  padding-bottom: 10px;
-  padding-left: 10px;
-  padding-right: 14px;
+  padding:50px 60px 10px 10px;
 }
 
 /* TEXT IN WHITE BOX */
@@ -2631,7 +2627,7 @@ body {
   font-size: 12px;
 }
 h6.review-designation {
-  font-size: 12px;
+  font-size: 11px;
 }
 
 .change-image img {
@@ -2822,4 +2818,10 @@ div#departments .col-sm-9 {
 }
 p {
   word-break: break-word;
+}
+.container.copyright p b {
+    font-size: 18px;
+    display: inline-block;
+    position: relative;
+    bottom: -1px;
 }
