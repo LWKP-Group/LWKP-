@@ -392,6 +392,9 @@ button.accordion-trigger {
     position: relative;
     bottom: -1px;
 }
+.timeline-content:before{
+  left: -13px;
+}
 }
 
 @media (max-width: 576px) {
@@ -830,7 +833,7 @@ button.accordion-trigger {
     margin: 0;
   }
   section.row.mainbanner.singleinsights{
-    height: 45vh;
+    height: 40vh;
   }
   .row.insight-post .col-sm-4{
     margin-bottom: 30px;
@@ -840,5 +843,16 @@ button.accordion-trigger {
     display: inline-block;
     position: relative;
     bottom: -1px;
+}
+.bgwhite.purpose-page .col-sm-6.purpose-content{
+  padding-right: 0;
+  padding-bottom: 7%;
+}
+.timeline-content:before{
+  top:11px;
+  left: -13px;
+}
+.col-sm-12.storyone{
+  padding-right: 0%;
 }
 }

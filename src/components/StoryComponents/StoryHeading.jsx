@@ -44,7 +44,7 @@ export default function StoryHeading() {
         viewport={{ once: false, amount: 0.3 }}
       >
         <div className="row">
-          <div className="col-sm-7">
+          <div className="col-sm-12 storyone">
             <p className="sub-heading">Stories</p>
 
             {secondHeading && <h2>{secondHeading}</h2>}

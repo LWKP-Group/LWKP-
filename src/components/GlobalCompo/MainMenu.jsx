@@ -183,7 +183,7 @@ export default function MainMenu() {
 
               <div className="copys">
                 <p>
-                  © 2025 LWK & Partners (HK) Limited. All rights reserved
+                  <b>©</b> 2025 LWK & Partners (HK) Limited. All Rights Reserved
                 </p>
                 <SocialIcons />
               </div>

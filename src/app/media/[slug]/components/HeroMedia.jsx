@@ -36,7 +36,7 @@ export default function HeroMedia({ post }) {
       transition={{ duration: 0.9, ease: "easeOut" }}
       style={{
         backgroundImage: bgImage ? `url(${bgImage})` : "none",
-        backgroundSize: "100% 100%",
+        backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
       }}

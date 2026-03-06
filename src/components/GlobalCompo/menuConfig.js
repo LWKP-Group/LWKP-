@@ -38,11 +38,11 @@ export const menuConfig = {
   ],
 
   "/about": [
-    { title: "who we are", href: "#who-we-are" },
-    { title: "values", href: "#values" },
-    { title: "our people", href: "#our-people" },
-    { title: "our journey", href: "#our-journey" },
-    { title: "global studios", href: "#global-studios" },
+    { title: "Who We Are", href: "#who-we-are" },
+    { title: "Values", href: "#values" },
+    { title: "Our People", href: "#our-people" },
+    { title: "Our Journey", href: "#our-journey" },
+    { title: "Global Studios", href: "#global-studios" },
   ],
 
   "/philosophy": [
@@ -83,15 +83,15 @@ export const menuConfig = {
   "/career": [
     { title: "Career", href: "#career" },
     { title: "Life at LWK ", href: "#life-at-lwk" },
-    { title: "Employee voices", href: "#employee-voices" },
+    { title: "Employee Voices", href: "#employee-voices" },
   ],
   "/people": [
     { title: "People", href: "#people" },
-    { title: "departments ", href: "#departments" },
+    { title: "Departments ", href: "#departments" },
   ],
   "/projects": [
-    { title: "featured", href: "#featured" },
-    { title: "recent projects ", href: "#recent-projects" },
+    { title: "Featured", href: "#featured" },
+    { title: "Recent Projects ", href: "#recent-projects" },
   ],
   "/contact": [{ title: "contact", href: "#contact-form" }],
 };

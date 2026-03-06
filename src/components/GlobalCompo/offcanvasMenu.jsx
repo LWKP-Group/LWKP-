@@ -262,7 +262,7 @@ export default function OffcanvasMenu() {
 
           <div className="row">
             <div className="col-sm-12 offcanvas-footer-copy">
-              <p>© 2025 LWK & Partners (HK) Limited. All rights reserved</p>
+              <p><b>©</b> 2025 LWK & Partners (HK) Limited. All Rights Reserved</p>
               <SocialIcons />
             </div>
           </div>
