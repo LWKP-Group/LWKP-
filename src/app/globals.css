@@ -2808,7 +2808,7 @@ button.ant-btn.css-var-root.ant-btn-primary.ant-btn-color-primary.ant-btn-varian
   font-size: var(--text-lg);
 }
 ul.offcanvas-list a {
-  text-transform: capitalize;
+  text-transform: unset;
 }
 div#departments .col-sm-9 {
   width: 50%;
@@ -2819,9 +2819,24 @@ div#departments .col-sm-9 {
 p {
   word-break: break-word;
 }
-.container.copyright p b {
+.container.copyright p b,
+.offcanvas-footer-copy p b,
+.copys p b{
     font-size: 18px;
     display: inline-block;
     position: relative;
     bottom: -1px;
+}
+.offcanvas-footer-copy p b,
+.copys p b{
+    font-size: 18px;
+    display: inline-block;
+    position: relative;
+    bottom: -2px;
+}
+.row.related-posts h4{
+  font-size: var(--h5);
+}
+.col-sm-12.storyone{
+  padding-right: 5%;
 }
