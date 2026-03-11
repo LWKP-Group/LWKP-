@@ -5,7 +5,6 @@ import FooterLogo from "@/assets/footerlogo.png";
 import Envelop from "@/assets/envelop.png";
 import FooterForm from "./FooterForm";
 import SocialIcons from "./SocialIcons";
-import BackToTop from "./BackToTop";
 import { Fragment } from "react";
 
 export default function Footer() {
@@ -55,7 +54,6 @@ export default function Footer() {
                 </Link>
               </div>
             </div>
-
             <div className="col-sm-4 newsleter-box">
               <FooterForm />
             </div>

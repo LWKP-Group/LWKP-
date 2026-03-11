@@ -27,7 +27,6 @@ export default function FooterForm() {
   const onFinish = (values) => {
     dispatch(submitNewsletter(values));
   };
-
   return (
     <Fragment>
       <div className="newsletter-box">

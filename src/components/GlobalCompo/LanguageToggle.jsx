@@ -38,7 +38,7 @@ export default function LanguageToggle() {
     setCookie("/en/en");
     localStorage.setItem("lang", "en");
     setLang("en");
-    window.location.reload(); // required for reset
+    window.location.reload(); 
   };
 
   return (

@@ -13,3 +13,4 @@ export default function ImageSkeleton({ height = 350, radius = 12 }) {
     />
   );
 }
+ 

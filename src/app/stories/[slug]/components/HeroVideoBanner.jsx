@@ -47,6 +47,15 @@ export default function HeroVideoBanner({ post }) {
     <div dangerouslySetInnerHTML={{ __html: ytLink }} />
   </div>
 )}
+
+        
+      
+      {/* Scroll Arrow */}
+    </motion.div>
+  );
+}
+
+
           {/* <div style={{ position: "relative", paddingBottom: "56.25%", height: 0 }}>
             <iframe
               src={embedUrl}
@@ -64,9 +73,3 @@ export default function HeroVideoBanner({ post }) {
               }}
             />
           </div> */}
-        
-      
-      {/* Scroll Arrow */}
-    </motion.div>
-  );
-}

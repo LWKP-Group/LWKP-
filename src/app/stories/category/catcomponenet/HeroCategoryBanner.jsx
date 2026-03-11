@@ -39,7 +39,6 @@ export default function HeroCategoryBanner({ category }) {
 
       <div className="col-sm-10 position-relative text-white">
         <AnimatedParagraph text={subheading} className="hero-text" />
-        {/* Title */}
         <AnimatedText
           text={decodeHTML(title)}
           className="hero-title"
