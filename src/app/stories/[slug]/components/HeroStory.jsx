@@ -40,7 +40,7 @@ export default function HeroStory({ post }) {
       transition={{ duration: 0.9, ease: "easeOut" }}
       style={{
         backgroundImage: bgImage ? `url(${bgImage})` : "none",
-        backgroundSize: "cover",
+        backgroundSize: "100% 100%",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
       }}

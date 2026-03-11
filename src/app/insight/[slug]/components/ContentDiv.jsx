@@ -30,7 +30,7 @@ export default function ContentDiv({ post }) {
   return (
     <Fragment>
       <p className="post-date">{date}</p>
-      <h2 dangerouslySetInnerHTML={{ __html: title }} />
+      <h3 dangerouslySetInnerHTML={{ __html: title }} />
       {tags && <p className="post-tags">{tags}</p>}
       <div className="social-icons">
         <Link href={share.linkedin} target="_blank" rel="noopener noreferrer">
