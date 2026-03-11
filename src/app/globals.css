@@ -1796,7 +1796,7 @@ li.ant-pagination-item.ant-pagination-item-2.ant-pagination-item-active a {
   text-align: end;
 }
 .awards a {
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 .tabs-insight button.nav-link {
   border: unset;
