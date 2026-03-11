@@ -27,23 +27,27 @@ export default function HeroVideoBanner({ post }) {
 
   /* 🔹 youtube link handling */
   const ytLink = post?.acf?.iframe_youtube_link || "";
-  const videoId = ytLink.includes("watch?v=") ? ytLink.split("watch?v=")[1] : ytLink.split("/").pop();
-  const embedUrl = `https://www.youtube.com/embed/${videoId}`;
+  // const videoId = ytLink.includes("watch?v=") ? ytLink.split("watch?v=")[1] : ytLink.split("/").pop();
+  // const embedUrl = `https://www.youtube.com/embed/${videoId}`;
 
   /* 🔹 background image optional */
   const bgImage = post?.featured_image || null;
 
   return (
     <motion.div
-      className="col-sm-12 mx-auto position-relative text-white"
+      className="col-sm-12 mx-auto position-relative text-white storyframe"
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.9, ease: "easeOut" }}
     >
       {/* VIDEO */}
-      {embedUrl && (
-        <div className="mt-4">
-          <div style={{ position: "relative", paddingBottom: "56.25%", height: 0 }}>
+   
+  {ytLink && (
+  <div className="videoWrapper">
+    <div dangerouslySetInnerHTML={{ __html: ytLink }} />
+  </div>
+)}
+          {/* <div style={{ position: "relative", paddingBottom: "56.25%", height: 0 }}>
             <iframe
               src={embedUrl}
               title={title}
@@ -59,10 +63,9 @@ export default function HeroVideoBanner({ post }) {
                 borderRadius: "8px",
               }}
             />
-          </div>
-        </div>
-      )}
-
+          </div> */}
+        
+      
       {/* Scroll Arrow */}
     </motion.div>
   );

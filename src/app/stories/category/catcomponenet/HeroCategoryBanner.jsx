@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import AnimatedText from "@/components/ReuseableComponent/AnimatedHeading";
 import AnimatedParagraph from "@/components/ReuseableComponent/AnimatedParagraph";
 import arrow from "@/assets/arrow.png";
+import {decodeHTML} from "@/lib/formatText"
 
 export default function HeroCategoryBanner({ category }) {
   if (!category) {
@@ -40,7 +41,7 @@ export default function HeroCategoryBanner({ category }) {
         <AnimatedParagraph text={subheading} className="hero-text" />
         {/* Title */}
         <AnimatedText
-          text={title}
+          text={decodeHTML(title)}
           className="hero-title"
           style={{ fontSize: "48px", fontWeight: 800, marginBottom: "10px" }}
         />
