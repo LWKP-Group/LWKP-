@@ -24,7 +24,6 @@ export default function AwardHeading() {
       </div>
     );
   }
-
   if (!pageData.length) {
     return <div className="container text-center py-5"> </div>;
   }

@@ -9,10 +9,8 @@ import {
   selectpartnershipTotal,
   selectpartnershipLoading,
 } from "@/store/slices/partnershipSlice";
-
 import { motion } from "framer-motion";
 import { rowAnim, cardAnim } from "@/lib/animation";
-
 import GlobalLoader from "@/components/GlobalCompo/GlobalLoader";
 import PartnershipFilters from "./PartnershipFilters";
 import ArchivePagination from "@/components/ReuseableComponent/Pagination";
@@ -119,7 +117,6 @@ export default function PartnershipFilterGrid() {
             })}
           </div>
         )}
-
         {!loading && total > pageSize && (
           <ArchivePagination
             current={page}

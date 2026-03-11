@@ -1789,15 +1789,6 @@ li.ant-pagination-item.ant-pagination-item-2.ant-pagination-item-active a {
 .top-bottom-pad {
   padding: 3% 0;
 }
-.recognition .awards img {
-  width: 95%;
-}
-.recognitions .col-sm-7 {
-  text-align: end;
-}
-.awards a {
-  text-transform: capitalize;
-}
 .tabs-insight button.nav-link {
   border: unset;
   color: #2c2b2b;
@@ -1809,6 +1800,16 @@ li.ant-pagination-item.ant-pagination-item-2.ant-pagination-item-active a {
   font-weight: 500;
   position: relative;
 }
+.recognition .awards img {
+  width: 95%;
+}
+.recognitions .col-sm-7 {
+  text-align: end;
+}
+.awards a {
+  text-transform: capitalize;
+}
+
 .tabs-insight button.nav-link.active::before {
   content: "";
   position: absolute;

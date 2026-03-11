@@ -156,7 +156,7 @@ export default function AwardsFilterGrid() {
         )}
       </motion.div>
 
-      {/* ✅ Modal */}
+      {/* Modal */}
       <Modal open={isModalOpen} onCancel={closeModal} footer={null} centered width={800}>
         {activeAward && (
           <>
