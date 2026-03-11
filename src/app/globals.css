@@ -2784,8 +2784,27 @@ img {
   height: 550px;
   object-fit: cover;
 }
-.stoycontent {
-  padding-top: 4%;
+.storyframe iframe{
+  width: 100%;
+  height: 100%;
+}
+.storyframe {
+  padding-bottom: 4%;
+}
+.videoWrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 ratio */
+  height: 0;
+  width: 100%;
+}
+
+.videoWrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+  border: 0;
 }
 .career-single .default-header img {
   filter: invert(6) brightness(10.5);
