@@ -44,7 +44,7 @@ export default function TimelineHeading() {
         viewport={{ once: false, amount: 0.2 }}
       >
         <div className="row">
-          <div className="col-sm-9">
+          <div className="col-sm-9 journeyss">
             <p className="sub-heading">Contact</p>
 
             {secondHeading && (

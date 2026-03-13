@@ -93,5 +93,5 @@ export const menuConfig = {
     { title: "Featured", href: "#featured" },
     { title: "Recent Projects ", href: "#recent-projects" },
   ],
-  "/contact": [{ title: "contact", href: "#contact-form" }],
+  "/contact": [{ title: "Contact", href: "#contact-form" }],
 };

@@ -5,8 +5,8 @@ import RankingHeading from "@/components/RankingComponent/RankingHeading";
 import RankingFilterGrid from "@/components/RankingComponent/RankingFilterGrid";
 
 export const metadata = {
-  title: "Rankings — LWK Agency | Creative Digital Solutions",
-  description: "LWK + PARTNERS is a leading architecture and design practice rooted in Hong Kong"
+  title: "Rankings — LWK & Partners | Creative Digital Solutions",
+  description: "LWK + PARTNERS is a leading architecture and design practice rooted in Hong Kong",
 };
 
 export default function page() {

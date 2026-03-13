@@ -5,8 +5,8 @@ import PartnershipHeading from "@/components/PartnershipComponent/PartnershipHea
 import PartnershipFilterGrid from "@/components/PartnershipComponent/PartnershipFilterGrid";
 
 export const metadata = {
-  title: "Partnership — LWK Agency | Creative Digital Solutions",
-  description: "LWK + PARTNERS is a leading architecture and design practice rooted in Hong Kong"
+  title: "Partnership — LWK & Partners | Creative Digital Solutions",
+  description: "LWK + PARTNERS is a leading architecture and design practice rooted in Hong Kong",
 };
 
 export default function page() {

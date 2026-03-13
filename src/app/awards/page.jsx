@@ -5,8 +5,8 @@ import AwardHeading from "@/components/AwardComponent/AwardHeading";
 import AwardsFilterGrid from "@/components/AwardComponent/AwardsFilterGrid";
 
 export const metadata = {
-  title: "Awards — LWK Agency | Creative Digital Solutions",
-  description: "LWK + PARTNERS is a leading architecture and design practice rooted in Hong Kong"
+  title: "Awards — LWK & Partners | Creative Digital Solutions",
+  description: "LWK + PARTNERS is a leading architecture and design practice rooted in Hong Kong",
 };
 
 export default function page() {

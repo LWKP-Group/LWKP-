@@ -5,8 +5,8 @@ import MediaHeading from "@/components/MediaComponenet/MediaHeading";
 import MediaTabs from "@/components/MediaComponenet/MediaTabs";
 
 export const metadata = {
-  title: "Media Coverage — LWK Agency | Creative Digital Solutions",
-  description: "LWK + PARTNERS is a leading architecture and design practice rooted in Hong Kong"
+  title: "Media Coverage — LWK & Partners | Creative Digital Solutions",
+  description: "LWK + PARTNERS is a leading architecture and design practice rooted in Hong Kong",
 };
 
 export default function page() {

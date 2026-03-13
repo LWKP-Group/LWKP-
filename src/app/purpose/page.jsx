@@ -6,8 +6,8 @@ import PurposeBoxes from "@/components/PurposeComponents/PurposeBoxes";
 import PurposeQoute from "@/components/PurposeComponents/PurposeQoute";
 
 export const metadata = {
-  title: "Purpose — LWK Agency | Creative Digital Solutions",
-  description: "LWK + PARTNERS is a leading architecture and design practice rooted in Hong Kong"
+  title: "Purpose — LWK & Partners | Creative Digital Solutions",
+  description: "LWK + PARTNERS is a leading architecture and design practice rooted in Hong Kong",
 };
 
 export default function page() {

@@ -6,8 +6,8 @@ import TimelineQoute from "@/components/TimelineComponent/TimelineQoute";
 import Timeline from "@/components/TimelineComponent/Timeline";
 
 export const metadata = {
-  title: "Our Journey — LWK Agency | Creative Digital Solutions",
-  description: "LWK + PARTNERS is a leading architecture and design practice rooted in Hong Kong"
+  title: "Our Journey — LWK & Partners | Creative Digital Solutions",
+  description: "LWK + PARTNERS is a leading architecture and design practice rooted in Hong Kong",
 };
 
 export default function page() {

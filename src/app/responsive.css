@@ -391,10 +391,18 @@ button.accordion-trigger {
     display: inline-block;
     position: relative;
     bottom: -1px;
-}
-.timeline-content:before{
-  left: -13px;
-}
+  }
+  .timeline-content:before {
+    left: -13px;
+  }
+  .col-sm-9.journeyss {
+    padding-right: 0%;
+    width: 100%;
+  }
+  .carArc .col-sm-6 img {
+    height: 220px !important;
+    object-fit: none !important;
+  }
 }
 
 @media (max-width: 576px) {
@@ -832,10 +840,10 @@ button.accordion-trigger {
   .flip-card {
     margin: 0;
   }
-  section.row.mainbanner.singleinsights{
+  section.row.mainbanner.singleinsights {
     height: 40vh;
   }
-  .row.insight-post .col-sm-4{
+  .row.insight-post .col-sm-4 {
     margin-bottom: 30px;
   }
   .container.copyright p b {
@@ -843,16 +851,31 @@ button.accordion-trigger {
     display: inline-block;
     position: relative;
     bottom: -1px;
-}
-.bgwhite.purpose-page .col-sm-6.purpose-content{
-  padding-right: 0;
-  padding-bottom: 7%;
-}
-.timeline-content:before{
-  top:11px;
-  left: -13px;
-}
-.col-sm-12.storyone{
-  padding-right: 0%;
-}
+  }
+  .bgwhite.purpose-page .col-sm-6.purpose-content {
+    padding-right: 0;
+    padding-bottom: 7%;
+  }
+  .timeline-content:before {
+    top: 11px;
+    left: -13px;
+  }
+  .col-sm-12.storyone {
+    padding-right: 0%;
+  }
+  .col-sm-9.journeyss {
+    padding-right: 0%;
+    width: 100% !important;
+  }
+  .container.philosophy-archives img {
+    padding-bottom: 15px;
+  }
+  footer {
+    background: #fbfbfb !important;
+    padding-top: 5% !important;
+    padding-bottom: 3% !important;
+  }
+  .row.carArc .col-sm-6 {
+    width: 100%;
+  }
 }

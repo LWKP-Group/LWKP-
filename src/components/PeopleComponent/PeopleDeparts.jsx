@@ -62,7 +62,7 @@ export default function PeopleDeparts() {
       viewport={{ once: false, amount: 0.2 }}
     >
       <div className="row">
-        <div className="col-sm-9">
+        <div className="col-sm-9 journeyss">
           <p className="sub-heading">Our teams</p>
           <h2>Where Collaboration Becomes Creation</h2>
         </div>
