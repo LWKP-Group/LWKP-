@@ -5,8 +5,8 @@ import FeaturedPortfolio from "@/components/PortfolioComponent/FeaturedPortfolio
 import ProjectsWrapper from "@/components/PortfolioComponent/ProjectsWrapper";
 
 export const metadata = {
-  title: "Portfolio — LWK Agency | Creative Digital Solutions",
-  description: "LWK + PARTNERS is a leading architecture and design practice rooted in Hong Kong"
+  title: "Portfolio — LWK & Partners | Creative Digital Solutions",
+  description: "LWK + PARTNERS is a leading architecture and design practice rooted in Hong Kong",
 };
 
 export default function page() {

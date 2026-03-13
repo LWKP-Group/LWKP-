@@ -6,8 +6,8 @@ import StoryArchives from "@/components/StoryComponents/StoryArchives";
 import StoryTagline from "@/components/StoryComponents/StoryTagline";
 
 export const metadata = {
-  title: "Our Stories — LWK Agency | Creative Digital Solutions",
-  description: "LWK + PARTNERS is a leading architecture and design practice rooted in Hong Kong"
+  title: "Our Stories — LWK & Partners | Creative Digital Solutions",
+  description: "LWK + PARTNERS is a leading architecture and design practice rooted in Hong Kong",
 };
 
 export default function page() {

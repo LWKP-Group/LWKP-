@@ -6,7 +6,7 @@ import FormAndMap from "@/components/ContactComponent/FormAndMap";
 import OfficeLocation from "../../components/ContactComponent/OfficeLocation";
 
 export const metadata = {
-  title: "Contact Us — LWK Agency | Creative Digital Solutions",
+  title: "Contact Us — LWK & Partners | Creative Digital Solutions",
   description: "LWK + PARTNERS is a leading architecture and design practice rooted in Hong Kong",
 };
 

@@ -10,8 +10,8 @@ import RecognitionGuideline from "@/components/RecognitionComponent/RecognitionG
 import HashScroll from "@/components/ReuseableComponent/HashScroll";
 
 export const metadata = {
-  title: "Recognition — LWK Agency | Creative Digital Solutions",
-  description: "LWK + PARTNERS is a leading architecture and design practice rooted in Hong Kong"
+  title: "Recognition — LWK & Partners | Creative Digital Solutions",
+  description: "LWK + PARTNERS is a leading architecture and design practice rooted in Hong Kong",
 };
 
 export default function page() {

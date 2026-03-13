@@ -4,8 +4,8 @@ import PhilosophyArchives from "@/components/PhilosophyComponents/PhilosophyArch
 import StickyHeader from "@/components/GlobalCompo/StickyHeader";
 
 export const metadata = {
-  title: "Philosophy — LWK Agency | Creative Digital Solutions",
-  description: "LWK + PARTNERS is a leading architecture and design practice rooted in Hong Kong"
+  title: "Philosophy — LWK & Partners | Creative Digital Solutions",
+  description: "LWK + PARTNERS is a leading architecture and design practice rooted in Hong Kong",
 };
 
 export default function page() {

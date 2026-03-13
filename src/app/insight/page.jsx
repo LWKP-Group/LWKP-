@@ -5,8 +5,8 @@ import InsightHeading from "@/components/InsightComponent/InsightHeading";
 import InsightTabs from "@/components/InsightComponent/InsightTabs";
 
 export const metadata = {
-  title: "Insight — LWK Agency | Creative Digital Solutions",
-  description: "LWK + PARTNERS is a leading architecture and design practice rooted in Hong Kong"
+  title: "Insight — LWK & Partners | Creative Digital Solutions",
+  description: "LWK + PARTNERS is a leading architecture and design practice rooted in Hong Kong",
 };
 
 export default function page() {

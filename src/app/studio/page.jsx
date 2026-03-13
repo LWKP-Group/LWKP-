@@ -7,8 +7,8 @@ import Locations from "@/components/StudioPageComponenets/Locations";
 import StudioDimensions from "@/components/StudioPageComponenets/StudioDimensions";
 
 export const metadata = {
-  title: "Studio — LWK Agency | Creative Digital Solutions",
-  description: "LWK + PARTNERS is a leading architecture and design practice rooted in Hong Kong"
+  title: "Studio — LWK & Partners | Creative Digital Solutions",
+  description: "LWK + PARTNERS is a leading architecture and design practice rooted in Hong Kong",
 };
 
 export default function page() {

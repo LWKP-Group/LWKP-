@@ -8,7 +8,7 @@ import AboutStudios from "@/components/AboutComponents/AboutStudios";
 import StickyHeader from "@/components/GlobalCompo/StickyHeader";
 
 export const metadata = {
-  title: "About Us — LWK Agency | Creative Digital Solutions",
+  title: "About Us — LWK & Partners | Creative Digital Solutions",
   description: "LWK + PARTNERS is a leading architecture and design practice rooted in Hong Kong",
 };
 

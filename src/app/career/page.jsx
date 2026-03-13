@@ -9,8 +9,8 @@ import EmployeSlider from "@/components/CareerComponent/EmployeSlider";
 import JobTabs from "@/components/CareerComponent/JobTabs";
 
 export const metadata = {
-  title: "LWK Career — LWK Agency | Creative Digital Solutions",
-  description: "LWK + PARTNERS is a leading architecture and design practice rooted in Hong Kong"
+  title: "LWK Career — LWK & Partners | Creative Digital Solutions",
+  description: "LWK + PARTNERS is a leading architecture and design practice rooted in Hong Kong",
 };
 
 export default function page() {

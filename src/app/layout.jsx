@@ -8,9 +8,8 @@ import ReduxProvider from "@/store/ReduxProvider";
 import NextTopLoader from "nextjs-toploader";
 import ScrollToTop from "@/lib/ScrollToTop";
 
-
 export const metadata = {
-  title: "Home — LWK Agency | Creative Digital Solutions",
+  title: "Home — LWK & Partners | Creative Digital Solutions",
   description: "LWK + PARTNERS is a leading architecture and design practice rooted in Hong Kong",
 };
 

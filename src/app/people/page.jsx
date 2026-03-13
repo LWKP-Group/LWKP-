@@ -6,8 +6,8 @@ import PeopleHeading from "@/components/PeopleComponent/PeopleHeading";
 import PeopleDeparts from "@/components/PeopleComponent/PeopleDeparts";
 
 export const metadata = {
-  title: "People — LWK Agency | Creative Digital Solutions",
-  description: "LWK + PARTNERS is a leading architecture and design practice rooted in Hong Kong"
+  title: "People — LWK & Partners | Creative Digital Solutions",
+  description: "LWK + PARTNERS is a leading architecture and design practice rooted in Hong Kong",
 };
 
 export default function page() {
