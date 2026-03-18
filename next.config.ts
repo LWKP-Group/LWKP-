@@ -13,25 +13,40 @@ const nextConfig = {
 
   async redirects() {
     return [
+      // {
+      //   source: "/aa",
+      //   destination: "/",
+      //   permanent: true,
+      // },
+      // {
+      //   source: "/en/:path*",
+      //   destination: "/",
+      //   permanent: true,
+      // },
+      // {
+      //   source: "/zh",
+      //   destination: "/",
+      //   permanent: true,
+      // },
+      //       {
+      //   source: "/dd",
+      //   destination: "/",
+      //   permanent: true,
+      // },
+      // {
+      //   source: "/zh/:path*",
+      //   destination: "/",
+      //   permanent: true,
+      // },
       {
         source: "/en",
-        destination: "/",
-        permanent: true,
-      },
-      {
-        source: "/en/:path*",
-        destination: "/",
-        permanent: true,
+        destination: "/404",
+        permanent: false, // 307 (temporary)
       },
       {
         source: "/zh",
-        destination: "/",
-        permanent: true,
-      },
-      {
-        source: "/zh/:path*",
-        destination: "/",
-        permanent: true,
+        destination: "/404",
+        permanent: false,
       },
     ];
   },
