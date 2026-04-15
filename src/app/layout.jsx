@@ -9,7 +9,7 @@ import NextTopLoader from "nextjs-toploader";
 import ScrollToTop from "@/lib/ScrollToTop";
 
 export const metadata = {
-  title: "LWK & Partners",
+  title: "LWK + PARTNERS",
   description: "LWK + PARTNERS is a leading architecture and design practice rooted in Hong Kong",
 };
 
