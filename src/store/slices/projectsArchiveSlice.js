@@ -11,7 +11,7 @@ export const fetchProjectsArchive = createAsyncThunk(
       _embed: true,
     });
 
-    if (keyword) params.append("search", keyword);
+    if (keyword) params.append("keyword", keyword);
 
     // ✅ TYPE FILTER (already working)
     if (type) {
