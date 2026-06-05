@@ -164,8 +164,8 @@ export default function MainMenu() {
                 <p>
                   <b>©</b>{" "}
                   {lang === "ch"
-                    ? " 2025 LWK & Partners (HK) Limited。保留所有权利"
-                    : " 2025 LWK & Partners (HK) Limited. All Rights Reserved"}{" "}
+                    ? " 2026 LWK & Partners (HK) Limited。保留所有权利"
+                    : " 2026 LWK & Partners (HK) Limited. All Rights Reserved"}{" "}
                   {lang}
                 </p>
                 <SocialIcons />
