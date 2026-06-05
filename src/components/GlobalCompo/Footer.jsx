@@ -79,8 +79,8 @@ export default function Footer() {
               <p>
                 <b>©</b>{" "}
                 {lang === "ch"
-                  ? "2025 LWK & Partners (HK) Limited。保留所有权利。| "
-                  : "2025 LWK & Partners (HK) Limited. All Rights Reserved. | "}
+                  ? "2026 LWK & Partners (HK) Limited。保留所有权利。| "
+                  : "2026 LWK & Partners (HK) Limited. All Rights Reserved. | "}
                 <Link href="https://www.cchengholdings.com/en/home.aspx">
                   {lang === "ch"
                     ? "C Cheng Holdings Limited（港交所股票代码：1486.HK）的成员"
