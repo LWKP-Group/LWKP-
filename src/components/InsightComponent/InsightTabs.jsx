@@ -29,6 +29,7 @@ export default function InsightTabs() {
 
   const categories = useSelector(selectInsightCategories);
   const catLoading = useSelector(selectInsightCategoriesLoading);
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   const posts = useSelector(selectInsightPosts) || [];
   const total = useSelector(selectInsightTotal);
@@ -42,7 +43,7 @@ export default function InsightTabs() {
   // Load categories
   useEffect(() => {
     dispatch(fetchInsightCategories());
-  }, [dispatch]);
+  }, [dispatch, lang]);
 
   // 🔥 Handle URL Hash (Slug Based)
   useEffect(() => {
@@ -73,7 +74,7 @@ export default function InsightTabs() {
     return () => {
       window.removeEventListener("hashchange", applyHash);
     };
-  }, [categories]);
+  }, [categories, lang]);
 
   // 🔥 Fetch Posts (Convert slug → ID)
   useEffect(() => {
@@ -122,7 +123,7 @@ export default function InsightTabs() {
               window.location.hash = "";
             }}
           >
-            All Insights
+            {lang === "ch" ? "所有洞察" : " All Insights "}
           </button>
         </li>
 
@@ -190,7 +191,7 @@ export default function InsightTabs() {
                         }}
                       />
 
-                      <Link href={`/insight/${post.slug}`}> Read More →</Link>
+                      <Link href={`/insight/${post.slug}`}> {lang === "ch" ? "阅读更多 → " : "Read More → "}</Link>
                     </motion.div>
                   );
                 })}

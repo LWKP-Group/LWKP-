@@ -22,12 +22,13 @@ export default function PhilosophyArchives() {
   const posts = useSelector(selectPhilosophyPosts);
   const loading = useSelector(selectPhilosophyLoading);
   const total = useSelector(selectPhilosophyTotal);
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   const [page, setPage] = useState(1);
 
   useEffect(() => {
     dispatch(fetchPhilosophyPosts({ page }));
-  }, [dispatch, page]);
+  }, [dispatch, page, lang]);
 
   if (loading && (!posts || posts.length === 0)) {
     return (
@@ -48,7 +49,7 @@ export default function PhilosophyArchives() {
           const title = post?.title?.rendered || "";
           const subHeading = post?.acf?.sub_heading || "";
           const description = post?.acf?.description || "";
-          const image = post?.featured_image?.url || post?.featured_image || "/no-image.jpg";
+          const image = post?.featured_image || "/no-image.jpg";
           const slug = post?.slug;
 
           const isEven = index % 2 === 0;
@@ -93,6 +94,7 @@ export default function PhilosophyArchives() {
                   height={500}
                   className="img-fluid philosophy-img"
                   loading="lazy"
+                  unoptimized
                 />
               </div>
 

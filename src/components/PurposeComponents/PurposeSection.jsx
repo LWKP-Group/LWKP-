@@ -12,6 +12,7 @@ export default function PurposeSection() {
   const dispatch = useDispatch();
   const posts = useSelector(selectpurposePosts);
   const loadingApi = useSelector(selectpurposeLoading);
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   const [hover, setHover] = useState(false);
   const [videoLoaded, setVideoLoaded] = useState(false);
@@ -49,7 +50,7 @@ export default function PurposeSection() {
     >
       <div className="row">
         <div className="col-sm-6 purpose-content">
-          <p className="sub-heading">Purpose</p>
+          <p className="sub-heading"> {lang === "ch" ? "目的" : "Purpose"}</p>
           <h3>{heading}</h3>
 
           <div

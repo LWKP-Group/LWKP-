@@ -16,10 +16,11 @@ export default function RankingHeading() {
   const dispatch = useDispatch();
   const pageData = useSelector(selectrankingPagePosts);
   const loading = useSelector(selectrankingPageLoading);
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   useEffect(() => {
     dispatch(fetchrankingPagePosts());
-  }, [dispatch]);
+  }, [dispatch, lang]);
 
   if (loading || !pageData) {
     return (
@@ -47,7 +48,7 @@ export default function RankingHeading() {
       >
         <div className="row">
           <div className="col-sm-9">
-            <p className="sub-heading">Recognition & Awards</p>
+            <p className="sub-heading"> {lang === "ch" ? "荣誉与奖项" : "Recognition & Awards"}</p>
             <h2 dangerouslySetInnerHTML={{ __html: formatText(secondHeading) }} />
           </div>
         </div>

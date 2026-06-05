@@ -1,26 +1,33 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-export const fetchInsightPosts = createAsyncThunk("insight/fetchPosts", async ({ page = 1, categoryId = null }) => {
-  let url = `${process.env.NEXT_PUBLIC_WP_API}/insight?page=${page}&per_page=9`;
+export const fetchInsightPosts = createAsyncThunk(
+  "insight/fetchPosts",
+  async ({ page = 1, categoryId = null } = {}, { getState }) => {
+    const lang = getState().language?.currentLanguage || "en";
 
-  // 🔥 Send numeric ID to WordPress
-  if (categoryId) {
-    url += `&insight_category=${categoryId}`;
-  }
+    const wpLang = lang === "ch" ? "zh-hans" : "en";
 
-  const res = await fetch(url);
+    let url = `${process.env.NEXT_PUBLIC_WP_API}/insight?page=${page}&per_page=9&lang=${wpLang}`;
 
-  if (!res.ok) {
-    throw new Error("Failed to fetch insights");
-  }
+    // 🔥 Send numeric ID to WordPress
+    if (categoryId) {
+      url += `&insight_category=${categoryId}`;
+    }
 
-  const data = await res.json();
+    const res = await fetch(url);
 
-  return {
-    posts: Array.isArray(data) ? data : [],
-    total: Number(res.headers.get("X-WP-Total")) || 0,
-  };
-});
+    if (!res.ok) {
+      throw new Error("Failed to fetch insights");
+    }
+
+    const data = await res.json();
+
+    return {
+      posts: Array.isArray(data) ? data : [],
+      total: Number(res.headers.get("X-WP-Total")) || 0,
+    };
+  },
+);
 
 const insightSlice = createSlice({
   name: "insight",
@@ -40,11 +47,13 @@ const insightSlice = createSlice({
         state.loading = true;
         state.error = null;
       })
+
       .addCase(fetchInsightPosts.fulfilled, (state, action) => {
         state.loading = false;
         state.posts = action.payload.posts;
         state.total = action.payload.total;
       })
+
       .addCase(fetchInsightPosts.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;

@@ -10,10 +10,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import { parentVariants, itemVariants, submenuParent, submenuItem } from "@/lib/animation";
 import { useRouter } from "next/navigation";
 import SocialIcons from "./SocialIcons";
+import { useSelector } from "react-redux";
 
 export default function OffcanvasMenu() {
   const [show, setShow] = useState(false);
   const [active, setActive] = useState(null);
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   const router = useRouter();
 
@@ -51,7 +53,9 @@ export default function OffcanvasMenu() {
                   {/* ABOUT */}
                   <Accordion.Item eventKey="0">
                     <motion.div variants={itemVariants}>
-                      <Accordion.Header onClick={() => toggle("0")}>ABOUT US</Accordion.Header>
+                      <Accordion.Header onClick={() => toggle("0")}>
+                        {lang === "ch" ? " 关于我们" : " ABOUT US"}
+                      </Accordion.Header>
                     </motion.div>
 
                     <Accordion.Body>
@@ -67,30 +71,30 @@ export default function OffcanvasMenu() {
                           >
                             <motion.li variants={submenuItem}>
                               <Link href="/about" onClick={(e) => navigateWithDelay(e, "/about")}>
-                                About LWK
+                                {lang === "ch" ? " 关于LWK " : "About LWK "}
                               </Link>
                             </motion.li>
 
                             <motion.li variants={submenuItem}>
                               <Link href="/people" onClick={(e) => navigateWithDelay(e, "/people")}>
-                                Our People
+                                {lang === "ch" ? "  我们的团队 " : " Our People "}
                               </Link>
                             </motion.li>
 
                             <motion.li variants={submenuItem}>
                               <Link href="/philosophy" onClick={(e) => navigateWithDelay(e, "/philosophy")}>
-                                Philosophy
+                                {lang === "ch" ? "  哲学 " : " Philosophy"}
                               </Link>
                             </motion.li>
 
                             <motion.li variants={submenuItem}>
                               <Link href="/purpose" onClick={(e) => navigateWithDelay(e, "/purpose")}>
-                                Purpose
+                                {lang === "ch" ? "  目的 " : " Purpose"}
                               </Link>
                             </motion.li>
                             <motion.li variants={submenuItem}>
                               <Link href="/our-journey" onClick={(e) => navigateWithDelay(e, "/our-journey")}>
-                                Our Journey
+                                {lang === "ch" ? "    我们的旅程  " : "   Our Journey "}
                               </Link>
                             </motion.li>
                           </motion.ul>
@@ -102,7 +106,10 @@ export default function OffcanvasMenu() {
                   {/* STUDIOS */}
                   <Accordion.Item eventKey="1">
                     <motion.div variants={itemVariants}>
-                      <Accordion.Header onClick={() => toggle("1")}>STUDIOS</Accordion.Header>
+                      <Accordion.Header onClick={() => toggle("1")}>
+                        {" "}
+                        {lang === "ch" ? "    工作室  " : "STUDIOS "}
+                      </Accordion.Header>
                     </motion.div>
 
                     <Accordion.Body>
@@ -118,18 +125,18 @@ export default function OffcanvasMenu() {
                           >
                             <motion.li variants={submenuItem}>
                               <Link href="/studio" onClick={(e) => navigateWithDelay(e, "/studio")}>
-                                Studio at a glance
+                                {lang === "ch" ? "工作室简介   " : " Studio at a glance  "}
                               </Link>
                             </motion.li>
                             <motion.li variants={submenuItem}>
                               <Link href="/stories" onClick={(e) => navigateWithDelay(e, "/stories")}>
-                                Stories
+                                {lang === "ch" ? "故事   " : " Stories "}
                               </Link>
                             </motion.li>
 
                             <motion.li variants={submenuItem}>
                               <Link href="/projects" onClick={(e) => navigateWithDelay(e, "/projects")}>
-                                Portfolio
+                                {lang === "ch" ? "作品集   " : " Portfolio "}
                               </Link>
                             </motion.li>
                           </motion.ul>
@@ -141,7 +148,10 @@ export default function OffcanvasMenu() {
                   {/* LEGACY */}
                   <Accordion.Item eventKey="2">
                     <motion.div variants={itemVariants}>
-                      <Accordion.Header onClick={() => toggle("2")}>LEGACY</Accordion.Header>
+                      <Accordion.Header onClick={() => toggle("2")}>
+                        {" "}
+                        {lang === "ch" ? "传统   " : " LEGACY "}{" "}
+                      </Accordion.Header>
                     </motion.div>
 
                     <Accordion.Body>
@@ -157,31 +167,31 @@ export default function OffcanvasMenu() {
                           >
                             <motion.li variants={submenuItem}>
                               <Link href="/recognition" onClick={(e) => navigateWithDelay(e, "/recognition")}>
-                                Recognition
+                                {lang === "ch" ? "致谢   " : " Recognition "}
                               </Link>
                             </motion.li>
 
                             <motion.li variants={submenuItem}>
                               <Link href="/awards" onClick={(e) => navigateWithDelay(e, "/awards")}>
-                                Awards
+                                {lang === "ch" ? "奖项   " : " Awards "}
                               </Link>
                             </motion.li>
 
                             <motion.li variants={submenuItem}>
                               <Link href="/rankings" onClick={(e) => navigateWithDelay(e, "/rankings")}>
-                                Rankings
+                                {lang === "ch" ? "排名   " : " Rankings "}
                               </Link>
                             </motion.li>
 
                             <motion.li variants={submenuItem}>
                               <Link href="/media" onClick={(e) => navigateWithDelay(e, "/media")}>
-                                Media Coverage
+                                {lang === "ch" ? "媒体报道    " : " Media Coverage  "}
                               </Link>
                             </motion.li>
 
                             <motion.li variants={submenuItem}>
                               <Link href="/partnership" onClick={(e) => navigateWithDelay(e, "/partnership")}>
-                                Partnerships
+                                {lang === "ch" ? "合作伙伴关系    " : " Partnerships "}
                               </Link>
                             </motion.li>
                           </motion.ul>
@@ -193,7 +203,10 @@ export default function OffcanvasMenu() {
                   {/* INSIGHT */}
                   <Accordion.Item eventKey="3">
                     <motion.div variants={itemVariants}>
-                      <Accordion.Header onClick={() => toggle("3")}>INSIGHT</Accordion.Header>
+                      <Accordion.Header onClick={() => toggle("3")}>
+                        {" "}
+                        {lang === "ch" ? "洞察    " : " INSIGHT "}{" "}
+                      </Accordion.Header>
                     </motion.div>
 
                     <Accordion.Body>
@@ -212,7 +225,7 @@ export default function OffcanvasMenu() {
                                 href="/insight#thought-leadership"
                                 onClick={(e) => navigateWithDelay(e, "/insight#thought-leadership")}
                               >
-                                Thought Leadership
+                                {lang === "ch" ? "思想领导力   " : " Thought Leadership "}
                               </Link>
                             </motion.li>
 
@@ -221,7 +234,7 @@ export default function OffcanvasMenu() {
                                 href="/insight#research-publications"
                                 onClick={(e) => navigateWithDelay(e, "/insight#research-publications")}
                               >
-                                Research & Publications
+                                {lang === "ch" ? " 研究与出版物    " : "  Research & Publications "}
                               </Link>
                             </motion.li>
 
@@ -230,13 +243,13 @@ export default function OffcanvasMenu() {
                                 href="/insight#talks-panels"
                                 onClick={(e) => navigateWithDelay(e, "/insight#talks-panels")}
                               >
-                                Talks & Panels
+                                {lang === "ch" ? " 演讲与专题讨论    " : "  Talks & Panels  "}
                               </Link>
                             </motion.li>
 
                             <motion.li variants={submenuItem}>
                               <Link href="/insight#newsroom" onClick={(e) => navigateWithDelay(e, "/insight#newsroom")}>
-                                Newsroom
+                                {lang === "ch" ? " 新闻中心    " : " Newsroom"}
                               </Link>
                             </motion.li>
                           </motion.ul>
@@ -249,11 +262,11 @@ export default function OffcanvasMenu() {
                 {/* STATIC LINKS */}
                 <motion.div variants={itemVariants} className="static-links">
                   <Link href="/career" onClick={(e) => navigateWithDelay(e, "/career")}>
-                    CAREERS
+                    {lang === "ch" ? " 职业发展    " : " CAREERS"}
                   </Link>
 
                   <Link href="/contact" onClick={(e) => navigateWithDelay(e, "/contact")}>
-                    CONTACT
+                    {lang === "ch" ? " 联系我们 " : " CONTACT"}
                   </Link>
                 </motion.div>
               </motion.div>
@@ -262,7 +275,13 @@ export default function OffcanvasMenu() {
 
           <div className="row">
             <div className="col-sm-12 offcanvas-footer-copy">
-              <p><b>©</b> 2025 LWK & Partners (HK) Limited. All Rights Reserved</p>
+              <p>
+                <b>©</b>{" "}
+                {lang === "ch"
+                  ? " 2025 LWK & Partners (HK) Limited。保留所有权利"
+                  : " 2025 LWK & Partners (HK) Limited. All Rights Reserved"}{" "}
+                {lang}
+              </p>
               <SocialIcons />
             </div>
           </div>

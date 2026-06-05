@@ -2867,3 +2867,12 @@ p {
 .col-sm-9.journeyss {
   padding-right: 35%;
 }
+.col-sm-6.mainmenu button {
+  padding-left: 15px;
+}
+.col-sm-6.mainmenu span {
+  color: #fff;
+}
+.col-sm-6.mainmenu {
+  color: #fff;
+}

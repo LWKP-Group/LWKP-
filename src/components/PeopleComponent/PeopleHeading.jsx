@@ -13,6 +13,7 @@ export default function PeopleHeading() {
   const dispatch = useDispatch();
   const pageData = useSelector(selectpeoplePagePosts);
   const loading = useSelector(selectpeoplePageLoading);
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   useEffect(() => {
     dispatch(fetchpeoplePagePosts());
@@ -42,7 +43,7 @@ export default function PeopleHeading() {
       >
         <div className="row">
           <div className="col-sm-12">
-            <p className="sub-heading">our people</p>
+            <p className="sub-heading"> {lang === "ch" ? "我们的团队" : "our people"} </p>
 
             <h2
               dangerouslySetInnerHTML={{

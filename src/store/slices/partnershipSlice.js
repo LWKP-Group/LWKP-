@@ -1,8 +1,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 // Fetch ALL years for dropdown
-export const fetchPartnershipYears = createAsyncThunk("partnership/fetchYears", async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_WP_API}/partnership?per_page=100&_fields=acf`);
+export const fetchPartnershipYears = createAsyncThunk("partnership/fetchYears", async (_, { getState }) => {
+  const lang = getState().language?.currentLanguage || "en";
+
+  const wpLang = lang === "ch" ? "zh-hans" : "en";
+
+  const res = await fetch(`${process.env.NEXT_PUBLIC_WP_API}/partnership?lang=${wpLang}&per_page=100&_fields=acf`);
+
   const data = await res.json();
 
   const years = data.map((item) => (item?.acf?.partnership_date || "").split(" ").pop()).filter(Boolean);
@@ -13,11 +18,26 @@ export const fetchPartnershipYears = createAsyncThunk("partnership/fetchYears", 
 // Fetch paginated + filtered data
 export const fetchpartnershipPosts = createAsyncThunk(
   "partnership/fetchPosts",
-  async ({ page = 1, keyword = "", year = "" }) => {
-    let url = `${process.env.NEXT_PUBLIC_WP_API}/partnership?page=${page}&per_page=12&orderby=date&order=desc`;
+  async ({ page = 1, keyword = "", year = "" }, { getState }) => {
+    const lang = getState().language?.currentLanguage || "en";
 
-    if (keyword) url += `&search=${encodeURIComponent(keyword)}`;
-    if (year) url += `&partnership_year=${encodeURIComponent(year)}`;
+    const wpLang = lang === "ch" ? "zh-hans" : "en";
+
+    let url =
+      `${process.env.NEXT_PUBLIC_WP_API}/partnership` +
+      `?lang=${wpLang}` +
+      `&page=${page}` +
+      `&per_page=12` +
+      `&orderby=date` +
+      `&order=desc`;
+
+    if (keyword) {
+      url += `&search=${encodeURIComponent(keyword)}`;
+    }
+
+    if (year) {
+      url += `&partnership_year=${encodeURIComponent(year)}`;
+    }
 
     const res = await fetch(url);
     const data = await res.json();
@@ -34,6 +54,7 @@ export const fetchpartnershipPosts = createAsyncThunk(
 
 const partnershipSlice = createSlice({
   name: "partnership",
+
   initialState: {
     posts: [],
     total: 0,

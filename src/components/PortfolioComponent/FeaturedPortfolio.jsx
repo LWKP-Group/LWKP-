@@ -23,6 +23,7 @@ export default function FeaturedPortfolio() {
   const rawProjects = useSelector(selectProjectsPaginatedPosts);
   const loading = useSelector(selectProjectsPaginatedLoading);
   const total = useSelector(selectProjectsPaginatedTotal);
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   const projects = Array.isArray(rawProjects) ? rawProjects : [];
 
@@ -30,7 +31,7 @@ export default function FeaturedPortfolio() {
 
   useEffect(() => {
     dispatch(fetchProjectsPaginated({ page }));
-  }, [dispatch, page]);
+  }, [dispatch, page, lang]);
 
   return (
     <motion.section
@@ -42,8 +43,8 @@ export default function FeaturedPortfolio() {
     >
       <div className="row mb-4" id="featured">
         <div className="col-sm-12">
-          <p className="sub-heading">featured</p>
-          <h3>Featured Projects</h3>
+          <p className="sub-heading">{lang === "ch" ? "精选" : "featured"}</p>
+          <h3> {lang === "ch" ? "精选项目" : "Featured Projects"}</h3>
         </div>
       </div>
 
@@ -75,7 +76,7 @@ export default function FeaturedPortfolio() {
                 <h5 dangerouslySetInnerHTML={{ __html: title }} />
                 {location && <h6>{location}</h6>}
 
-                <Link href={`/projects/${slug}`}>View Project →</Link>
+                <Link href={`/projects/${slug}`}>{lang === "ch" ? "查看项目 → " : "View Project → "}</Link>
               </motion.div>
             );
           })}

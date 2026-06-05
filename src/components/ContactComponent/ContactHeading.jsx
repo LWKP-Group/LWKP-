@@ -15,6 +15,7 @@ export default function ContactHeading() {
   const dispatch = useDispatch();
   const pageData = useSelector(selectcontactusPosts);
   const loading = useSelector(selectcontactusLoading);
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   useEffect(() => {
     dispatch(fetchcontactusPosts());
@@ -48,7 +49,7 @@ export default function ContactHeading() {
       >
         <div className="row">
           <div className="col-sm-9">
-            <p className="sub-heading">Contact</p>
+            <p className="sub-heading"> {lang === "ch" ? "联系" : "Contact"}</p>
             <h2 dangerouslySetInnerHTML={{ __html: formatText(secondHeading) }} />
           </div>
         </div>
@@ -59,7 +60,7 @@ export default function ContactHeading() {
               <Link href={`mailto:${Businessemail}`}>
                 <Image src={Envelop} alt="Envelop" loading="lazy" />
                 <div className="iconbox-text">
-                  <p>Business Enquiries</p>
+                  <p>{lang === "ch" ? "商务咨询 " : "Business Enquiries "}</p>
                   <span>{Businessemail}</span>
                 </div>
               </Link>
@@ -73,7 +74,7 @@ export default function ContactHeading() {
               <Link href={`mailto:${marketingemail}`}>
                 <Image src={Envelop} alt="Envelop" loading="lazy" />
                 <div className="iconbox-text">
-                  <p>Marketing & Media Enquiries</p>
+                  <p>{lang === "ch" ? "市场营销与媒体咨询 " : "Marketing & Media Enquiries "}</p>
                   <span>{marketingemail}</span>
                 </div>
               </Link>
@@ -87,7 +88,7 @@ export default function ContactHeading() {
               <Link href={`mailto:${hremail}`}>
                 <Image src={Envelop} alt="Envelop" loading="lazy" />
                 <div className="iconbox-text">
-                  <p>Human Resources</p>
+                  <p>{lang === "ch" ? "人力资源  " : "Human Resources "}</p>
                   <span>{hremail}</span>
                 </div>
               </Link>

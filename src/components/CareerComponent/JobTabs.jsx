@@ -19,6 +19,7 @@ export default function JobTabs() {
   const jobs = useSelector(selectJobs);
   const total = useSelector(selectJobsTotal);
   const loading = useSelector(selectJobsLoading);
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   const [activeTab, setActiveTab] = useState(0);
   const [page, setPage] = useState(1);
@@ -27,7 +28,7 @@ export default function JobTabs() {
 
   useEffect(() => {
     dispatch(fetchjobCategories());
-  }, [dispatch]);
+  }, [dispatch, lang]);
 
   useEffect(() => {
     const categoryId = activeTab === 0 ? "" : categories?.[activeTab - 1]?.id;
@@ -106,7 +107,7 @@ export default function JobTabs() {
                           />
                           {job?.acf?.location && <p className="job-location">{job.acf.location}</p>}
                           <Link href={`/career/${job.slug}`} className="job-link">
-                            Apply Now →
+                            {lang === "ch" ? " 立即申请 →" : " Apply Now →"}
                           </Link>
                         </div>
                       </motion.div>

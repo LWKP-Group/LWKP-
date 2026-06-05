@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { Fragment } from "react";
 import { formatText } from "@/lib/formatText";
+import { useSelector } from "react-redux";
 
 export default function ProjectVison({ post }) {
   if (!post) {
@@ -12,6 +13,7 @@ export default function ProjectVison({ post }) {
   const title = post?.acf?.vision_heading || "Vision & Context";
   const description = post?.acf?.vision_description || "<p> </p>";
   const visionImage = post?.acf?.vision_image || "";
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   return (
     <Fragment>
@@ -32,7 +34,7 @@ export default function ProjectVison({ post }) {
         </div>
 
         <div className="col-sm-6 vision-right">
-          <p className="sub-heading">Vision & Context</p>
+          <p className="sub-heading"> {lang === "ch" ? "愿景与背景" : "Vision & Context"} </p>
           <h2
             dangerouslySetInnerHTML={{
               __html: formatText(title),

@@ -1,8 +1,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 // fetch all years
-export const fetchRankingYears = createAsyncThunk("ranking/fetchYears", async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_WP_API}/ranking?per_page=100&_fields=acf`);
+export const fetchRankingYears = createAsyncThunk("ranking/fetchYears", async (_, { getState }) => {
+  const lang = getState().language?.currentLanguage || "en";
+
+  const wpLang = lang === "ch" ? "zh-hans" : "en";
+
+  const res = await fetch(`${process.env.NEXT_PUBLIC_WP_API}/ranking?lang=${wpLang}&per_page=100&_fields=acf`);
+
   const data = await res.json();
 
   const years = data.map((item) => (item?.acf?.ranking_date || "").split(" ").pop()).filter(Boolean);
@@ -13,11 +18,26 @@ export const fetchRankingYears = createAsyncThunk("ranking/fetchYears", async ()
 // fetch paginated posts
 export const fetchrankingPosts = createAsyncThunk(
   "ranking/fetchPosts",
-  async ({ page = 1, keyword = "", year = "" }) => {
-    let url = `${process.env.NEXT_PUBLIC_WP_API}/ranking?page=${page}&per_page=12&orderby=date&order=desc`;
+  async ({ page = 1, keyword = "", year = "" }, { getState }) => {
+    const lang = getState().language?.currentLanguage || "en";
 
-    if (keyword) url += `&search=${encodeURIComponent(keyword)}`;
-    if (year) url += `&ranking_year=${encodeURIComponent(year)}`;
+    const wpLang = lang === "ch" ? "zh-hans" : "en";
+
+    let url =
+      `${process.env.NEXT_PUBLIC_WP_API}/ranking` +
+      `?lang=${wpLang}` +
+      `&page=${page}` +
+      `&per_page=12` +
+      `&orderby=date` +
+      `&order=desc`;
+
+    if (keyword) {
+      url += `&search=${encodeURIComponent(keyword)}`;
+    }
+
+    if (year) {
+      url += `&ranking_year=${encodeURIComponent(year)}`;
+    }
 
     const res = await fetch(url);
     const data = await res.json();
@@ -34,6 +54,7 @@ export const fetchrankingPosts = createAsyncThunk(
 
 const rankingSlice = createSlice({
   name: "ranking",
+
   initialState: {
     posts: [],
     total: 0,
@@ -42,6 +63,7 @@ const rankingSlice = createSlice({
     loading: false,
     loadingYears: false,
   },
+
   reducers: {},
 
   extraReducers: (builder) => {
@@ -49,12 +71,14 @@ const rankingSlice = createSlice({
       .addCase(fetchrankingPosts.pending, (state) => {
         state.loading = true;
       })
+
       .addCase(fetchrankingPosts.fulfilled, (state, action) => {
         state.loading = false;
         state.posts = action.payload.posts;
         state.total = action.payload.total;
         state.page = action.payload.page;
       })
+
       .addCase(fetchrankingPosts.rejected, (state) => {
         state.loading = false;
       })
@@ -62,6 +86,7 @@ const rankingSlice = createSlice({
       .addCase(fetchRankingYears.pending, (state) => {
         state.loadingYears = true;
       })
+
       .addCase(fetchRankingYears.fulfilled, (state, action) => {
         state.loadingYears = false;
         state.years = action.payload;

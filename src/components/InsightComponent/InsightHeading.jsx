@@ -16,10 +16,11 @@ export default function InsightHeading() {
   const dispatch = useDispatch();
   const pageData = useSelector(selectinsightPagePosts);
   const loading = useSelector(selectinsightPageLoading);
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   useEffect(() => {
     dispatch(fetchinsightPagePosts());
-  }, [dispatch]);
+  }, [dispatch, lang]);
 
   if (loading || !pageData) {
     return (
@@ -46,7 +47,7 @@ export default function InsightHeading() {
       >
         <div className="row">
           <div className="col-sm-9">
-            <p className="sub-heading">insight</p>
+            <p className="sub-heading"> {lang === "ch" ? "见解" : "insight"}</p>
             <h2
               dangerouslySetInnerHTML={{
                 __html: formatText(secondHeading),

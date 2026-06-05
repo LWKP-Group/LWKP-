@@ -15,12 +15,13 @@ export default function PurposeBanner() {
   const dispatch = useDispatch();
   const posts = useSelector(selectpurposePosts);
   const loadings = useSelector(selectpurposeLoading);
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     dispatch(fetchpurposePosts());
-  }, [dispatch]);
+  }, [dispatch, lang]);
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 1200);

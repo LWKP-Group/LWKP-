@@ -19,10 +19,11 @@ export default function RecognitionPartner() {
   const dispatch = useDispatch();
   const pageData = useSelector(selectrecognitionPagePosts);
   const loading = useSelector(selectrecognitionPageLoading);
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   useEffect(() => {
     dispatch(fetchrecognitionPagePosts());
-  }, [dispatch]);
+  }, [dispatch, lang]);
 
   if (loading) {
     return (
@@ -61,7 +62,7 @@ export default function RecognitionPartner() {
             )}
 
             <Link href="/partnership" className="button-css">
-              View partners →
+              {lang === "ch" ? "查看合作伙伴 →  " : "View partners → "}
             </Link>
           </div>
 

@@ -5,14 +5,16 @@ import { Fragment } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { rowAnim } from "@/lib/animation";
+import { useSelector } from "react-redux";
 
 export default function Rhythm({ post }) {
   if (!post) {
     return <div className="container text-center py-5">Loading content…</div>;
   }
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   const title = post?.acf?.rhythm_heading || "Rhythm";
-  const subHeading = "RHYTHM";
+  const subHeading = lang === "ch" ? "节奏" : "RHYTHM";
   const description = post?.acf?.rhythm_description || "";
   const image = post?.acf?.rhythm_image || "";
 

@@ -3,11 +3,13 @@
 import { Fragment } from "react";
 import Image from "next/image";
 import dayjs from "dayjs";
+import { useSelector } from "react-redux";
 
 export default function StoryContentDiv({ post }) {
   if (!post) {
     return <div className="container text-center py-5">Loading story…</div>;
   }
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   const title = post?.title?.rendered || "Title not available";
   const image = post?.featured_image || "";
@@ -22,7 +24,10 @@ export default function StoryContentDiv({ post }) {
 
       <h3 dangerouslySetInnerHTML={{ __html: title }} className="stoycontent" />
 
-      <p className="post-date">Original: LWK + PARTNERS {date && `| ${date}`}</p>
+      <p className="post-date">
+        {lang === "ch" ? "原文：LWK + PARTNERS" : "Original: LWK + PARTNERS"}
+        {date && `| ${date}`}
+      </p>
 
       <div className="contnt-insight" dangerouslySetInnerHTML={{ __html: description }} />
     </Fragment>

@@ -12,10 +12,11 @@ export default function StoryHeading() {
 
   const post = useSelector(selectstorypagePosts);
   const loading = useSelector(selectstorypageLoading);
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   useEffect(() => {
     dispatch(fetchstorypagePosts());
-  }, [dispatch]);
+  }, [dispatch, lang]);
 
   if (loading) {
     return (
@@ -45,7 +46,7 @@ export default function StoryHeading() {
       >
         <div className="row">
           <div className="col-sm-12 storyone">
-            <p className="sub-heading">Stories</p>
+            <p className="sub-heading"> {lang === "ch" ? "故事" : "Stories"}</p>
 
             {secondHeading && <h2>{secondHeading}</h2>}
 

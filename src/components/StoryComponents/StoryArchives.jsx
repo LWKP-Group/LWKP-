@@ -15,7 +15,7 @@ import {
 import ArchivePagination from "@/components/ReuseableComponent/Pagination";
 import { motion } from "framer-motion";
 import { rowAnim } from "@/lib/animation";
-import {decodeHTML} from "@/lib/formatText"
+import { decodeHTML } from "@/lib/formatText";
 
 export default function StoryArchives() {
   const dispatch = useDispatch();
@@ -23,12 +23,13 @@ export default function StoryArchives() {
   const categories = useSelector(selectStoryCategories) || [];
   const loading = useSelector(selectStoryCategoriesLoading);
   const total = useSelector(selectStoryCategoriesTotal) || 0;
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   const [page, setPage] = useState(1);
 
   useEffect(() => {
     dispatch(fetchStoryCategories({ page }));
-  }, [dispatch, page]);
+  }, [dispatch, page, lang]);
 
   if (loading && categories.length === 0) {
     return <div className="container text-center py-5">Loading…</div>;
@@ -38,12 +39,12 @@ export default function StoryArchives() {
     return null;
   }
 
+  console.log(categories);
   return (
     <Fragment>
       <div className="container story-boxes">
         {categories.map((cat) => {
           const { id, name, slug, description, image } = cat;
-
           // ⬇ IMPORTANT: Pass ID in query param
           const link = `/stories/category/${slug}?id=${id}`;
 
@@ -66,6 +67,7 @@ export default function StoryArchives() {
                     height={450}
                     className="img-fluid story-img"
                     loading="lazy"
+                    unoptimized
                   />
                 )}
               </div>
@@ -82,7 +84,7 @@ export default function StoryArchives() {
                 )}
 
                 <Link href={link} className="story-link">
-                  View Stories →
+                  {lang === "ch" ? "查看故事 →" : "View Stories →"}
                 </Link>
               </div>
             </motion.div>

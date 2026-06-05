@@ -12,10 +12,11 @@ export default function CareerHeading() {
   const dispatch = useDispatch();
   const pageData = useSelector(selectcareerPagePosts);
   const loading = useSelector(selectcareerPageLoading);
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   useEffect(() => {
     dispatch(fetchcareerPagePosts());
-  }, [dispatch]);
+  }, [dispatch, lang]);
 
   if (loading || !pageData) {
     return (
@@ -43,7 +44,7 @@ export default function CareerHeading() {
       >
         <div className="row">
           <div className="col-sm-9">
-            <p className="sub-heading">career</p>
+            <p className="sub-heading">{lang === "ch" ? "职业生涯" : "career"}</p>
             <h2 dangerouslySetInnerHTML={{ __html: formatText(secondHeading) }} />
           </div>
         </div>

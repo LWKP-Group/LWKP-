@@ -15,10 +15,10 @@ export default function RecognitionHeadings() {
   const dispatch = useDispatch();
   const pageData = useSelector(selectrecognitionPagePosts);
   const loading = useSelector(selectrecognitionPageLoading);
-
+  const lang = useSelector((state) => state.language.currentLanguage);
   useEffect(() => {
     dispatch(fetchrecognitionPagePosts());
-  }, [dispatch]);
+  }, [dispatch, lang]);
 
   if (loading || !pageData || pageData.length === 0) {
     return null;
@@ -40,7 +40,7 @@ export default function RecognitionHeadings() {
       >
         <div className="row">
           <div className="col-sm-9">
-            <p className="sub-heading">Recognition</p>
+            <p className="sub-heading">{lang === "ch" ? "致谢 → " : "Recognition"} </p>
 
             {secondHeading && (
               <h2

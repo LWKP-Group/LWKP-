@@ -19,12 +19,13 @@ export default function TimelineBanner() {
   const dispatch = useDispatch();
   const posts = useSelector(selecttimelinePagePosts);
   const loadingApi = useSelector(selecttimelinePageLoading);
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     dispatch(fetchtimelinePagePosts());
-  }, [dispatch]);
+  }, [dispatch, lang]);
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 1200);

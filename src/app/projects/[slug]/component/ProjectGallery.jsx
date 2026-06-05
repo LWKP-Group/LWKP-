@@ -4,6 +4,7 @@ import { Fragment, useState } from "react";
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
 import { formatText } from "@/lib/formatText";
+import { useSelector } from "react-redux";
 
 export default function ProjectGallery({ post }) {
   if (!post) {
@@ -12,7 +13,7 @@ export default function ProjectGallery({ post }) {
 
   const title = post?.acf?.gallery_heading || "Gallery";
   const gallery = post?.acf?.image_gallery || [];
-
+  const lang = useSelector((state) => state.language.currentLanguage);
   const [open, setOpen] = useState(false);
   const [startIndex, setStartIndex] = useState(0);
 
@@ -28,7 +29,7 @@ export default function ProjectGallery({ post }) {
     <Fragment>
       <div className="row top-pad">
         <div className="col-sm-12 project-gallery mb-4">
-          <p className="sub-heading">Project Gallery</p>
+          <p className="sub-heading"> {lang === "ch" ? "项目图库 " : "Project Gallery "} </p>
           <h2 dangerouslySetInnerHTML={{ __html: formatText(title) }} />
         </div>
 

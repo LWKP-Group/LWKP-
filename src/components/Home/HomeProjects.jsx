@@ -18,10 +18,11 @@ export default function ProjectTypeSlider() {
   const dispatch = useDispatch();
   const types = useSelector(selectProjectTypes);
   const loading = useSelector(selectProjectTypesLoading);
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   useEffect(() => {
     dispatch(fetchProjectTypes());
-  }, [dispatch]);
+  }, [dispatch, lang]);
 
   // ✅ FIXED ORDER (normalized)
   const ORDER = [
@@ -74,10 +75,10 @@ export default function ProjectTypeSlider() {
         <div className="container projects-heading-wrapper">
           <div className="row">
             <div className="col-sm-12">
-              <p className="sub-heading">Studio</p>
+              <p className="sub-heading">{lang === "ch" ? "工作室" : "Studio "}</p>
             </div>
             <div className="col-sm-12">
-              <h3>Crafted Dimensions</h3>
+              <h3>{lang === "ch" ? "匠心打造" : "Crafted Dimensions"}</h3>
             </div>
           </div>
         </div>

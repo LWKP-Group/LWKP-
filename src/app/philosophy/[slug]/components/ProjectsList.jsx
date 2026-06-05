@@ -4,11 +4,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { container } from "@/lib/animation";
+import { useSelector } from "react-redux";
 
 export default function Projects({ projects }) {
   if (!projects || projects.length === 0) {
     return <section className="container project-philosophy text-center py-5"> </section>;
   }
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   const sortedProjects = projects.slice().sort((a, b) => new Date(b.date) - new Date(a.date));
 
@@ -50,7 +52,7 @@ export default function Projects({ projects }) {
                 )}
                 <h5>{project?.title || "Title not available"}</h5>
                 <h6>{project?.taxonomies?.project_loaction?.[0]?.name || " "}</h6>
-                <Link href={`/projects/${project.slug}`}>View Project →</Link>
+                <Link href={`/projects/${project.slug}`}>{lang === "ch" ? "查看项目 → " : " View Project →  "}</Link>
               </motion.div>
             );
           })}

@@ -1,9 +1,14 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-export const fetchAllPhilosophyPosts = createAsyncThunk("philosophyAll/fetchAllPosts", async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_WP_API}/philosophy?per_page=100`);
+export const fetchAllPhilosophyPosts = createAsyncThunk("philosophyAll/fetchAllPosts", async (_, { getState }) => {
+  const lang = getState().language?.currentLanguage || "en";
+
+  const wpLang = lang === "ch" ? "zh-hans" : "en";
+
+  const res = await fetch(`${process.env.NEXT_PUBLIC_WP_API}/philosophy?lang=${wpLang}&per_page=100`);
 
   const data = await res.json();
+
   return data || [];
 });
 
@@ -27,7 +32,6 @@ const philosophyAllSlice = createSlice({
       .addCase(fetchAllPhilosophyPosts.fulfilled, (state, action) => {
         state.loading = false;
 
-        // ⭐ Custom sorting order (uppercase for consistency)
         const customOrder = [
           "VISION FORGED",
           "LIVING NARRATIVES",
@@ -36,15 +40,14 @@ const philosophyAllSlice = createSlice({
           "CITIES REIMAGINED",
         ];
 
-        // ⭐ Sort the posts
         const sorted = [...action.payload].sort((a, b) => {
           const titleA = (a?.title?.rendered || "").trim().toUpperCase();
+
           const titleB = (b?.title?.rendered || "").trim().toUpperCase();
 
           const idxA = customOrder.indexOf(titleA);
           const idxB = customOrder.indexOf(titleB);
 
-          // ⭐ Future items go to bottom (index = 999)
           return (idxA === -1 ? 999 : idxA) - (idxB === -1 ? 999 : idxB);
         });
 
@@ -59,6 +62,7 @@ const philosophyAllSlice = createSlice({
 });
 
 export const selectAllPhilosophyPosts = (state) => state.philosophyAll.posts;
+
 export const selectAllPhilosophyLoading = (state) => state.philosophyAll.loading;
 
 export default philosophyAllSlice.reducer;

@@ -8,6 +8,7 @@ import { submitContactForm, resetContactForm } from "@/store/slices/contactFormS
 export default function ContactForm() {
   const [form] = Form.useForm();
   const dispatch = useDispatch();
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   const { loading, success, error } = useSelector((state) => state.contactForm);
 
@@ -30,12 +31,16 @@ export default function ContactForm() {
 
   return (
     <Form layout="vertical" form={form} onFinish={onFinish} className="contact-form">
-      <Form.Item label="Your Name" name="name" rules={[{ required: true, message: "Please enter your name" }]}>
+      <Form.Item
+        label={lang === "ch" ? "您的姓名   " : " Your Name"}
+        name="name"
+        rules={[{ required: true, message: "Please enter your name" }]}
+      >
         <Input placeholder="Enter your name" />
       </Form.Item>
 
       <Form.Item
-        label="Your Email"
+        label={lang === "ch" ? "您的电子邮件   " : "Your Email"}
         name="email"
         rules={[
           { required: true, message: "Please enter your email" },
@@ -45,13 +50,17 @@ export default function ContactForm() {
         <Input placeholder="Enter your email" />
       </Form.Item>
 
-      <Form.Item label="Your Message" name="message" rules={[{ required: true, message: "Please enter your message" }]}>
+      <Form.Item
+        label={lang === "ch" ? "您的留言   " : "Your Message"}
+        name="message"
+        rules={[{ required: true, message: "Please enter your message" }]}
+      >
         <Input.TextArea rows={5} placeholder="Write your message here..." />
       </Form.Item>
 
       <Form.Item>
         <Button type="primary" htmlType="submit" loading={loading}>
-          Send Message →
+          {lang === "ch" ? "发送消息 →   " : " Send Message → "}
         </Button>
       </Form.Item>
     </Form>

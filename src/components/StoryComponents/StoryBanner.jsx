@@ -15,12 +15,13 @@ export default function StoryBanner() {
   const dispatch = useDispatch();
   const posts = useSelector(selectstorypagePosts);
   const loadingApi = useSelector(selectstorypageLoading);
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     dispatch(fetchstorypagePosts());
-  }, [dispatch]);
+  }, [dispatch, lang]);
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 1200);

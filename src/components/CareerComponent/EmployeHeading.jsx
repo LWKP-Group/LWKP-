@@ -12,10 +12,11 @@ export default function EmployeHeading() {
   const dispatch = useDispatch();
   const pageData = useSelector(selectcareerPagePosts);
   const loading = useSelector(selectcareerPageLoading);
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   useEffect(() => {
     dispatch(fetchcareerPagePosts());
-  }, [dispatch]);
+  }, [dispatch, lang]);
 
   if (loading || !pageData) {
     return (
@@ -43,7 +44,7 @@ export default function EmployeHeading() {
       >
         <div className="row">
           <div className="col-sm-9">
-            <p className="sub-heading">Employee voices</p>
+            <p className="sub-heading">{lang === "ch" ? "员工心声" : "Employee voices"}</p>
             <h2 dangerouslySetInnerHTML={{ __html: formatText(secondHeading) }} />
           </div>
         </div>

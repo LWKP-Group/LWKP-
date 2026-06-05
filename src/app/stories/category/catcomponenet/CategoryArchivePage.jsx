@@ -3,12 +3,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useSelector } from "react-redux";
 
 export default function CategoryArchivePage({ posts = [] }) {
   if (!posts.length) {
     return <div className="container py-5 text-center">No stories found.</div>;
   }
-
+  const lang = useSelector((state) => state.language.currentLanguage);
   return (
     <div className="container py-5">
       <div className="row carArc">
@@ -49,7 +50,7 @@ export default function CategoryArchivePage({ posts = [] }) {
                   <h5 className="card-title" dangerouslySetInnerHTML={{ __html: title }} />
 
                   <Link href={link} className="btn btn-dark mt-auto w-100" style={{ fontWeight: 500 }}>
-                    View Story →
+                    {lang === "ch" ? "  查看故事 →" : "  View Story →"}
                   </Link>
                 </div>
               </div>

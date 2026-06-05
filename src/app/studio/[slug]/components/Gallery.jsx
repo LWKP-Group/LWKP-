@@ -5,11 +5,14 @@ import { motion } from "framer-motion";
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
 import { rowAnim } from "@/lib/animation";
+import { useSelector } from "react-redux";
 
 export default function Gallery({ post }) {
   if (!post) {
     return <div className="container text-center py-5">Loading gallery…</div>;
   }
+
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   const gallery = post?.acf?.gallery || [];
   const [open, setOpen] = useState(false);
@@ -34,9 +37,9 @@ export default function Gallery({ post }) {
           viewport={{ once: false, amount: 0.3 }}
         >
           <div className="col-sm-12 mb-4">
-            <p className="sub-heading">Our People</p>
+            <p className="sub-heading">{lang === "ch" ? "我们的团队 " : "Our People "}</p>
             <h2>
-              The Minds Behind the <br /> Architecture
+              {lang === "ch" ? "幕后推手 " : "The Minds Behind the "} <br /> {lang === "ch" ? "建筑 " : "Architecture"}
             </h2>
           </div>
 

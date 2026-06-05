@@ -13,10 +13,11 @@ export default function AboutWe() {
 
   const post = useSelector(selecthomePagePosts);
   const loading = useSelector(selecthomePageLoading);
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   useEffect(() => {
     dispatch(fetchhomePagePosts());
-  }, [dispatch]);
+  }, [dispatch, lang]);
 
   if (loading || !post) {
     return (
@@ -43,7 +44,7 @@ export default function AboutWe() {
     >
       <div className="row">
         <div className="col-sm-12">
-          <p className="sub-heading">About Us</p>
+          <p className="sub-heading">{lang === "ch" ? "关于我们" : "About Us"} </p>
 
           <h2
             dangerouslySetInnerHTML={{

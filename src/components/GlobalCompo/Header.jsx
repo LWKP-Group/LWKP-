@@ -48,7 +48,7 @@ function Header() {
             >
               {/* <GoogleTranslator />
               <LanguageToggle /> */}
-
+              <LanguageToggle />
               <OffcanvasMenu />
             </motion.div>
           </div>

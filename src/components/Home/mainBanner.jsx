@@ -11,10 +11,11 @@ export default function MainBanner() {
   const dispatch = useDispatch();
   const posts = useSelector(selecthomePagePosts);
   const loading = useSelector(selecthomePageLoading);
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   useEffect(() => {
     dispatch(fetchhomePagePosts());
-  }, [dispatch]);
+  }, [dispatch, lang]);
 
   if (loading || !posts) {
     return (

@@ -1,26 +1,38 @@
+import { cookies } from "next/headers";
+
 import BannerWrapper from "./typecomponents/BannerWrapper";
 import StickyHeader from "@/components/GlobalCompo/StickyHeader";
 import ProjectTypeArchives from "./typecomponents/ProjectTypeArchives";
 import MaintenanceGuard from "@/components/MaintenanceGuard";
 
-async function getType(slug) {
+async function getType(slug, lang) {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_WP_API}/project_type?slug=${slug}`, { cache: "no-store" });
+    const wpLang = lang === "ch" ? "zh-hans" : "en";
+
+    const res = await fetch(`${process.env.NEXT_PUBLIC_WP_API}/project_type?slug=${slug}&lang=${wpLang}`, {
+      cache: "no-store",
+    });
 
     if (!res.ok) return null;
 
     const data = await res.json();
+
     return data?.[0] || null;
   } catch (err) {
     return null;
   }
 }
 
-async function getProjects(typeId) {
+async function getProjects(typeId, lang) {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_WP_API}/projects?project_type=${typeId}&per_page=12`, {
-      cache: "no-store",
-    });
+    const wpLang = lang === "ch" ? "zh-hans" : "en";
+
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_WP_API}/projects?project_type=${typeId}&per_page=12&lang=${wpLang}`,
+      {
+        cache: "no-store",
+      },
+    );
 
     if (!res.ok) return [];
 
@@ -31,9 +43,13 @@ async function getProjects(typeId) {
 }
 
 export async function generateMetadata({ params }) {
+  const cookieStore = await cookies();
+
+  const lang = cookieStore.get("site_lang")?.value || "en";
+
   const { slug } = await params;
 
-  const type = await getType(slug);
+  const type = await getType(slug, lang);
 
   if (!type) {
     return {
@@ -49,15 +65,19 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function Page({ params }) {
+  const cookieStore = await cookies();
+
+  const lang = cookieStore.get("site_lang")?.value || "en";
+
   const { slug } = await params;
 
-  const type = await getType(slug);
+  const type = await getType(slug, lang);
 
   if (!type) {
     return <MaintenanceGuard posts={type} />;
   }
 
-  const projects = await getProjects(type.id);
+  const projects = await getProjects(type.id, lang);
 
   return (
     <div>

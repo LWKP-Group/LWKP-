@@ -25,6 +25,8 @@ export default function PartnershipFilterGrid() {
   const total = useSelector(selectpartnershipTotal);
   const loading = useSelector(selectpartnershipLoading);
 
+  const lang = useSelector((state) => state.language.currentLanguage);
+
   const [page, setPage] = useState(1);
   const [filters, setFilters] = useState({ keyword: "", year: "" });
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -34,11 +36,11 @@ export default function PartnershipFilterGrid() {
 
   useEffect(() => {
     dispatch(fetchPartnershipYears());
-  }, [dispatch]);
+  }, [dispatch, lang]);
 
   useEffect(() => {
     dispatch(fetchpartnershipPosts({ page, ...filters }));
-  }, [dispatch, page, filters]);
+  }, [dispatch, page, filters, lang]);
 
   const sortedPartnership = useMemo(() => {
     return [...partnership].sort((a, b) => {
@@ -110,7 +112,7 @@ export default function PartnershipFilterGrid() {
                   {yearText && <h6>{yearText}</h6>}
 
                   <a onClick={() => openModal(item)} style={{ cursor: "pointer" }}>
-                    View More →
+                    {lang === "ch" ? "查看更多 →" : "View More →"}
                   </a>
                 </motion.div>
               );

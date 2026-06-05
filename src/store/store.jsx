@@ -43,9 +43,11 @@ import partnershipReducer from "./slices/partnershipSlice";
 import philosophyAllReducer from "./slices/philosophyAllSlice";
 import storyCategoryReducer from "./slices/storyCategorySlice";
 import storyByCategoryReducer from "./slices/storyByCategorySlice";
+import languageReducer from "./slices/languageSlice";
 
 export const store = configureStore({
   reducer: {
+    language: languageReducer,
     partnership: partnershipReducer,
     partnershipPage: partnershipPageReducer,
     ranking: rankingReducer,

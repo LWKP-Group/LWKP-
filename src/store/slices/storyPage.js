@@ -1,38 +1,47 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-export const fetchstorypagePosts = createAsyncThunk("storypage/fetchPosts", async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_WP_API}/stories_page?per_page=1`);
+export const fetchstorypagePosts = createAsyncThunk("storypage/fetchPosts", async (_, { getState }) => {
+  const lang = getState().language?.currentLanguage || "en";
+
+  const wpLang = lang === "ch" ? "zh-hans" : "en";
+
+  const res = await fetch(`${process.env.NEXT_PUBLIC_WP_API}/stories_page?lang=${wpLang}&per_page=1`);
+
   const data = await res.json();
+
   return data;
 });
 
 const storypageSlice = createSlice({
   name: "storypage",
+
   initialState: {
     posts: [],
     loading: false,
-    error: null
+    error: null,
   },
 
   reducers: {},
 
-  extraReducers: builder => {
+  extraReducers: (builder) => {
     builder
-      .addCase(fetchstorypagePosts.pending, state => {
+      .addCase(fetchstorypagePosts.pending, (state) => {
         state.loading = true;
       })
+
       .addCase(fetchstorypagePosts.fulfilled, (state, action) => {
         state.loading = false;
         state.posts = action.payload;
       })
-      .addCase(fetchstorypagePosts.rejected, state => {
+
+      .addCase(fetchstorypagePosts.rejected, (state) => {
         state.loading = false;
         state.error = "Failed to load data";
       });
-  }
+  },
 });
 
-export const selectstorypagePosts = state => state.storypage.posts;
-export const selectstorypageLoading = state => state.storypage.loading;
+export const selectstorypagePosts = (state) => state.storypage.posts;
+export const selectstorypageLoading = (state) => state.storypage.loading;
 
 export default storypageSlice.reducer;

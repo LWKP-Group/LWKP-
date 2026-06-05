@@ -10,6 +10,7 @@ export default function FooterForm() {
   const dispatch = useDispatch();
 
   const { loading, success, error } = useSelector((state) => state.newsletter);
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   useEffect(() => {
     if (success) {
@@ -22,7 +23,7 @@ export default function FooterForm() {
       message.error(error);
       dispatch(resetNewsletter());
     }
-  }, [success, error, dispatch, form]);
+  }, [success, error, dispatch, form, lang]);
 
   const onFinish = (values) => {
     dispatch(submitNewsletter(values));
@@ -30,8 +31,13 @@ export default function FooterForm() {
   return (
     <Fragment>
       <div className="newsletter-box">
-        <h5>Sign Up For Our Newsletter</h5>
-        <p>Insights, projects, and ideas straight from our studio.</p>
+        <h5>{lang === "ch" ? "订阅我们的电子报" : "Sign Up For Our Newsletter"}</h5>
+        <p>
+          {" "}
+          {lang === "ch"
+            ? "来自我们工作室的洞见、项目与创意。"
+            : "Insights, projects, and ideas straight from our studio."}
+        </p>
 
         <Form form={form} onFinish={onFinish} className="newsletter-form">
           <div className="row">
@@ -39,7 +45,7 @@ export default function FooterForm() {
               <Form.Item
                 name="email"
                 rules={[
-                  { required: true, message: "Please enter your email." },
+                  { required: true, message: lang === "ch" ? "请输入您的电子邮件地址。" : "Please enter your email." },
                   { type: "email", message: "Invalid email format." },
                 ]}
               >
@@ -49,7 +55,7 @@ export default function FooterForm() {
 
             <div className="col-sm-3">
               <Button type="primary" htmlType="submit" loading={loading} className="newsletter-btn">
-                Subscribe
+                {lang === "ch" ? "订阅" : "Subscribe"}
               </Button>
             </div>
           </div>

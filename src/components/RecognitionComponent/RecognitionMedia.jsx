@@ -18,10 +18,11 @@ export default function RecognitionMedia() {
   const dispatch = useDispatch();
   const pageData = useSelector(selectrecognitionPagePosts);
   const loading = useSelector(selectrecognitionPageLoading);
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   useEffect(() => {
     dispatch(fetchrecognitionPagePosts());
-  }, [dispatch]);
+  }, [dispatch, lang]);
 
   if (loading) {
     return (
@@ -73,7 +74,7 @@ export default function RecognitionMedia() {
             )}
 
             <Link href="/media" className="button-css">
-              View media →
+              {lang === "ch" ? "查看媒体 → " : "View media → "}
             </Link>
           </div>
         </div>

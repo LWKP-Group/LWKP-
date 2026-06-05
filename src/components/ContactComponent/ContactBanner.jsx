@@ -15,10 +15,11 @@ export default function ContactBanner() {
   const dispatch = useDispatch();
   const posts = useSelector(selectcontactusPosts);
   const loading = useSelector(selectcontactusLoading);
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   useEffect(() => {
     dispatch(fetchcontactusPosts());
-  }, [dispatch]);
+  }, [dispatch, lang]);
 
   if (loading || !posts) {
     return (

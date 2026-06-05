@@ -25,11 +25,12 @@ export default function HomeStories() {
 
   const categories = useSelector(selectStoryCategories);
   const loading = useSelector(selectStoryCategoriesLoading);
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   /* Fetch taxonomy once */
   useEffect(() => {
     dispatch(fetchStoryCategories());
-  }, [dispatch]);
+  }, [dispatch, lang]);
 
   if (loading) {
     return (
@@ -49,8 +50,8 @@ export default function HomeStories() {
         <div className="container projects-heading-wrapper">
           <div className="row">
             <div className="col-sm-12">
-              <p className="sub-heading">stories</p>
-              <h3>Beyond the Blueprint</h3>
+              <p className="sub-heading"> {lang === "ch" ? "故事" : "stories"}</p>
+              <h3>{lang === "ch" ? "超越蓝图" : "Beyond the Blueprint"} </h3>
             </div>
           </div>
         </div>
@@ -92,7 +93,7 @@ export default function HomeStories() {
                       <h4>{decodeHTML(cat.name)}</h4>
 
                       <Link href={`/stories?category=${cat.slug}`} className="storyLink">
-                        <b>View Story →</b>
+                        <b> {lang === "ch" ? "查看故事 →" : "View Story →"}</b>
                       </Link>
                     </div>
                   </div>

@@ -16,10 +16,11 @@ export default function EmployeSlider() {
   const dispatch = useDispatch();
   const reviews = useSelector(selectreviewsPosts);
   const loading = useSelector(selectreviewsLoading);
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   useEffect(() => {
     dispatch(fetchreviewsPosts());
-  }, [dispatch]);
+  }, [dispatch, lang]);
 
   if (loading || !reviews) {
     return (

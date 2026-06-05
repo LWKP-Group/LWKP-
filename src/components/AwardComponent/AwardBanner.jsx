@@ -15,10 +15,11 @@ export default function AwardBanner() {
   const dispatch = useDispatch();
   const posts = useSelector(selectawardsPagePosts);
   const loading = useSelector(selectawardsPageLoading);
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   useEffect(() => {
     dispatch(fetchawardsPagePosts());
-  }, [dispatch]);
+  }, [dispatch, lang]);
 
   if (loading || !posts) {
     return (

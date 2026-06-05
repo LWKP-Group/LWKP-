@@ -12,10 +12,11 @@ export default function OfficeLocation() {
   const dispatch = useDispatch();
   const pageData = useSelector(selectcontactusPosts);
   const loading = useSelector(selectcontactusLoading);
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   useEffect(() => {
     dispatch(fetchcontactusPosts());
-  }, [dispatch]);
+  }, [dispatch, lang]);
 
   if (loading || !pageData) {
     return (
@@ -33,17 +34,43 @@ export default function OfficeLocation() {
 
   // 🔹 Define static city list + acf field mapping
   const locations = [
-    { city: "Hong Kong", key: "location_one" },
-    { city: "Shenzhen", key: "location_two" },
-    { city: "Guangzhou", key: "location_three" },
-    { city: "Shanghai", key: "location_four" },
-    { city: "Chongqing", key: "location_five" },
-    { city: "Beijing", key: "location_six" },
-    { city: "Manila", key: "location_seven" },
-    { city: "Dubai", key: "location_eight" },
-    { city: "Riyadh", key: "location_nine" },
+    {
+      city: lang === "ch" ? "香港" : "Hong Kong",
+      key: "location_one",
+    },
+    {
+      city: lang === "ch" ? "深圳" : "Shenzhen",
+      key: "location_two",
+    },
+    {
+      city: lang === "ch" ? "广州" : "Guangzhou",
+      key: "location_three",
+    },
+    {
+      city: lang === "ch" ? "上海" : "Shanghai",
+      key: "location_four",
+    },
+    {
+      city: lang === "ch" ? "重庆" : "Chongqing",
+      key: "location_five",
+    },
+    {
+      city: lang === "ch" ? "北京" : "Beijing",
+      key: "location_six",
+    },
+    {
+      city: lang === "ch" ? "马尼拉" : "Manila",
+      key: "location_seven",
+    },
+    {
+      city: lang === "ch" ? "迪拜" : "Dubai",
+      key: "location_eight",
+    },
+    {
+      city: lang === "ch" ? "利雅得" : "Riyadh",
+      key: "location_nine",
+    },
   ];
-
   return (
     <Fragment>
       <motion.div
@@ -55,7 +82,7 @@ export default function OfficeLocation() {
       >
         <div className="row">
           <div className="col-sm-12 location-heading">
-            <h3>Our Locations</h3>
+            <h3> {lang === "ch" ? "我们的分支机构" : "Our Locations"}</h3>
           </div>
           {locations.map((loc, index) => (
             <div className="col-sm-4 flipcard" key={index}>

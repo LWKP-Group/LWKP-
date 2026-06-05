@@ -15,12 +15,13 @@ export default function peopleBanner() {
   const dispatch = useDispatch();
   const posts = useSelector(selectpeoplePagePosts);
   const loadings = useSelector(selectpeoplePageLoading);
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     dispatch(fetchpeoplePagePosts());
-  }, [dispatch]);
+  }, [dispatch, lang]);
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 1200);

@@ -17,10 +17,11 @@ function HomeInsights() {
 
   const posts = useSelector(selectInsightPosts);
   const loading = useSelector(selectInsightLoading);
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   useEffect(() => {
     dispatch(fetchInsightPosts({ page: 1, category: "all" }));
-  }, [dispatch]);
+  }, [dispatch, lang]);
 
   if (loading || !posts) {
     return (
@@ -45,8 +46,8 @@ function HomeInsights() {
       >
         <div className="row">
           <div className="col-sm-12">
-            <p className="sub-heading">Insights</p>
-            <h3>Thoughtscapes</h3>
+            <p className="sub-heading">{lang === "ch" ? "见解" : "Insights"}</p>
+            <h3>{lang === "ch" ? "思想景观" : "Thoughtscapes"}</h3>
           </div>
 
           <div className="row insight-post">
@@ -72,7 +73,7 @@ function HomeInsights() {
                   )}
 
                   <p>
-                    Articles — <span className="date">{formattedDate}</span>
+                    {lang === "ch" ? "文章" : "Articles"} — <span className="date">{formattedDate}</span>
                   </p>
 
                   <Link href={`/insight/${post.slug}`}>

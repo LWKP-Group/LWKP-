@@ -13,13 +13,14 @@ export default function Recognition() {
 
   const post = useSelector(selecthomePagePosts);
   const loading = useSelector(selecthomePageLoading);
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   const [hover, setHover] = useState(false);
   const [videoLoaded, setVideoLoaded] = useState(false);
 
   useEffect(() => {
     dispatch(fetchhomePagePosts());
-  }, [dispatch]);
+  }, [dispatch, lang]);
 
   if (loading || !post) {
     return (
@@ -49,7 +50,7 @@ export default function Recognition() {
     >
       <div className="row">
         <div className="col-sm-6 purpose-content">
-          <p className="sub-heading">legacy</p>
+          <p className="sub-heading">{lang === "ch" ? "传统" : "legacy"}</p>
           <h3
             dangerouslySetInnerHTML={{
               __html: formatText(heading),

@@ -19,10 +19,11 @@ export default function RankingBanner() {
   const dispatch = useDispatch();
   const posts = useSelector(selectrankingPagePosts);
   const loading = useSelector(selectrankingPageLoading);
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   useEffect(() => {
     dispatch(fetchrankingPagePosts());
-  }, [dispatch]);
+  }, [dispatch, lang]);
 
   if (loading || !posts) {
     return (

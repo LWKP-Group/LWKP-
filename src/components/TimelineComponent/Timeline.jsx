@@ -3,7 +3,12 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "antd";
-import { fetchtimelinePosts, selecttimelinePosts, selecttimelineLoading, selecttimelineTotal } from "@/store/slices/timelineSlice";
+import {
+  fetchtimelinePosts,
+  selecttimelinePosts,
+  selecttimelineLoading,
+  selecttimelineTotal,
+} from "@/store/slices/timelineSlice";
 import { motion } from "framer-motion";
 import { rowAnim } from "@/lib/animation";
 import GlobalLoader from "@/components/GlobalCompo/GlobalLoader";
@@ -14,12 +19,13 @@ export default function Timeline() {
   const posts = useSelector(selecttimelinePosts);
   const loading = useSelector(selecttimelineLoading);
   const total = useSelector(selecttimelineTotal);
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   const [page, setPage] = useState(1);
 
   useEffect(() => {
     dispatch(fetchtimelinePosts({ page: 1 }));
-  }, [dispatch]);
+  }, [dispatch, lang]);
 
   if (loading && (!posts || posts.length === 0)) {
     return (
@@ -44,8 +50,14 @@ export default function Timeline() {
   };
 
   return (
-    <motion.div className="container timelines top-pad bottom-pad" variants={rowAnim} initial="hidden" whileInView="show" viewport={{ once: false, amount: 0.2 }}>
-      {sortedPosts.map(item => {
+    <motion.div
+      className="container timelines top-pad bottom-pad"
+      variants={rowAnim}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: false, amount: 0.2 }}
+    >
+      {sortedPosts.map((item) => {
         const year = item?.acf?.timeline_journey;
         const title = item?.title?.rendered;
         const description = item?.acf?.timeline_description;

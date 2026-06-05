@@ -23,10 +23,11 @@ export default function Homestudiolocation() {
   const dispatch = useDispatch();
   const posts = useSelector(selectstudiolocationPosts);
   const loading = useSelector(selectstudiolocationLoading);
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   useEffect(() => {
     dispatch(fetchstudiolocationPosts());
-  }, [dispatch]);
+  }, [dispatch, lang]);
 
   // ✅ FIXED ORDER
   const ORDER = [
@@ -80,10 +81,10 @@ export default function Homestudiolocation() {
         <div className="container projects-heading-wrapper">
           <div className="row">
             <div className="col-sm-12">
-              <p className="sub-heading">Locations</p>
+              <p className="sub-heading"> {lang === "ch" ? "地点" : "Locations"}</p>
             </div>
             <div className="col-sm-12">
-              <h3>Our Studio Locations</h3>
+              <h3> {lang === "ch" ? "我们的工作室地址" : "Our Studio Locations"}</h3>
             </div>
           </div>
         </div>
@@ -109,7 +110,7 @@ export default function Homestudiolocation() {
                   <div className="carft-content">
                     <h4>{post?.title?.rendered}</h4>
                     <Link href={`/studio/${post?.slug}`} className="storyLink">
-                      <b>View Studio →</b>
+                      <b>{lang === "ch" ? "查看工作室 → " : "View Studio → "}</b>
                     </Link>
                   </div>
                 </motion.div>

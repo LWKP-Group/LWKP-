@@ -17,12 +17,13 @@ export default function HomePortfolio() {
   const dispatch = useDispatch();
   const posts = useSelector(selectprojectsPosts);
   const loading = useSelector(selectprojectsLoading);
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
     dispatch(fetchprojectsPosts());
-  }, [dispatch]);
+  }, [dispatch, lang]);
 
   const filteredPosts =
     posts?.filter((p) =>
@@ -84,7 +85,7 @@ export default function HomePortfolio() {
                         }}
                         className="portfolio-left"
                       >
-                        <p className="portfolio-label">PORTFOLIO</p>
+                        <p className="portfolio-label">{lang === "ch" ? "作品集" : "PORTFOLIO"}</p>
 
                         {/* 🔗 TITLE LINKED TO SINGLE PAGE */}
                         <Link href={`/projects/${post.slug}`}>

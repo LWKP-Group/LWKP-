@@ -22,6 +22,7 @@ export default function PeopleDeparts() {
   const peopleDepart = useSelector(selectpeopleDepart);
   const loading = useSelector(selectpeopleDepartLoading);
   const total = useSelector(selectpeopleDepartTotal);
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   const [page, setPage] = useState(1);
 
@@ -63,8 +64,8 @@ export default function PeopleDeparts() {
     >
       <div className="row">
         <div className="col-sm-9 journeyss">
-          <p className="sub-heading">Our teams</p>
-          <h2>Where Collaboration Becomes Creation</h2>
+          <p className="sub-heading"> {lang === "ch" ? "我们的团队" : "Our teams"} </p>
+          <h2> {lang === "ch" ? "协作孕育创造" : "Where Collaboration Becomes Creation "} </h2>
         </div>
       </div>
 
@@ -96,7 +97,7 @@ export default function PeopleDeparts() {
               <div className="dept-desc wysiwyg-text" dangerouslySetInnerHTML={{ __html: desc }} />
 
               <Link href={`/people/department/${slug}`} className="dept-card">
-                View Team →
+                {lang === "ch" ? " 查看团队 →" : " View Team → "}
               </Link>
             </motion.div>
           );

@@ -15,10 +15,11 @@ export default function AboutBanner() {
   const dispatch = useDispatch();
   const posts = useSelector(selectaboutusPosts);
   const loading = useSelector(selectaboutusLoading);
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   useEffect(() => {
     dispatch(fetchaboutusPosts());
-  }, [dispatch]);
+  }, [dispatch, lang]);
 
   if (loading || !posts || posts.length === 0) {
     return (

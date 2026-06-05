@@ -31,6 +31,7 @@ export default function FilterGrid() {
   const rawProjects = useSelector(selectProjectsArchivePosts);
   const loading = useSelector(selectProjectsArchiveLoading);
   const total = useSelector(selectProjectsArchiveTotal);
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   // FILTER STATES
   const [page, setPage] = useState(1);
@@ -76,8 +77,8 @@ export default function FilterGrid() {
   return (
     <Fragment>
       <div className="container" id="recent-projects">
-        <p className="sub-heading">Portfolio</p>
-        <h2>Our Recent Projects</h2>
+        <p className="sub-heading"> {lang === "ch" ? "作品集" : "Portfolio"}</p>
+        <h2> {lang === "ch" ? "我们的近期项目" : "Our Recent Projects"}</h2>
       </div>
 
       <div className="container py-5 gridbox" ref={gridRef}>
@@ -121,7 +122,7 @@ export default function FilterGrid() {
                     )}
 
                     <h5 dangerouslySetInnerHTML={{ __html: title }} />
-                    <Link href={`/projects/${slug}`}>View Project →</Link>
+                    <Link href={`/projects/${slug}`}>{lang === "ch" ? "查看项目 → " : "View Project → "}</Link>
                   </motion.div>
                 );
               })}

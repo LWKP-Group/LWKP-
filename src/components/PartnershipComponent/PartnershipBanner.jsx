@@ -19,10 +19,11 @@ export default function PartnershipBanner() {
   const dispatch = useDispatch();
   const posts = useSelector(selectpartnershipPagePosts);
   const loading = useSelector(selectpartnershipPageLoading);
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   useEffect(() => {
     dispatch(fetchpartnershipPagePosts());
-  }, [dispatch]);
+  }, [dispatch, lang]);
 
   if (loading || !posts) {
     return (

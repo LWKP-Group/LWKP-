@@ -12,13 +12,14 @@ export default function StudioSection() {
   const dispatch = useDispatch();
   const posts = useSelector(selectstudiopagePosts);
   const loading = useSelector(selectstudiopageLoading);
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   const [hover, setHover] = useState(false);
   const [videoLoaded, setVideoLoaded] = useState(false);
 
   useEffect(() => {
     dispatch(fetchstudiopagePosts());
-  }, [dispatch]);
+  }, [dispatch, lang]);
 
   if (loading) {
     return (
@@ -51,7 +52,7 @@ export default function StudioSection() {
     >
       <div className="row">
         <div className="col-sm-6 purpose-content">
-          <p className="sub-heading">Studio</p>
+          <p className="sub-heading"> {lang === "ch" ? "工作室" : "Studio"} </p>
           <h3>{heading}</h3>
           <div
             className="wysiwyg-text mt-3"

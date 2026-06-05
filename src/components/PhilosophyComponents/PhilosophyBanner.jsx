@@ -19,12 +19,13 @@ export default function PhilosophyBanner() {
   const dispatch = useDispatch();
   const posts = useSelector(selectphilsophyPagePosts);
   const loadings = useSelector(selectphilsophyPageLoading);
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     dispatch(fetchphilsophyPagePosts());
-  }, [dispatch]);
+  }, [dispatch, lang]);
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 1200);

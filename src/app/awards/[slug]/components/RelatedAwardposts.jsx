@@ -14,6 +14,7 @@ export default function RelatedAwardposts() {
   const posts = useSelector(selectAwardsPosts);
   const loading = useSelector(selectAwardsLoading);
   const [randomPosts, setRandomPosts] = useState([]);
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   useEffect(() => {
     if (!posts || posts.length === 0) {
@@ -39,7 +40,7 @@ export default function RelatedAwardposts() {
     <Fragment>
       <div className="row related-posts">
         <div className="col-sm-12">
-          <h4>You may also like</h4>
+          <h4> {lang === "ch" ? "您可能还喜欢" : "You may also like"}</h4>
         </div>
 
         {randomPosts.map((post) => {
@@ -56,13 +57,13 @@ export default function RelatedAwardposts() {
               )}
 
               <h6 dangerouslySetInnerHTML={{ __html: title }} />
-              <Link href={`/awards/${slug}`}> Read More →</Link>
+              <Link href={`/awards/${slug}`}> {lang === "ch" ? "阅读更多 → " : "Read More → "}</Link>
             </div>
           );
         })}
 
         <div className="col-sm-12">
-          <h4>Follow us on</h4>
+          <h4>{lang === "ch" ? "关注我们 " : "Follow us on "}</h4>
         </div>
       </div>
     </Fragment>

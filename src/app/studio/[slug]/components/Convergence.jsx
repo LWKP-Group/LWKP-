@@ -5,14 +5,16 @@ import { Fragment } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { rowAnim } from "@/lib/animation";
+import { useSelector } from "react-redux";
 
 export default function Convergence({ post }) {
   if (!post) {
     return <div className="container text-center py-5">Loading content…</div>;
   }
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   const title = post?.acf?.convergence_heading || "Convergence";
-  const subHeading = "convergence";
+  const subHeading = lang === "ch" ? "收敛" : "convergence";
   const description = post?.acf?.convergence_description || "";
   const image = post?.acf?.convergence_image || "";
   const safeImage = image && image.trim() !== "" ? image : null;
@@ -53,7 +55,7 @@ export default function Convergence({ post }) {
             <div className="wysiwyg-text" dangerouslySetInnerHTML={{ __html: description }} />
 
             <Link href="/contact" className="button-css mt-3">
-              Contact Us →
+              {lang === "ch" ? "联系我们 → " : " Contact Us →"}
             </Link>
           </div>
         </motion.div>

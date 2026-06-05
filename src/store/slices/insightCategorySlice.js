@@ -1,25 +1,34 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-export const fetchInsightCategories = createAsyncThunk("insightCategories/fetch", async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_WP_API}/insight_category?per_page=100`);
+export const fetchInsightCategories = createAsyncThunk("insightCategories/fetch", async (_, { getState }) => {
+  const lang = getState().language?.currentLanguage || "en";
+
+  const wpLang = lang === "ch" ? "zh-hans" : "en";
+
+  const res = await fetch(`${process.env.NEXT_PUBLIC_WP_API}/insight_category?lang=${wpLang}&per_page=100`);
 
   if (!res.ok) throw new Error("Failed to fetch categories");
+
   return await res.json();
 });
 
 const insightCategorySlice = createSlice({
   name: "insightCategories",
+
   initialState: {
     categories: [],
     loading: false,
     error: null,
   },
+
   reducers: {},
+
   extraReducers: (builder) => {
     builder
       .addCase(fetchInsightCategories.pending, (state) => {
         state.loading = true;
       })
+
       .addCase(fetchInsightCategories.fulfilled, (state, action) => {
         state.loading = false;
 
@@ -34,6 +43,7 @@ const insightCategorySlice = createSlice({
 
         state.categories = sorted;
       })
+
       .addCase(fetchInsightCategories.rejected, (state) => {
         state.loading = false;
         state.error = "Failed to load insight categories";

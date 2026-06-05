@@ -15,12 +15,13 @@ export default function StudioBanner() {
   const dispatch = useDispatch();
   const posts = useSelector(selectstudiopagePosts);
   const loadingApi = useSelector(selectstudiopageLoading);
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     dispatch(fetchstudiopagePosts());
-  }, [dispatch]);
+  }, [dispatch, lang]);
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 1200);

@@ -1,7 +1,11 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-export const fetchPhilosophyPosts = createAsyncThunk("philosophy/fetchPosts", async ({ page = 1 }) => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_WP_API}/philosophy?page=${page}&per_page=8`);
+export const fetchPhilosophyPosts = createAsyncThunk("philosophy/fetchPosts", async ({ page = 1 }, { getState }) => {
+  const lang = getState().language?.currentLanguage || "en";
+
+  const wpLang = lang === "ch" ? "zh-hans" : "en";
+
+  const res = await fetch(`${process.env.NEXT_PUBLIC_WP_API}/philosophy?lang=${wpLang}&page=${page}&per_page=8`);
 
   const total = res.headers.get("X-WP-Total");
   const data = await res.json();
@@ -9,6 +13,7 @@ export const fetchPhilosophyPosts = createAsyncThunk("philosophy/fetchPosts", as
   return {
     data,
     total: Number(total) || 0,
+    lang,
   };
 });
 
@@ -33,24 +38,18 @@ const philosophySlice = createSlice({
       .addCase(fetchPhilosophyPosts.fulfilled, (state, action) => {
         state.loading = false;
 
-        // ⭐ Custom Sorting Order
-        const customOrder = [
-          "VISION FORGED",
-          "LIVING NARRATIVES",
-          "HERITAGE WOVEN",
-          "COMMUNITIES UNITED",
-          "CITIES REIMAGINED",
-        ];
+        const customOrder =
+          action.payload.lang === "ch"
+            ? ["铸就愿景", "生活故事", "传承织造", "社区联合", "城市新构想"]
+            : ["VISION FORGED", "LIVING NARRATIVES", "HERITAGE WOVEN", "COMMUNITIES UNITED", "CITIES REIMAGINED"];
 
-        // ⭐ Sort Logic (others go to bottom)
         const sorted = [...action.payload.data].sort((a, b) => {
-          const titleA = a?.title?.rendered?.trim() || "";
-          const titleB = b?.title?.rendered?.trim() || "";
+          const titleA = (a?.title?.rendered || "").trim();
+          const titleB = (b?.title?.rendered || "").trim();
 
           const idxA = customOrder.indexOf(titleA);
           const idxB = customOrder.indexOf(titleB);
 
-          // ⭐ Items not in customOrder go at the bottom
           return (idxA === -1 ? 999 : idxA) - (idxB === -1 ? 999 : idxB);
         });
 

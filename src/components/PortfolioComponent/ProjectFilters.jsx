@@ -20,21 +20,26 @@ export default function ProjectFilters({
   const dispatch = useDispatch();
   const types = useSelector(selectProjectTypes) || [];
   const locations = useSelector(selectProjectLocations) || [];
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   useEffect(() => {
     dispatch(fetchProjectTypes());
     dispatch(fetchProjectLocations());
-  }, [dispatch]);
+  }, [dispatch, lang]);
 
   return (
     <div className="row filters-projects">
       <div className="col-sm-6">
-        <Input placeholder="Search here" value={keyword} onChange={(e) => onKeywordChange(e.target.value)} />
+        <Input
+          placeholder={lang === "ch" ? "在此搜索 → " : "Search here"}
+          value={keyword}
+          onChange={(e) => onKeywordChange(e.target.value)}
+        />
       </div>
 
       <div className="col-sm-2">
         <Select
-          placeholder="By Type"
+          placeholder={lang === "ch" ? "按类型 " : "By Type"}
           allowClear
           value={type}
           onChange={onTypeChange}
@@ -47,7 +52,7 @@ export default function ProjectFilters({
 
       <div className="col-sm-2">
         <Select
-          placeholder="By Location"
+          placeholder={lang === "ch" ? "按地点" : "By Location"}
           allowClear
           value={location}
           onChange={onLocationChange}

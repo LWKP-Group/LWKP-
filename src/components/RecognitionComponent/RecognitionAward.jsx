@@ -18,10 +18,11 @@ export default function RecognitionAward() {
   const dispatch = useDispatch();
   const pageData = useSelector(selectrecognitionPagePosts);
   const loading = useSelector(selectrecognitionPageLoading);
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   useEffect(() => {
     dispatch(fetchrecognitionPagePosts());
-  }, [dispatch]);
+  }, [dispatch, lang]);
 
   if (loading || !pageData || pageData.length === 0) {
     return (
@@ -61,7 +62,7 @@ export default function RecognitionAward() {
             <h2 dangerouslySetInnerHTML={{ __html: awardHeading }} />
             <div className="wysiwyg-text" dangerouslySetInnerHTML={{ __html: awardDescription }} />
             <Link href="/awards" className="button-css">
-              View Awards →
+              {lang === "ch" ? "查看奖项 → " : "View Awards →"}
             </Link>
           </div>
         </div>

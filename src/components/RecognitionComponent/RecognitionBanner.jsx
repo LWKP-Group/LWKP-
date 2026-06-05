@@ -19,10 +19,11 @@ export default function RecognitionBanner() {
   const dispatch = useDispatch();
   const posts = useSelector(selectrecognitionPagePosts);
   const loading = useSelector(selectrecognitionPageLoading);
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   useEffect(() => {
     dispatch(fetchrecognitionPagePosts());
-  }, [dispatch]);
+  }, [dispatch, lang]);
 
   if (loading || !posts || posts.length === 0) {
     return (

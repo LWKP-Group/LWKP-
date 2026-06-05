@@ -17,10 +17,11 @@ export default function PhilosophySection() {
 
   const posts = useSelector(selectAllPhilosophyPosts);
   const loading = useSelector(selectAllPhilosophyLoading);
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   useEffect(() => {
     dispatch(fetchAllPhilosophyPosts());
-  }, [dispatch]);
+  }, [dispatch, lang]);
 
   if (loading) {
     return (
@@ -44,8 +45,9 @@ export default function PhilosophySection() {
       viewport={{ once: false, amount: 0.3 }}
     >
       <div className="row heads mb-4">
-        <p className="sub-heading">Philosophy</p>
-        <h3>Legacy of Tomorrow</h3>
+        <p className="sub-heading">{lang === "ch" ? "哲学" : "Philosophy"}</p>
+
+        <h3>{lang === "ch" ? "明日传奇" : "Legacy of Tomorrow"}</h3>
       </div>
 
       <div className="row g-4">

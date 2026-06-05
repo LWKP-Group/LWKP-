@@ -20,10 +20,11 @@ export default function StudioDimensions() {
   const dispatch = useDispatch();
   const types = useSelector(selectProjectTypes);
   const loading = useSelector(selectProjectTypesLoading);
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   useEffect(() => {
     dispatch(fetchProjectTypes());
-  }, [dispatch]);
+  }, [dispatch, lang]);
 
   // ✅ FIXED ORDER (normalized)
   const ORDER = [
@@ -74,10 +75,10 @@ export default function StudioDimensions() {
         <div className="container projects-heading-wrapper" id="practice">
           <div className="row">
             <div className="col-sm-12">
-              <p className="sub-heading">Practice</p>
+              <p className="sub-heading"> {lang === "ch" ? "练习" : "Practice"}</p>
             </div>
             <div className="col-sm-12">
-              <h3>Crafted Dimensions</h3>
+              <h3>{lang === "ch" ? "匠心打造" : "Crafted Dimensions"}</h3>
             </div>
           </div>
         </div>
@@ -119,7 +120,7 @@ export default function StudioDimensions() {
                   </p>
 
                   <Link href={`/projects/type/${type?.slug}`} className="storyLink">
-                    <b>Explore →</b>
+                    <b>{lang === "ch" ? "探索 → " : "Explore → "}</b>
                   </Link>
                 </motion.div>
               </SwiperSlide>

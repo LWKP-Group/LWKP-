@@ -1,7 +1,11 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-export const fetchtimelinePosts = createAsyncThunk("timeline/fetchPosts", async ({ page = 1 }) => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_WP_API}/timeline?page=${page}&per_page=8`);
+export const fetchtimelinePosts = createAsyncThunk("timeline/fetchPosts", async ({ page = 1 }, { getState }) => {
+  const lang = getState().language?.currentLanguage || "en";
+
+  const wpLang = lang === "ch" ? "zh-hans" : "en";
+
+  const res = await fetch(`${process.env.NEXT_PUBLIC_WP_API}/timeline?lang=${wpLang}&page=${page}&per_page=8`);
 
   const total = res.headers.get("X-WP-Total");
   const data = await res.json();
@@ -9,26 +13,28 @@ export const fetchtimelinePosts = createAsyncThunk("timeline/fetchPosts", async 
   return {
     data,
     total: Number(total) || 0,
-    page
+    page,
   };
 });
 
 const timelineSlice = createSlice({
   name: "timeline",
+
   initialState: {
     posts: [],
     total: 0,
     loading: false,
-    error: null
+    error: null,
   },
 
   reducers: {},
 
-  extraReducers: builder => {
+  extraReducers: (builder) => {
     builder
-      .addCase(fetchtimelinePosts.pending, state => {
+      .addCase(fetchtimelinePosts.pending, (state) => {
         state.loading = true;
       })
+
       .addCase(fetchtimelinePosts.fulfilled, (state, action) => {
         state.loading = false;
 
@@ -40,15 +46,16 @@ const timelineSlice = createSlice({
 
         state.total = action.payload.total;
       })
-      .addCase(fetchtimelinePosts.rejected, state => {
+
+      .addCase(fetchtimelinePosts.rejected, (state) => {
         state.loading = false;
         state.error = "Failed to load data";
       });
-  }
+  },
 });
 
-export const selecttimelinePosts = state => state.timeline.posts;
-export const selecttimelineLoading = state => state.timeline.loading;
-export const selecttimelineTotal = state => state.timeline.total;
+export const selecttimelinePosts = (state) => state.timeline.posts;
+export const selecttimelineLoading = (state) => state.timeline.loading;
+export const selecttimelineTotal = (state) => state.timeline.total;
 
 export default timelineSlice.reducer;

@@ -8,6 +8,7 @@ import { menuConfig } from "./menuConfig";
 import Image from "next/image";
 import SmallLOGO from "@/assets/smalllogo.png";
 import SocialIcons from "./SocialIcons";
+import { useSelector } from "react-redux";
 
 const defaultMenu = [{ title: " ", href: "#" }];
 
@@ -17,6 +18,7 @@ export default function MainMenu() {
   const [active, setActive] = useState(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openIndex, setOpenIndex] = useState(null);
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   /* BODY SCROLL LOCK */
   useEffect(() => {
@@ -39,17 +41,11 @@ export default function MainMenu() {
 
   /* ✅ CHECK IF ANY VALID LINK OR DROPDOWN EXISTS */
   const hasMobileMenu = menuData.some(
-    (item) =>
-      item &&
-      (
-        (item.href && item.href !== "#") ||
-        (item.children && item.children.length > 0)
-      )
+    (item) => item && ((item.href && item.href !== "#") || (item.children && item.children.length > 0)),
   );
 
   return (
     <nav className="mainmenu-container">
-
       {/* ================= HAMBURGER (MOBILE ONLY CONDITION) ================= */}
       {hasMobileMenu && (
         <button
@@ -73,7 +69,7 @@ export default function MainMenu() {
             onMouseLeave={() => setActive(null)}
           >
             <Link href={item.href || "#"} className="mainmenu-link">
-              {item.title}
+              {typeof item.title === "object" ? item.title[lang] : item.title}
             </Link>
 
             {item.children && active === index && (
@@ -86,7 +82,7 @@ export default function MainMenu() {
                 {item.children.map((child, i) => (
                   <li key={i}>
                     <Link href={child.href} className="dropdown-link">
-                      {child.title}
+                      {typeof child.title === "object" ? child.title[lang] : child.title}
                     </Link>
                   </li>
                 ))}
@@ -125,18 +121,10 @@ export default function MainMenu() {
                         <>
                           <button
                             className="accordion-trigger"
-                            onClick={() =>
-                              setOpenIndex(
-                                openIndex === index ? null : index
-                              )
-                            }
+                            onClick={() => setOpenIndex(openIndex === index ? null : index)}
                           >
-                            {item.title}
-                            <span
-                              className={`arrow ${
-                                openIndex === index ? "open" : ""
-                              }`}
-                            />
+                            {typeof item.title === "object" ? item.title[lang] : item.title}
+                            <span className={`arrow ${openIndex === index ? "open" : ""}`} />
                           </button>
 
                           <AnimatePresence>
@@ -153,13 +141,8 @@ export default function MainMenu() {
                               >
                                 {item.children.map((child, i) => (
                                   <li key={i}>
-                                    <Link
-                                      href={child.href}
-                                      onClick={() =>
-                                        setMobileOpen(false)
-                                      }
-                                    >
-                                      {child.title}
+                                    <Link href={child.href} onClick={() => setMobileOpen(false)}>
+                                      {typeof child.title === "object" ? child.title[lang] : child.title}
                                     </Link>
                                   </li>
                                 ))}
@@ -168,11 +151,7 @@ export default function MainMenu() {
                           </AnimatePresence>
                         </>
                       ) : (
-                        <Link
-                          href={item.href}
-                          className="direct-link"
-                          onClick={() => setMobileOpen(false)}
-                        >
+                        <Link href={item.href} className="direct-link" onClick={() => setMobileOpen(false)}>
                           {item.title}
                         </Link>
                       )}
@@ -183,7 +162,11 @@ export default function MainMenu() {
 
               <div className="copys">
                 <p>
-                  <b>©</b> 2025 LWK & Partners (HK) Limited. All Rights Reserved
+                  <b>©</b>{" "}
+                  {lang === "ch"
+                    ? " 2025 LWK & Partners (HK) Limited。保留所有权利"
+                    : " 2025 LWK & Partners (HK) Limited. All Rights Reserved"}{" "}
+                  {lang}
                 </p>
                 <SocialIcons />
               </div>

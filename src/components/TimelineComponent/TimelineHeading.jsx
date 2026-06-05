@@ -16,6 +16,7 @@ export default function TimelineHeading() {
   const dispatch = useDispatch();
   const pageData = useSelector(selecttimelinePagePosts);
   const loading = useSelector(selecttimelinePageLoading);
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   useEffect(() => {
     dispatch(fetchtimelinePagePosts());
@@ -45,7 +46,7 @@ export default function TimelineHeading() {
       >
         <div className="row">
           <div className="col-sm-9 journeyss">
-            <p className="sub-heading">Contact</p>
+            <p className="sub-heading">{lang === "ch" ? "联系" : "Contact"} </p>
 
             {secondHeading && (
               <h2

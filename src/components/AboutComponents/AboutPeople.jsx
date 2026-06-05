@@ -12,6 +12,7 @@ import GlobalLoader from "@/components/GlobalCompo/GlobalLoader";
 export default function AboutPeople() {
   const posts = useSelector(selectaboutusPosts);
   const about = posts?.[0];
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   if (!posts)
     return (
@@ -38,7 +39,7 @@ export default function AboutPeople() {
       >
         <div className="row align-items-center">
           <div className="col-sm-8">
-            <p className="sub-heading">Our People</p>
+            <p className="sub-heading"> {lang === "ch" ? "我们的团队" : "Our People"} </p>
             <h2 className="main-heading">{heading}</h2>
 
             <div className="description wysiwyg-text" dangerouslySetInnerHTML={{ __html: description }} />
@@ -46,7 +47,7 @@ export default function AboutPeople() {
 
           <div className="col-sm-4 d-flex align-items-start justify-content-end">
             <Link href="/people" className="button-css">
-              Meet Our Team →
+              {lang === "ch" ? " 了解我们的团队 →" : " Meet Our Team →"}
             </Link>
           </div>
 

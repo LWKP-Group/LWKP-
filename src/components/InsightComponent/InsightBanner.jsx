@@ -19,10 +19,11 @@ export default function InsightBanner() {
   const dispatch = useDispatch();
   const posts = useSelector(selectinsightPagePosts);
   const loading = useSelector(selectinsightPageLoading);
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   useEffect(() => {
     dispatch(fetchinsightPagePosts());
-  }, [dispatch]);
+  }, [dispatch, lang]);
 
   if (loading || !posts) {
     return (

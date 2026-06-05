@@ -21,10 +21,11 @@ export default function PortfolioBanner() {
   const loadings = useSelector(selectportfolioPageLoading);
 
   const [loading, setLoading] = useState(true);
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   useEffect(() => {
     dispatch(fetchportfolioPagePosts());
-  }, [dispatch]);
+  }, [dispatch, lang]);
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 1200);

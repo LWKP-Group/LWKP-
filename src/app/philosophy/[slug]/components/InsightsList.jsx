@@ -5,11 +5,13 @@ import Link from "next/link";
 import dayjs from "dayjs";
 import { motion } from "framer-motion";
 import { container } from "@/lib/animation";
+import { useSelector } from "react-redux";
 
 export default function InsightsList({ insights }) {
   if (!insights || insights.length === 0) {
     return <section className="container py-5 text-center">Loading insights…</section>;
   }
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   const sortedInsights = insights.slice().sort((a, b) => new Date(b.date) - new Date(a.date));
 
@@ -49,12 +51,12 @@ export default function InsightsList({ insights }) {
                 )}
 
                 <p>
-                  Articles - <span className="date">{formattedDate}</span>
+                  {lang === "ch" ? " 文章 " : "Articles "} - <span className="date">{formattedDate}</span>
                 </p>
 
                 <h5>{post?.title || "Title not available"}</h5>
 
-                <Link href={`/insight/${post.slug}`}> Read More →</Link>
+                <Link href={`/insight/${post.slug}`}>{lang === "ch" ? " 阅读更多 → " : " Read More → "}</Link>
               </motion.div>
             );
           })}

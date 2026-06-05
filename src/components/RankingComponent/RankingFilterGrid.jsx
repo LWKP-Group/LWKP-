@@ -24,6 +24,7 @@ export default function RankingFilterGrid() {
   const ranking = useSelector(selectrankingPosts);
   const total = useSelector(selectrankingTotal);
   const loading = useSelector(selectrankingLoading);
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   const [page, setPage] = useState(1);
   const [filters, setFilters] = useState({ keyword: "", year: "" });
@@ -35,11 +36,11 @@ export default function RankingFilterGrid() {
 
   useEffect(() => {
     dispatch(fetchRankingYears());
-  }, [dispatch]);
+  }, [dispatch, lang]);
 
   useEffect(() => {
     dispatch(fetchrankingPosts({ page, ...filters }));
-  }, [dispatch, page, filters]);
+  }, [dispatch, page, filters, lang]);
 
   const sortedRanking = useMemo(() => {
     return [...ranking].sort((a, b) => {
@@ -105,7 +106,7 @@ export default function RankingFilterGrid() {
                   <h5 dangerouslySetInnerHTML={{ __html: title }} />
                   {yearText && <h6>{yearText}</h6>}
                   <a onClick={() => openModal(item)} style={{ cursor: "pointer" }}>
-                    View More →
+                    {lang === "ch" ? "查看更多 →" : "View More → "}
                   </a>
                 </motion.div>
               );

@@ -13,13 +13,14 @@ export default function Purpose() {
 
   const post = useSelector(selecthomePagePosts);
   const loading = useSelector(selecthomePageLoading);
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   const [hover, setHover] = useState(false);
   const [videoLoaded, setVideoLoaded] = useState(false);
 
   useEffect(() => {
     dispatch(fetchhomePagePosts());
-  }, [dispatch]);
+  }, [dispatch, lang]);
 
   if (loading || !post) {
     return (
@@ -91,7 +92,7 @@ export default function Purpose() {
         </div>
 
         <div className="col-sm-7 purpose-content">
-          <p className="sub-heading">Purpose</p>
+          <p className="sub-heading">{lang === "ch" ? "目的" : "Purpose"} </p>
 
           <h3
             dangerouslySetInnerHTML={{

@@ -15,10 +15,11 @@ export default function CareerBanner() {
   const dispatch = useDispatch();
   const posts = useSelector(selectcareerPagePosts);
   const loading = useSelector(selectcareerPageLoading);
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   useEffect(() => {
     dispatch(fetchcareerPagePosts());
-  }, [dispatch]);
+  }, [dispatch, lang]);
 
   if (loading || !posts) {
     return (

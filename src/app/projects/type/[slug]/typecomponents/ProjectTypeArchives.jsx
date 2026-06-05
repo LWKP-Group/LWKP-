@@ -7,11 +7,12 @@ import { motion } from "framer-motion";
 import ArchivePagination from "@/components/ReuseableComponent/Pagination";
 import { formatText } from "@/lib/formatText";
 import { rowAnim } from "@/lib/animation";
+import { useSelector } from "react-redux";
 
 export default function ProjectTypeArchives({ projects }) {
   const [loadedImages, setLoadedImages] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
-
+  const lang = useSelector((state) => state.language.currentLanguage);
   const perPage = 10;
 
   if (!projects || projects.length === 0) {
@@ -77,7 +78,7 @@ export default function ProjectTypeArchives({ projects }) {
                 />
 
                 <Link href={`/projects/${slug}`} className="button-css mt-3">
-                  View Project →
+                  {lang === "ch" ? "查看项目 → " : "View Project → "}
                 </Link>
               </motion.div>
             );

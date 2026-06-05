@@ -27,6 +27,7 @@ export default function AwardsFilterGrid() {
   const posts = useSelector(selectAwardsPosts);
   const total = useSelector(selectAwardsTotal);
   const loading = useSelector(selectAwardsLoading);
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   const [page, setPage] = useState(1);
   const [filters, setFilters] = useState({ keyword: "", year: "" });
@@ -37,11 +38,11 @@ export default function AwardsFilterGrid() {
 
   useEffect(() => {
     dispatch(fetchAwardsYears());
-  }, [dispatch]);
+  }, [dispatch, lang]);
 
   useEffect(() => {
     dispatch(fetchawardsPosts({ page, ...filters }));
-  }, [dispatch, page, filters]);
+  }, [dispatch, page, filters, lang]);
 
   const handleFilter = ({ keyword, year }) => {
     setPage(1);
@@ -70,12 +71,7 @@ export default function AwardsFilterGrid() {
 
   return (
     <>
-      <motion.div
-        className="container py-5 gridbox"
-        variants={rowAnim}
-        initial="hidden"
-        whileInView="show"
-      >
+      <motion.div className="container py-5 gridbox" variants={rowAnim} initial="hidden" whileInView="show">
         <AwardsFilters onFilter={handleFilter} />
 
         {loading && (
@@ -110,20 +106,9 @@ export default function AwardsFilterGrid() {
                 >
                   <div className="awards-image-box">
                     {img ? (
-                      <Image
-                        src={img}
-                        width={600}
-                        height={400}
-                        className="img-fluid"
-                        alt={title}
-                      />
+                      <Image src={img} width={600} height={400} className="img-fluid" alt={title} />
                     ) : (
-                      <Image
-                        src={SmallLOGO}
-                        width={600}
-                        height={400}
-                        alt={title}
-                      />
+                      <Image src={SmallLOGO} width={600} height={400} alt={title} />
                     )}
                   </div>
 
@@ -131,11 +116,8 @@ export default function AwardsFilterGrid() {
                   {yearText && <h6>{yearText}</h6>}
 
                   {/* ✅ View More */}
-                  <a
-                    onClick={() => openModal(award)}
-                    style={{ cursor: "pointer" }}
-                  >
-                    View More →
+                  <a onClick={() => openModal(award)} style={{ cursor: "pointer" }}>
+                    {lang === "ch" ? " 查看更多 →" : " View More →"}
                   </a>
                 </motion.div>
               );

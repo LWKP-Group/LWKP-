@@ -3,13 +3,15 @@
 import Image from "next/image";
 import { Fragment } from "react";
 import { formatText } from "@/lib/formatText";
+import { useSelector } from "react-redux";
 
 export default function ProjectDesign({ post }) {
   if (!post) {
     return <div className="container text-center py-5">Loading content…</div>;
   }
+  const lang = useSelector((state) => state.language.currentLanguage);
 
-  const title = post?.acf?.design_heading || "Design Approach";
+  const title = post?.acf?.design_heading || (lang === "ch" ? "设计方法" : "Design Approach");
   const description = post?.acf?.design_description || "<p> </p>";
   const designImage = post?.acf?.design_image || "";
   const qoutetext = post?.acf?.design_qoute || "";
@@ -19,7 +21,7 @@ export default function ProjectDesign({ post }) {
     <Fragment>
       <div className="row top-pad vision-project">
         <div className="col-sm-6 design-right">
-          <p className="sub-heading">Design Approach</p>
+          <p className="sub-heading"> {lang === "ch" ? "设计方法" : "Design Approach"} </p>
           <h2
             dangerouslySetInnerHTML={{
               __html: formatText(title),

@@ -12,6 +12,7 @@ import GlobalLoader from "@/components/GlobalCompo/GlobalLoader";
 export default function AboutJourney() {
   const posts = useSelector(selectaboutusPosts);
   const about = posts?.[0];
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   if (!posts)
     return (
@@ -38,14 +39,14 @@ export default function AboutJourney() {
       >
         <div className="row align-items-center">
           <div className="col-sm-6 journery">
-            <p className="sub-heading">Our Journey</p>
+            <p className="sub-heading"> {lang === "ch" ? "我们的历程" : "Our Journey"} </p>
             <h2 className="main-heading">{heading}</h2>
 
             <div className="wysiwyg-text mt-3" dangerouslySetInnerHTML={{ __html: description }} />
 
             <div className="mt-4">
               <Link href="/our-journey" className="button-css">
-                Explore Our Timeline →
+                {lang === "ch" ? " 探索我们的时间轴 → " : " Explore Our Timeline → "}
               </Link>
             </div>
           </div>

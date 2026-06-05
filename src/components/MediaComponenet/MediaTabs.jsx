@@ -24,6 +24,7 @@ export default function MediaTabs() {
 
   const categories = useSelector(selectMediaCategories);
   const catLoading = useSelector(selectMediaCategoriesLoading);
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   const posts = useSelector(selectMediaPosts);
   const total = useSelector(selectMediaTotal);
@@ -37,7 +38,7 @@ export default function MediaTabs() {
   // Fetch categories
   useEffect(() => {
     dispatch(fetchMediaCategories());
-  }, [dispatch]);
+  }, [dispatch, lang]);
 
   // Set first category as default active
   useEffect(() => {
@@ -56,7 +57,7 @@ export default function MediaTabs() {
         }),
       );
     }
-  }, [dispatch, page, activeTab]);
+  }, [dispatch, page, activeTab, lang]);
 
   if (catLoading || !categories) {
     return (
@@ -131,7 +132,7 @@ export default function MediaTabs() {
                               __html: title,
                             }}
                           />
-                          <Link href={`/media/${post.slug}`}> Read More →</Link>
+                          <Link href={`/media/${post.slug}`}> {lang === "ch" ? "阅读更多 → " : "Read More → "}</Link>
                         </div>
 
                         <div className="col-sm-6">

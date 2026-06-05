@@ -12,6 +12,7 @@ import GlobalLoader from "@/components/GlobalCompo/GlobalLoader";
 export default function AboutStudios() {
   const posts = useSelector(selectaboutusPosts);
   const about = posts?.[0];
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   if (!posts) {
     return (
@@ -57,12 +58,12 @@ export default function AboutStudios() {
           </div>
 
           <div className="col-sm-6 studio">
-            <p className="sub-heading">Global Studios</p>
+            <p className="sub-heading"> {lang === "ch" ? "环球影业" : "Global Studios"}</p>
             <h2 className="main-heading">{heading}</h2>
             <div className="wysiwyg-text mt-3" dangerouslySetInnerHTML={{ __html: description }} />
             <div className="mt-4">
               <Link href="/studio" className="button-css">
-                Discover Our Studios →
+                {lang === "ch" ? "探索我们的工作室 → " : "Discover Our Studios → "}
               </Link>
             </div>
           </div>

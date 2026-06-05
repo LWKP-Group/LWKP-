@@ -1,20 +1,28 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-export const fetchMediaPosts = createAsyncThunk("media/fetchPosts", async ({ page = 1, category = "all" }) => {
-  let url = `${process.env.NEXT_PUBLIC_WP_API}/media_post?page=${page}&per_page=12`;
+export const fetchMediaPosts = createAsyncThunk(
+  "media/fetchPosts",
+  async ({ page = 1, category = "all" } = {}, { getState }) => {
+    const lang = getState().language?.currentLanguage || "en";
 
-  if (category !== "all") {
-    url += `&media_category=${category}`;
-  }
+    const wpLang = lang === "ch" ? "zh-hans" : "en";
 
-  const res = await fetch(url);
-  const data = await res.json();
+    let url = `${process.env.NEXT_PUBLIC_WP_API}/media_post?page=${page}&per_page=12&lang=${wpLang}`;
 
-  return {
-    posts: data,
-    total: Number(res.headers.get("X-WP-Total")) || 0,
-  };
-});
+    if (category !== "all") {
+      url += `&media_category=${category}`;
+    }
+
+    const res = await fetch(url);
+
+    const data = await res.json();
+
+    return {
+      posts: data,
+      total: Number(res.headers.get("X-WP-Total")) || 0,
+    };
+  },
+);
 
 const mediaSlice = createSlice({
   name: "media",
@@ -33,11 +41,13 @@ const mediaSlice = createSlice({
       .addCase(fetchMediaPosts.pending, (state) => {
         state.loading = true;
       })
+
       .addCase(fetchMediaPosts.fulfilled, (state, action) => {
         state.loading = false;
         state.posts = action.payload.posts;
         state.total = action.payload.total;
       })
+
       .addCase(fetchMediaPosts.rejected, (state) => {
         state.loading = false;
         state.error = "Failed to load media posts";

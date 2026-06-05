@@ -13,6 +13,7 @@ export default function RelatedStory() {
 
   const posts = useSelector(selectstoriesPosts);
   const loading = useSelector(selectstoriesLoading);
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   const [randomPosts, setRandomPosts] = useState([]);
 
@@ -41,7 +42,7 @@ export default function RelatedStory() {
     <Fragment>
       <div className="row related-posts">
         <div className="col-sm-12">
-          <h4>You may also like</h4>
+          <h4>{lang === "ch" ? "您可能还喜欢" : "You may also like"}</h4>
         </div>
 
         {randomPosts.map((post) => {
@@ -60,7 +61,7 @@ export default function RelatedStory() {
                 <div className="col-sm-8">
                   {" "}
                   <h6 dangerouslySetInnerHTML={{ __html: title }} />
-                  <Link href={`/stories/${slug}`}> Read More →</Link>
+                  <Link href={`/stories/${slug}`}>{lang === "ch" ? "阅读更多 → " : "Read More → "}</Link>
                 </div>
               </div>
             </div>
@@ -68,7 +69,7 @@ export default function RelatedStory() {
         })}
 
         <div className="col-sm-12">
-          <h4>Follow us on</h4>
+          <h4>{lang === "ch" ? "关注我们 " : "Follow us on "}</h4>
         </div>
       </div>
     </Fragment>

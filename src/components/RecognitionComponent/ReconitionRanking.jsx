@@ -18,10 +18,11 @@ export default function ReconitionRanking() {
   const dispatch = useDispatch();
   const pageData = useSelector(selectrecognitionPagePosts);
   const loading = useSelector(selectrecognitionPageLoading);
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   useEffect(() => {
     dispatch(fetchrecognitionPagePosts());
-  }, [dispatch]);
+  }, [dispatch, lang]);
 
   if (loading) {
     return (
@@ -58,7 +59,7 @@ export default function ReconitionRanking() {
               <div className="wysiwyg-text" dangerouslySetInnerHTML={{ __html: rankingDescription }} />
             )}
             <Link href="/rankings" className="button-css">
-              View rankings →
+              {lang === "ch" ? "查看排名 →  " : "View rankings → "}
             </Link>
           </div>
 

@@ -1,27 +1,17 @@
 "use client";
 
 import { useDispatch, useSelector } from "react-redux";
-import { setLanguage } from "@/store/slices/languageSlice";
+import { setLanguage } from "@/store/languageSlice";
 
 export default function LanguageSwitcher() {
   const dispatch = useDispatch();
 
   const currentLanguage = useSelector((state) => state.language.currentLanguage);
 
-  const changeLanguage = (lang) => {
-    dispatch(setLanguage(lang));
-
-    localStorage.setItem("lang", lang);
-
-    document.cookie = `site_lang=${lang}; path=/; max-age=31536000`;
-
-    window.location.reload();
-  };
-
   return (
     <>
       <span
-        onClick={() => changeLanguage("en")}
+        onClick={() => dispatch(setLanguage("en"))}
         style={{
           cursor: "pointer",
           fontWeight: currentLanguage === "en" ? "bold" : "normal",
@@ -33,7 +23,7 @@ export default function LanguageSwitcher() {
       {" | "}
 
       <span
-        onClick={() => changeLanguage("ch")}
+        onClick={() => dispatch(setLanguage("ch"))}
         style={{
           cursor: "pointer",
           fontWeight: currentLanguage === "ch" ? "bold" : "normal",

@@ -1,10 +1,17 @@
-async function getPost(slug) {
+import { cookies } from "next/headers";
+
+async function getPost(slug, lang) {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_WP_API}/insight?slug=${slug}&_embed`, { cache: "no-store" });
+    const wpLang = lang === "ch" ? "zh-hans" : "en";
+
+    const res = await fetch(`${process.env.NEXT_PUBLIC_WP_API}/insight?slug=${slug}&lang=${wpLang}&_embed`, {
+      cache: "no-store",
+    });
 
     if (!res.ok) return null;
 
     const data = await res.json();
+
     return data?.[0] || null;
   } catch (err) {
     return null;
@@ -12,19 +19,24 @@ async function getPost(slug) {
 }
 
 export async function generateMetadata({ params }) {
+  const cookieStore = await cookies();
+
+  const lang = cookieStore.get("site_lang")?.value || "en";
+
   const { slug } = await params;
-  const post = await getPost(slug);
+
+  const post = await getPost(slug, lang);
 
   if (!post) {
     return {
-      title: "Post Not Found — insight | LWK",
+      title: "Post Not Found — Insight | LWK",
       description: "Requested post does not exist.",
     };
   }
 
   return {
-    title: `${post.title.rendered} — insight | LWK`,
-    description: post?.acf?.sub_heading || post?.acf?.description?.substring(0, 150) || "insight content at LWK.",
+    title: `${post.title.rendered} — Insight | LWK`,
+    description: post?.acf?.sub_heading || post?.acf?.description?.substring(0, 150) || "Insight content at LWK.",
   };
 }
 
@@ -33,9 +45,14 @@ import StickyHeader from "@/components/GlobalCompo/StickyHeader";
 import MainInsight from "./components/MainInsight";
 import MaintenanceGuard from "@/components/MaintenanceGuard";
 
-export default async function insightSingle({ params }) {
+export default async function InsightSingle({ params }) {
+  const cookieStore = await cookies();
+
+  const lang = cookieStore.get("site_lang")?.value || "en";
+
   const { slug } = await params;
-  const post = await getPost(slug);
+
+  const post = await getPost(slug, lang);
 
   if (!post) {
     return <MaintenanceGuard posts={post} />;

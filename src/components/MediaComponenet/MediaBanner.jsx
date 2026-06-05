@@ -15,10 +15,11 @@ export default function MediaBanner() {
   const dispatch = useDispatch();
   const posts = useSelector(selectmediaPagePosts);
   const loading = useSelector(selectmediaPageLoading);
+  const lang = useSelector((state) => state.language.currentLanguage);
 
   useEffect(() => {
     dispatch(fetchmediaPagePosts());
-  }, [dispatch]);
+  }, [dispatch, lang]);
 
   if (loading || !posts) {
     return (
