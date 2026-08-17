@@ -1,34 +1,9 @@
 "use client";
 
-import { Fragment, useMemo } from "react";
+import { Fragment } from "react";
 import { motion } from "framer-motion";
 
-export default function DepartmentLocations({ people, selectedLocation, onSelectLocation }) {
-  const locations = useMemo(() => {
-    const all = people.flatMap((p) => p.locations || []);
-    const unique = [...new Set(all)];
-
-    const order = [
-      "Hong Kong",
-      "Shenzhen",
-      "Guangzhou",
-      "Shanghai",
-      "Chongqing",
-      "Beijing",
-      "Shenyang",
-      "Macau",
-      "Manila",
-      "Dubai",
-      "Riyadh",
-    ];
-
-    return unique.sort((a, b) => {
-      const ai = order.indexOf(a);
-      const bi = order.indexOf(b);
-      return (ai === -1 ? 999 : ai) - (bi === -1 ? 999 : bi);
-    });
-  }, [people]);
-
+export default function DepartmentLocations({ locations, selectedLocation, onSelectLocation }) {
   return (
     <Fragment>
       <div className="col-sm-3 department-locations">

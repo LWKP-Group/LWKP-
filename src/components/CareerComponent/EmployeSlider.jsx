@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment, useEffect } from "react";
+import { Fragment, useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchreviewsPosts, selectreviewsPosts, selectreviewsLoading } from "@/store/slices/reviewSlice";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -8,12 +8,14 @@ import { Navigation, Pagination } from "swiper/modules";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import GlobalLoader from "@/components/GlobalCompo/GlobalLoader";
+
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 export default function EmployeSlider() {
   const dispatch = useDispatch();
+
   const reviews = useSelector(selectreviewsPosts);
   const loading = useSelector(selectreviewsLoading);
   const lang = useSelector((state) => state.language.currentLanguage);
@@ -21,6 +23,78 @@ export default function EmployeSlider() {
   useEffect(() => {
     dispatch(fetchreviewsPosts());
   }, [dispatch, lang]);
+
+  /*
+   * Normalize text
+   * Removes HTML and makes comparison safer.
+   */
+  const cleanText = (value = "") => {
+    return String(value)
+      .replace(/<[^>]*>/g, "")
+      .replace(/&amp;/g, "&")
+      .replace(/&#8217;/g, "'")
+      .replace(/&#8211;/g, "-")
+      .replace(/&#8212;/g, "—")
+      .replace(/&nbsp;/g, " ")
+      .replace(/\s+/g, " ")
+      .trim()
+      .toLowerCase();
+  };
+
+  /*
+   * Put Ivan Fu / 符展成 FIRST
+   */
+  const sortedReviews = useMemo(() => {
+    if (!reviews || !reviews.length) {
+      return [];
+    }
+
+    const targetIndexes = [];
+
+    reviews.forEach((review, index) => {
+      const title = cleanText(review?.title?.rendered);
+      const designation = cleanText(review?.acf?.designation);
+
+      const isIvan = title === "ivan fu" || title === "符展成";
+
+      const isManagingDirector = designation === "managing director" || designation === "董事总经理";
+
+      if (isIvan || (isManagingDirector && (title === "ivan fu" || title === "符展成"))) {
+        targetIndexes.push(index);
+      }
+    });
+
+    /*
+     * If target employee was found,
+     * move that exact review to the beginning.
+     */
+    if (targetIndexes.length > 0) {
+      const targetIndex = targetIndexes[0];
+
+      const targetReview = reviews[targetIndex];
+
+      return [targetReview, ...reviews.filter((_, index) => index !== targetIndex)];
+    }
+
+    /*
+     * Fallback:
+     * If the title is different for some reason,
+     * search only by designation.
+     */
+    const fallbackIndex = reviews.findIndex((review) => {
+      const designation = cleanText(review?.acf?.designation);
+
+      return designation === "managing director" || designation === "董事总经理";
+    });
+
+    if (fallbackIndex !== -1) {
+      const targetReview = reviews[fallbackIndex];
+
+      return [targetReview, ...reviews.filter((_, index) => index !== fallbackIndex)];
+    }
+
+    return reviews;
+  }, [reviews]);
 
   if (loading || !reviews) {
     return (
@@ -31,10 +105,11 @@ export default function EmployeSlider() {
   }
 
   if (!reviews.length) {
-    return <div className="container text-center py-5"> </div>;
+    return <div className="container text-center py-5"></div>;
   }
 
   const quoteone = "https://staging.lwkp.com/wp-content/uploads/2025/12/unnamed-file.png";
+
   const quotetwo = "https://staging.lwkp.com/wp-content/uploads/2025/12/1.png";
 
   return (
@@ -57,10 +132,13 @@ export default function EmployeSlider() {
           pagination={{ clickable: true }}
           className="projectsSwiper"
         >
-          {reviews.map((review) => {
+          {sortedReviews.map((review) => {
             const image = review?.featured_image;
+
             const title = review?.title?.rendered || "Employee";
+
             const designation = review?.acf?.designation || "";
+
             const detail = review?.acf?.detail || "";
 
             return (
@@ -85,6 +163,7 @@ export default function EmployeSlider() {
 
                         <div className="review-info-box">
                           <h5 className="review-name">{title}</h5>
+
                           <h6 className="review-designation">{designation}</h6>
                         </div>
                       </div>
@@ -93,7 +172,9 @@ export default function EmployeSlider() {
                     <div className="col-sm-8 right-box">
                       <p>
                         <Image src={quoteone} alt="quotes" width={100} height={100} loading="lazy" />
+
                         {detail}
+
                         <Image src={quotetwo} alt="quotes" width={100} height={100} loading="lazy" />
                       </p>
                     </div>

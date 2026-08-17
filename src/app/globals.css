@@ -219,6 +219,34 @@ b {
 .static-links a {
   font-size: 26px;
 }
+
+html.chinese-site {
+  line-height: 1.6;
+}
+
+html.chinese-site {
+  line-height: 1.6;
+}
+
+/* Main text elements */
+html.chinese-site p,
+html.chinese-site li,
+html.chinese-site a,
+html.chinese-site span,
+html.chinese-site label {
+  line-height: 1.6 !important;
+}
+
+/* Headings */
+html.chinese-site h1,
+html.chinese-site h2,
+html.chinese-site h3,
+html.chinese-site h4,
+html.chinese-site h5,
+html.chinese-site h6 {
+  line-height: 1.6 !important;
+}
+
 /* EXTRA */
 body .container-fluid {
   padding: 0;

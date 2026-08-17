@@ -13,33 +13,42 @@ export default function DepartmentLayoutClient({ people }) {
     return <div className="container text-center py-5">Loading content…</div>;
   }
 
-  // ⭐ SORT & UNIQUE LOCATION LIST
+  //  SORT & UNIQUE LOCATION LIST
   const sortedLocations = useMemo(() => {
     const all = people.flatMap((p) => p.locations || []);
     const unique = [...new Set(all)];
 
+    // English + Chinese names with the SAME order
     const order = [
-      "Hong Kong",
-      "Shenzhen",
-      "Guangzhou",
-      "Shanghai",
-      "Chongqing",
-      "Beijing",
-      "Shenyang",
-      "Macau",
-      "Manila",
-      "Dubai",
-      "Riyadh",
+      ["Hong Kong", "香港"],
+      ["Shenzhen", "深圳"],
+      ["Guangzhou", "广州"],
+      ["Shanghai", "上海"],
+      ["Chongqing", "重庆"],
+      ["Beijing", "北京"],
+      ["Shenyang", "沈阳"],
+      ["Macau", "澳门"],
+      ["Manila", "马尼拉"],
+      ["Dubai", "迪拜"],
+      ["Riyadh", "利雅得"],
     ];
 
+    const orderMap = new Map();
+
+    order.forEach(([en, ch], index) => {
+      orderMap.set(en, index);
+      orderMap.set(ch, index);
+    });
+
     return unique.sort((a, b) => {
-      const ai = order.indexOf(a);
-      const bi = order.indexOf(b);
-      return (ai === -1 ? 999 : ai) - (bi === -1 ? 999 : bi);
+      const ai = orderMap.get(a) ?? 999;
+      const bi = orderMap.get(b) ?? 999;
+
+      return ai - bi;
     });
   }, [people]);
 
-  // ⭐ DEFAULT LOCATION = FIRST SORTED LOCATION
+  // DEFAULT LOCATION = FIRST SORTED LOCATION
   const [selectedLocation, setSelectedLocation] = useState(sortedLocations[0] || null);
 
   // ❗ NO DEFAULT PERSON
@@ -56,11 +65,11 @@ export default function DepartmentLayoutClient({ people }) {
       >
         <div className="row">
           <DepartmentLocations
-            people={people}
+            locations={sortedLocations}
             selectedLocation={selectedLocation}
             onSelectLocation={(loc) => {
               setSelectedLocation(loc);
-              setSelectedPerson(null); // Reset person on location change
+              setSelectedPerson(null);
             }}
           />
 

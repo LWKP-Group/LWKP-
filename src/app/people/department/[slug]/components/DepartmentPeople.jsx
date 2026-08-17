@@ -5,7 +5,11 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const listAnim = {
   hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.35 } },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.35 },
+  },
 };
 
 export default function DepartmentPeople({ people, selectedLocation, selectedPersonId, onSelectPerson }) {
@@ -13,45 +17,126 @@ export default function DepartmentPeople({ people, selectedLocation, selectedPer
     return <div className="col-sm-6 department-people text-center py-4">Loading people…</div>;
   }
 
-  // ✅ DESIGNATION ORDER (normalized)
+  // DESIGNATION ORDER
+  // English + Chinese use the same position
   const DESIGNATION_ORDER = [
-    "managing director",
-    "founder",
-    "group chief financial officer",
-    "managing director - location",
-    "managing director - studio",
-    "global design principal",
-    "studio director",
-    "director of operations - studio",
-    "director of operations - location",
-    "director",
-    "design director",
-    "project director",
-    "director of business development",
-    "head of digital design",
-    "associate director",
-    "assistant general manager",
-    "senior associate",
-    "chief architect",
-    "senior project coordinator",
-    "liason & facility manager",
+    {
+      rank: 0,
+      values: ["managing director", "董事总经理"],
+    },
+    {
+      rank: 1,
+      values: ["Founder", "创办人"],
+    },
+    {
+      rank: 2,
+      values: ["group chief financial officer", "集团首席财务官", "首席财务长"],
+    },
+    {
+      rank: 3,
+      values: ["managing director - location", "区域董事总经理"],
+    },
+    {
+      rank: 4,
+      values: ["managing director - studio", "工作室董事总经理"],
+    },
+    {
+      rank: 5,
+      values: ["global design principal", "全球设计总监"],
+    },
+    {
+      rank: 6,
+      values: ["studio director", "工作室总监"],
+    },
+    {
+      rank: 7,
+      values: ["director of operations - studio", "工作室运营总监"],
+    },
+    {
+      rank: 8,
+      values: ["director of operations - location", "区域运营总监"],
+    },
+    {
+      rank: 9,
+      values: ["director", "总监", "董事"],
+    },
+    {
+      rank: 10,
+      values: ["design director", "设计总监"],
+    },
+    {
+      rank: 11,
+      values: ["project director", "项目总监", "项目董事"],
+    },
+    {
+      rank: 12,
+      values: ["director of business development", "业务发展总监"],
+    },
+    {
+      rank: 13,
+      values: ["head of digital design", "数字设计主管"],
+    },
+    {
+      rank: 14,
+      values: ["associate director", "副总监", "助理董事"],
+    },
+    {
+      rank: 15,
+      values: ["assistant general manager", "助理总经理"],
+    },
+    {
+      rank: 16,
+      values: ["senior associate", "高级顾问"],
+    },
+    {
+      rank: 17,
+      values: ["chief architect", "首席建筑师"],
+    },
+    {
+      rank: 18,
+      values: ["senior project coordinator", "高级项目协调员"],
+    },
+    {
+      rank: 19,
+      values: ["liason & facility manager", "联络与设施经理"],
+    },
   ];
 
-  // ✅ NORMALIZE helper
+  // NORMALIZE helper
   const normalize = (str = "") => str.toLowerCase().replace(/&amp;/g, "&").replace(/\s+/g, " ").trim();
 
-  // ✅ FILTER + SORT PEOPLE
+  // Get designation position
+  // Works with both English and Chinese
+  const getDesignationRank = (designation = "") => {
+    const value = normalize(designation);
+
+    let bestRank = 999;
+    let bestLength = 0;
+
+    DESIGNATION_ORDER.forEach(({ rank, values }) => {
+      values.forEach((name) => {
+        const normalizedName = normalize(name);
+
+        if (value === normalizedName || value.startsWith(normalizedName)) {
+          if (normalizedName.length > bestLength) {
+            bestRank = rank;
+            bestLength = normalizedName.length;
+          }
+        }
+      });
+    });
+
+    return bestRank;
+  };
+  // FILTER + SORT PEOPLE
   const filteredAndSorted = useMemo(() => {
     const filtered = selectedLocation ? people.filter((p) => p.locations?.includes(selectedLocation)) : people;
 
     return [...filtered].sort((a, b) => {
-      const aDes = normalize(a?.designation);
-      const bDes = normalize(b?.designation);
+      const ai = getDesignationRank(a?.designation);
+      const bi = getDesignationRank(b?.designation);
 
-      const ai = DESIGNATION_ORDER.findIndex((d) => aDes.startsWith(d));
-      const bi = DESIGNATION_ORDER.findIndex((d) => bDes.startsWith(d));
-
-      return (ai === -1 ? 999 : ai) - (bi === -1 ? 999 : bi);
+      return ai - bi;
     });
   }, [people, selectedLocation]);
 
